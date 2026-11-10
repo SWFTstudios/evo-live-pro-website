@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Evo Live Pro Mobile · Preview</title>
+<link rel="icon" href="assets/logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #000; color: #F4F4F0; font-family: Inter, system-ui, sans-serif; }
+  .wrap { padding: 40px 16px 80px; }
+  header { max-width: 1320px; margin: 0 auto 32px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: flex-end; }
+  h1 { margin: 0; font-family: Archivo, sans-serif; font-stretch: 118%; font-weight: 800; font-size: clamp(30px, 4vw, 52px); line-height: 1; text-transform: uppercase; }
+  p { margin: 8px 0 0; color: #A1A1A6; font-size: 15px; max-width: 560px; line-height: 1.5; }
+  .row { display: flex; gap: 32px; overflow-x: auto; padding: 8px 0 24px; scroll-snap-type: x mandatory; }
+  figure { margin: 0; flex: none; scroll-snap-align: center; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+  figure:first-child { margin-left: auto; } figure:last-child { margin-right: auto; }
+  .phone { width: 390px; height: 800px; border: 10px solid #1E1E22; border-radius: 44px; overflow: hidden; background: #0A0A0B; box-shadow: 0 0 0 1px #2A2A2E; }
+  .phone iframe { width: 390px; height: 100%; border: 0; display: block; }
+  figcaption { font: 500 12px 'JetBrains Mono', monospace; letter-spacing: .08em; color: #A1A1A6; }
+  figcaption a { color: #F4F4F0; }
+  a.back { font: 500 12px 'JetBrains Mono', monospace; letter-spacing: .08em; color: #F4F4F0; }
+  @media (max-width: 480px) { .phone { width: calc(100vw - 52px); height: 78vh; } .phone iframe { width: 100%; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Mobile views</h1>
+      <p>Every page at phone size. Scroll inside each phone, tap the menu button, and try the Book Evo / Rent Gear bar pinned to the bottom. Swipe sideways for more pages.</p>
+    </div>
+    <a class="back" href="./">&larr; ALL PAGES</a>
+  </header>
+  <div class="row">
+    <figure><div class="phone"><iframe src="home.html" title="Home on mobile" loading="lazy"></iframe></div><figcaption>HOME · <a href="home.html">OPEN</a></figcaption></figure>
+    <figure><div class="phone"><iframe src="rentals.html" title="Rentals on mobile" loading="lazy"></iframe></div><figcaption>RENTALS · <a href="rentals.html">OPEN</a></figcaption></figure>
+    <figure><div class="phone"><iframe src="events.html" title="Events on mobile" loading="lazy"></iframe></div><figcaption>EVENTS · <a href="events.html">OPEN</a></figcaption></figure>
+    <figure><div class="phone"><iframe src="about.html" title="About Us on mobile" loading="lazy"></iframe></div><figcaption>ABOUT US · <a href="about.html">OPEN</a></figcaption></figure>
+    <figure><div class="phone"><iframe src="photos.html" title="Photos on mobile" loading="lazy"></iframe></div><figcaption>PHOTOS · <a href="photos.html">OPEN</a></figcaption></figure>
+    <figure><div class="phone"><iframe src="contact.html" title="Contact Us on mobile" loading="lazy"></iframe></div><figcaption>CONTACT US · <a href="contact.html">OPEN</a></figcaption></figure>
+  </div>
+</div>
+</body>
+</html>

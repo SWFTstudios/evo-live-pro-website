@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Evo Live Pro · Website Preview</title>
+<meta name="description" content="Wireframes and style guide for the new Evo Live Pro website.">
+<link rel="icon" href="assets/logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0A0A0B; --card:#141416; --line:#2A2A2E; --text:#F4F4F0; --muted:#A1A1A6; --book:#B8FF3C; --rent:#FF6A1F; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: Inter, system-ui, sans-serif; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 56px 16px 80px; }
+  header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; border-bottom: 1px solid var(--line); padding-bottom: 36px; }
+  header img { width: 240px; max-width: 70vw; height: auto; display: block; margin-bottom: 24px; }
+  h1 { margin: 0; font-family: Archivo, sans-serif; font-stretch: 125%; font-weight: 800; font-size: clamp(40px, 7vw, 84px); line-height: .95; letter-spacing: -.02em; text-transform: uppercase; }
+  .meta { font: 500 12px/1.8 'JetBrains Mono', monospace; letter-spacing: .08em; color: var(--muted); text-align: right; }
+  .intro { max-width: 680px; font-size: 18px; line-height: 1.6; color: #C9C9CC; margin: 36px 0 12px; }
+  .key { display: flex; flex-wrap: wrap; gap: 20px; font: 500 12px 'JetBrains Mono', monospace; letter-spacing: .08em; color: var(--muted); margin-bottom: 40px; }
+  .key span::before { content: ""; display: inline-block; width: 12px; height: 12px; margin-right: 8px; vertical-align: -1px; }
+  .key .b::before { background: var(--book); } .key .r::before { background: var(--rent); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+  .grid a { display: flex; flex-direction: column; gap: 10px; background: var(--card); border: 1px solid var(--line); padding: 24px; min-height: 160px; color: var(--text); text-decoration: none; transition: border-color .15s; }
+  .grid a:hover, .grid a:focus-visible { border-color: var(--text); outline: none; }
+  .n { font: 500 12px 'JetBrains Mono', monospace; letter-spacing: .08em; color: var(--muted); }
+  .t { font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 26px; text-transform: uppercase; }
+  .d { font-size: 15px; line-height: 1.5; color: #C9C9CC; margin-top: auto; }
+  .tag { align-self: flex-start; font: 500 11px 'JetBrains Mono', monospace; letter-spacing: .08em; color: var(--bg); background: var(--text); padding: 5px 8px; }
+  footer { margin-top: 56px; font: 500 12px 'JetBrains Mono', monospace; letter-spacing: .08em; color: var(--muted); }
+  @media (max-width: 640px) { .meta { text-align: left; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <img src="assets/logo-wordmark.png" alt="Evo Live Pro">
+      <h1>Website preview</h1>
+    </div>
+    <div class="meta">V0.1 · WIREFRAMES + STYLE GUIDE<br>PREPARED BY SWFT STUDIOS<br>NOV 2026</div>
+  </header>
+
+  <p class="intro">A first look at the structure and feel of the new site. Grey boxes are where real photos and video will go, and anything in [brackets] is content we still need from you. Click around: the menus, filters, rental quote and forms all work.</p>
+  <div class="key"><span class="b">GREEN = BOOK EVO (EVENTS)</span><span class="r">ORANGE = RENT GEAR</span></div>
+
+  <nav class="grid" aria-label="Preview pages">
+    <a href="style-guide.html"><span class="n">00</span><span class="t">Style Guide</span><span class="d">Logo, colors, type, buttons, voice and photo direction.</span></a>
+    <a href="home.html"><span class="n">01</span><span class="t">Home</span><span class="d">Two clear paths, what we do, recent setups, partners and the inquiry form.</span><span class="tag">CLICKABLE</span></a>
+    <a href="rentals.html"><span class="n">02</span><span class="t">Rentals</span><span class="d">The full 2026 inventory and sound + DJ packages, with an add-to-quote cart.</span><span class="tag">CLICKABLE</span></a>
+    <a href="events.html"><span class="n">03</span><span class="t">Events</span><span class="d">Event services, 2026 wedding packages and à la carte pricing, production and gear.</span></a>
+    <a href="about.html"><span class="n">04</span><span class="t">About Us</span><span class="d">Origins, Tim and Dom, and the off-the-record questionnaire.</span></a>
+    <a href="photos.html"><span class="n">05</span><span class="t">Photos</span><span class="d">Filterable gallery of events, weddings and behind the scenes.</span><span class="tag">CLICKABLE</span></a>
+    <a href="contact.html"><span class="n">06</span><span class="t">Contact Us</span><span class="d">Pick Book Evo or Rent Equipment and the form adapts.</span><span class="tag">CLICKABLE</span></a>
+    <a href="mobile.html"><span class="n">07</span><span class="t">Mobile views</span><span class="d">Every page at phone size, with a menu button and Book / Rent always one tap away.</span><span class="tag">CLICKABLE</span></a>
+  </nav>
+
+  <footer>EVO LIVE PRO · DESIGNED BY SWFT STUDIOS</footer>
+</div>
+</body>
+</html>

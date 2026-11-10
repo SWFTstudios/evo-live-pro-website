@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Evo Live Pro Rentals · Preview</title>
+<link rel="icon" href="assets/logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0A0A0B}
+a{color:#F4F4F0}a:hover{color:#FF6A1F}
+@media (max-width: 900px){
+  .ev-cats{flex-direction:row !important;overflow-x:auto;flex-basis:100% !important;gap:8px !important}
+  .ev-cats > span{display:none}
+  .ev-cats > button{flex:none;border:1px solid #2A2A2E !important;box-shadow:none !important}
+}
+</style>
+<style>
+body{margin:0;background:#0A0A0B}
+.evh-links{display:flex}
+.evh-ctas{display:flex}
+.evh-menu{display:none}
+.evh-mbar{display:none}
+.evh-menu summary{list-style:none}
+.evh-menu summary::-webkit-details-marker{display:none}
+@media (max-width: 900px){
+  .evh-links,.evh-ctas{display:none !important}
+  .evh-menu{display:block}
+  .evh-mbar{display:grid}
+  .ev-page{padding-bottom:64px}
+}
+</style>
+</head>
+<body>
+<div id="dc-root"></div>
+<template id="dc-template">
+
+<div class="ev-page" style="background: #0A0A0B; color: #F4F4F0; font-family: Inter, system-ui, sans-serif; min-height: 100vh">
+
+  <dc-import name="Header" active="rentals" quote="{{count}}" hint-size="100%,69px"></dc-import>
+
+  <section style="border-bottom: 1px solid #2A2A2E">
+    <div style="max-width: 1320px; margin: 0 auto; padding: 56px 16px 40px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: flex-end">
+      <div style="display: flex; flex-direction: column; gap: 14px; max-width: 720px">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #FF6A1F">RENTALS · FOR PLANNERS, VENUES, DJS &amp; PRODUCTION TEAMS</span>
+        <h1 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 118%; font-weight: 800; font-size: clamp(28px, 4.2vw, 60px); line-height: 1; text-transform: uppercase">Show-ready gear</h1>
+        <p style="margin: 0; font-size: 17px; line-height: 1.55; color: #C9C9CC">RCF audio, AlphaTheta and Pioneer DJ backline, intelligent lighting, LED walls and FX. Add what you need to your quote and we will confirm availability, delivery and setup.</p>
+      </div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.06em; color: #A1A1A6">
+        <span style="border: 1px solid #2A2A2E; padding: 10px 12px">DELIVERY + PICKUP</span>
+        <span style="border: 1px solid #2A2A2E; padding: 10px 12px">SETUP CREW AVAILABLE</span>
+        <span style="border: 1px solid #2A2A2E; padding: 10px 12px">SAFETY CERTIFIED</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="packages" style="max-width: 1320px; margin: 0 auto; padding: 48px 16px 8px; display: flex; flex-direction: column; gap: 18px">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap">
+      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: clamp(26px, 3vw, 36px); text-transform: uppercase">Sound + DJ packages</h2>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">SIZED BY ROOM · INCLUDES SETUP + BREAKDOWN</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px">
+      <sc-for list="{{packages}}" as="p" hint-placeholder-count="4">
+        <div style="background: #141416; border: 1px solid #2A2A2E; border-top: 4px solid #FF6A1F; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #A1A1A6">{{p.guests}}</span>
+          <span style="font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 22px; text-transform: uppercase">{{p.name}}</span>
+          <span style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 28px; color: #FF6A1F">{{p.price}}</span>
+          <span style="font-size: 14px; line-height: 1.55; color: #C9C9CC">{{p.gear}}</span>
+          <button type="button" onClick="{{p.add}}" style="{{p.btnStyle}}">{{p.btn}}</button>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <div style="max-width: 1320px; margin: 0 auto; padding: 40px 16px 96px; display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start">
+    <aside class="ev-cats" aria-label="Categories" style="flex: 1 1 220px; max-width: 100%; display: flex; flex-direction: column; gap: 4px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6; padding-bottom: 10px">CATEGORIES</span>
+      <sc-for list="{{cats}}" as="c" hint-placeholder-count="9">
+        <button type="button" onClick="{{c.pick}}" style="{{c.style}}">{{c.label}}<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #A1A1A6">{{c.n}}</span></button>
+      </sc-for>
+    </aside>
+
+    <main style="flex: 999 1 540px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
+        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: clamp(24px, 2.6vw, 32px); text-transform: uppercase">{{heading}}</h2>
+        <label style="display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">SEARCH<input type="search" placeholder="e.g. CDJ-3000" style="height: 44px; width: 200px; background: #1E1E22; border: 1px solid #2A2A2E; color: #F4F4F0; padding: 0 12px; font-family: Inter, sans-serif; font-size: 15px"></label>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px">
+        <sc-for list="{{items}}" as="it" hint-placeholder-count="8">
+          <article style="background: #141416; border: 1px solid #2A2A2E; display: flex; flex-direction: column">
+            <div style="height: 140px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #A1A1A6; border-bottom: 1px solid #2A2A2E">TRANSPARENT PNG</div>
+            <div style="padding: 16px; display: flex; flex-direction: column; gap: 6px; flex: 1">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #A1A1A6; letter-spacing: 0.08em">{{it.sub}}</span>
+              <span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 17px; line-height: 1.25">{{it.name}}</span>
+              <span style="font-size: 13px; color: #C9C9CC; line-height: 1.45">{{it.note}}</span>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 12px; gap: 8px">
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px">{{it.price}}</span>
+                <button type="button" onClick="{{it.add}}" style="{{it.btnStyle}}">{{it.btn}}</button>
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </main>
+
+    <aside aria-label="Your quote" style="flex: 1 1 260px; max-width: 100%; background: #141416; border: 1px solid #2A2A2E; border-top: 4px solid #FF6A1F; padding: 20px; display: flex; flex-direction: column; gap: 14px; box-sizing: border-box">
+      <span style="font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 20px; text-transform: uppercase">Your quote</span>
+      <sc-if value="{{empty}}" hint-placeholder-val="{{ true }}">
+        <span style="font-size: 14px; color: #A1A1A6; line-height: 1.5">Nothing added yet. Tap + Quote on any item or package.</span>
+      </sc-if>
+      <sc-for list="{{cart}}" as="q" hint-placeholder-count="2">
+        <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 14px; border-bottom: 1px solid #2A2A2E; padding-bottom: 10px"><span>{{q.name}}</span><span style="font-family: 'JetBrains Mono', monospace; color: #A1A1A6">×1</span></div>
+      </sc-for>
+      <label style="display: flex; flex-direction: column; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #A1A1A6">RENTAL DATES<input type="text" placeholder="Pickup → Return" style="height: 44px; background: #1E1E22; border: 1px solid #2A2A2E; color: #F4F4F0; padding: 0 12px; font-family: Inter, sans-serif; font-size: 15px"></label>
+      <label style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #C9C9CC"><input type="checkbox" style="width: 18px; height: 18px">Add delivery + setup crew</label>
+      <button type="button" style="height: 52px; border: 0; background: #FF6A1F; color: #0A0A0B; font-family: Archivo, sans-serif; font-weight: 800; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer">Send quote request</button>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #A1A1A6">→ CREATES A QUOTE IN STAGERA</span>
+    </aside>
+  </div>
+</div>
+</template>
+<script type="text/x-dc" id="dc-logic" data-props='{"$preview":{"width":1440,"height":5200}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { cat: 'All', cart: [] }; }
+  renderVals() {
+    const Q = 'Price on quote';
+    const raw = [
+      ['Sound Systems', 'Point source', 'RCF ART 915A', '15" powered top', Q],
+      ['Sound Systems', 'Point source', 'RCF NX 945-A', '15" powered top', Q],
+      ['Sound Systems', 'Point source', 'AlphaTheta Wave-Eight', '8" portable speaker', Q],
+      ['Sound Systems', 'Column array', 'RCF EVOX 12', 'Column array system, 15" sub', Q],
+      ['Sound Systems', 'Column array', 'RCF EVOX J11 (White)', 'Active 3-way column, 12"', Q],
+      ['Sound Systems', 'Column array', 'RCF EVOX J9', 'Active 3-way column, 12"', Q],
+      ['Sound Systems', 'Line array', 'RCF HDL6-A', '1400W compact active line array', Q],
+      ['Sound Systems', 'Subwoofer', 'RCF SUB 18-AX', '18" powered sub', Q],
+      ['Sound Systems', 'Subwoofer', 'RCF SUB 8006-AS', 'Dual 18" powered sub', Q],
+      ['Sound Systems', 'Wireless mics', 'Shure SLXD24D+/SM58', 'Dual handheld rack system', Q],
+      ['Sound Systems', 'Wireless mics', 'Shure QLXD24/SM58', 'Dual handheld rack system', Q],
+      ['Sound Systems', 'Wireless mics', 'Shure SM58', 'Wired vocal mic with switch', Q],
+      ['Sound Systems', 'Mixers', 'Allen &amp; Heath CQ-12T / CQ-18T', '12 or 18-channel digital', Q],
+      ['Sound Systems', 'Mixers', 'Allen &amp; Heath Qu-5D', '38-channel digital, Dante', Q],
+      ['Visuals', 'LED video wall', 'LED Video Walls', "8'×4' · 14'×7' · 16.5'×9.5'", 'From $1,200'],
+      ['Visuals', 'Screens', '50" / 55" Media Screens', 'On stands, truss or booth', 'From $250'],
+      ['Lighting', 'Moving heads', '300W 3-in-1 Hybrid', 'Beam, spot and wash', Q],
+      ['Lighting', 'Moving heads', '275W Beam', 'Sharp aerial beams', Q],
+      ['Lighting', 'Moving heads', '19x15W LED Wash', 'Zoom with aura FX', Q],
+      ['Lighting', 'Lasers', 'Unity Raw 5 FB4 RGB Lasers', 'With operator', '(2) $1,400'],
+      ['Lighting', 'Stage lights', '350W Retro Hex', 'Signature hexagon look', '(2) $300'],
+      ['Lighting', 'Stage lights', 'Strobes, Pars + Wash Bars', '260W strobes, 18x18W pars', Q],
+      ['Lighting', 'Uplighting', 'Wireless Uplighting', 'Battery perimeter uplights', Q],
+      ['Lighting', 'Control', 'ADJ Wolfmix W1 + WMX Wing', 'Standalone DMX control', Q],
+      ['DJ Equipment', 'Players', 'Pioneer DJ CDJ-3000', 'Club-standard media player', Q],
+      ['DJ Equipment', 'Players', 'AlphaTheta CDJ-3000X', 'Next-gen media player', Q],
+      ['DJ Equipment', 'All-in-one', 'AlphaTheta XDJ-AZ', '4-channel DJ system', Q],
+      ['DJ Equipment', 'Mixers', 'Pioneer DJ DJM-A9', '4-channel club mixer', Q],
+      ['DJ Equipment', 'Mixers', 'Pioneer DJ DJM-S11', '2-channel battle mixer', Q],
+      ['DJ Equipment', 'Booths', 'Portable DJ Booth', 'Black or white', Q],
+      ['DJ Equipment', 'Booths', 'Humpter B3 Console', 'Fits a 50" media screen', Q],
+      ['DJ Equipment', 'Booths', 'Custom TV DJ Booth', 'White with 65" screen', Q],
+      ['DJ Equipment', 'Booths', 'Glorious Sessions Cube XL', 'Compact booth', Q],
+      ['DJ Equipment', 'Booths', 'Custom Black Acrylic Facade', 'Clean front for any booth', Q],
+      ['Staging', 'Stages', 'Stage Decks + Risers', "4'×8' to 16'×8'", 'From $175'],
+      ['Staging', 'Stages', 'ProX StageQ', 'Adjustable 28"–48"', Q],
+      ['Staging', 'Truss', 'ProX F34 Truss Towers', 'With 20"–32" base plates', Q],
+      ['Special FX', 'Sparks', 'Cold Sparkular Machines', 'Indoor-safe, permit fee applies', '(2) $600'],
+      ['Special FX', 'CO2', 'CO2 Stage Blaster Jets', 'With siphon tanks', '(2) $500'],
+      ['Special FX', 'CO2', 'CO2 Handheld Cannon', 'Crowd-level blasts', '$350'],
+      ['Special FX', 'Fog', 'Dancing on the Clouds', 'Chauvet Nimbus low fog', '$400'],
+      ['Special FX', 'Fog', 'Water-Based Hazers', 'Makes beams visible', Q],
+      ['Special FX', 'Extras', 'Confetti Cannons + Disco Balls', 'Disco balls 8"–30"', Q],
+      ['Special FX', 'Photo booth', 'Salsa Digital Photo Booth', 'With attendant', Q],
+      ['Power &amp; Cable', 'Power', 'Power Distribution (Spider Boxes)', '20A / 30A / 50A feeders', Q],
+      ['Power &amp; Cable', 'Power', 'Jackery Power Stations', '300W–5000W, silent', Q],
+      ['Power &amp; Cable', 'Safety', 'Rubberized Cable Ramps', 'Heavy-duty crossings', Q],
+      ['Production Crew', 'Audio', 'A1 / A2 Audio Engineers', 'Sound technicians', Q],
+      ['Production Crew', 'Lighting', 'Lighting Director + Laser Op', 'Lighting and FX design', Q],
+      ['Production Crew', 'Stage', 'Stagehands + Rigging Crew', 'Setup and breakdown', Q],
+      ['Production Crew', 'Media', 'Content Creator', 'Photo, video, recap reels', '$850+']
+    ];
+    const fix = (s) => s.replace('&amp;', '&');
+    const data = raw.map(([cat, sub, name, note, price]) => ({ cat: fix(cat), sub: sub.toUpperCase(), name: fix(name), note, price }));
+    const names = ['All', 'Sound Systems', 'Visuals', 'Lighting', 'Staging', 'DJ Equipment', 'Special FX', 'Power & Cable', 'Production Crew'];
+    const cat = this.state.cat;
+    const cart = this.state.cart;
+    const toggle = (name) => () => this.setState({ cart: cart.indexOf(name) !== -1 ? cart.filter((x) => x !== name) : cart.concat([name]) });
+    const btnStyle = (on, wide) => 'height: 44px; padding: 0 14px; cursor: pointer; font-family: Archivo, sans-serif; font-weight: 800; font-size: 13px; text-transform: uppercase; ' + (wide ? 'margin-top: auto; ' : '') + (on ? 'background: transparent; color: #FF6A1F; border: 1px solid #FF6A1F' : 'background: #FF6A1F; color: #0A0A0B; border: 0');
+    const cats = names.map((n) => ({
+      label: n,
+      n: String(n === 'All' ? data.length : data.filter((d) => d.cat === n).length),
+      pick: () => this.setState({ cat: n }),
+      style: 'display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border: 0; text-align: left; cursor: pointer; font-family: Archivo, sans-serif; font-weight: 700; font-size: 15px; ' + (n === cat ? 'background: #1E1E22; color: #F4F4F0; box-shadow: inset 3px 0 0 #FF6A1F' : 'background: transparent; color: #C9C9CC')
+    }));
+    const items = data.filter((d) => cat === 'All' || d.cat === cat).map((d) => {
+      const on = cart.indexOf(d.name) !== -1;
+      return { ...d, btn: on ? 'Added' : '+ Quote', add: toggle(d.name), btnStyle: btnStyle(on, false) };
+    });
+    const pk = [
+      ['Small Room', 'UP TO 100 GUESTS', '$1,000+', 'Portable DJ booth, RCF EVOX J9 column array, AlphaTheta XDJ-AZ, stagehand.'],
+      ['Medium Room', 'UP TO 150 GUESTS', '$1,600+', 'Humpter B3 console, (2) CDJ-3000, DJM-A9, CQ-12T, Shure wireless, RCF EVOX 12, stagehand, A1 engineer.'],
+      ['Large Room', 'UP TO 300 GUESTS', '$2,200+', 'Acrylic facade on StageQ, (2) RCF NX 945-A, (2) SUB 18-AX, (2) CDJ-3000, DJM-A9, wireless, 2 stagehands, A1.'],
+      ['Huge Room', '800+ GUESTS', '$3,000+', '(8) RCF HDL6-A line array, (2) SUB 8006-AS, (2) CDJ-3000, DJM-A9, CQ-18T, wireless, 3 stagehands, A1.']
+    ];
+    const packages = pk.map(([name, guests, price, gear]) => {
+      const key = name + ' Package';
+      const on = cart.indexOf(key) !== -1;
+      return { name, guests, price, gear, add: toggle(key), btn: on ? 'Added' : '+ Quote', btnStyle: btnStyle(on, true) };
+    });
+    return {
+      cats, items, packages,
+      heading: cat === 'All' ? 'All equipment' : cat,
+      count: String(cart.length),
+      cart: cart.map((name) => ({ name })),
+      empty: cart.length === 0
+    };
+  }
+}
+</script>
+<template id="dc-template-Header">
+
+<header style="background: #0A0A0B; border-bottom: 1px solid #2A2A2E; font-family: Inter, system-ui, sans-serif; color: #F4F4F0; position: relative; z-index: 20">
+  <nav aria-label="Main" style="max-width: 1320px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; gap: 24px; justify-content: space-between">
+    <a href="home.html" style="display: block; flex: none"><img src="assets/logo-wordmark.png" alt="Evo Live Pro home" style="width: 156px; height: auto; display: block"></a>
+    <div class="evh-links" style="gap: 20px; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.08em; justify-content: center; flex: 1 1 auto">
+      <sc-for list="{{links}}" as="l" hint-placeholder-count="7">
+        <a href="{{l.href}}" style="{{l.style}}">{{l.label}}</a>
+      </sc-for>
+    </div>
+    <div class="evh-ctas" style="gap: 8px; flex: none">
+      <a href="contact.html" style="background: #B8FF3C; color: #0A0A0B; text-decoration: none; height: 44px; padding: 0 16px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 13px; letter-spacing: 0.04em">BOOK EVO</a>
+      <a href="rentals.html" style="background: #FF6A1F; color: #0A0A0B; text-decoration: none; height: 44px; padding: 0 16px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 13px; letter-spacing: 0.04em">{{rentLabel}}</a>
+    </div>
+    <details class="evh-menu" style="position: static">
+      <summary aria-label="Open menu" style="width: 44px; height: 44px; border: 1px solid #2A2A2E; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #F4F4F0">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14"></path></svg>
+      </summary>
+      <div style="position: absolute; left: 0; right: 0; top: 100%; background: #0A0A0B; border-bottom: 1px solid #2A2A2E; padding: 8px 16px 20px; display: flex; flex-direction: column">
+        <sc-for list="{{links}}" as="l" hint-placeholder-count="7">
+          <a href="{{l.href}}" style="{{l.mStyle}}">{{l.label}}</a>
+        </sc-for>
+      </div>
+    </details>
+  </nav>
+</header>
+<nav class="evh-mbar" aria-label="Quick actions" style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid #2A2A2E">
+  <a href="contact.html" style="background: #B8FF3C; color: #0A0A0B; text-decoration: none; height: 60px; display: flex; align-items: center; justify-content: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 15px; letter-spacing: 0.04em">BOOK EVO</a>
+  <a href="rentals.html" style="background: #FF6A1F; color: #0A0A0B; text-decoration: none; height: 60px; display: flex; align-items: center; justify-content: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 15px; letter-spacing: 0.04em">{{rentLabel}}</a>
+</nav>
+</template>
+<script type="text/x-dc" id="dc-logic-Header" data-props='{"active":{"editor":"enum","options":["home","about","rentals","events","partners","photos","contact"],"default":"home"},"quote":{"editor":null,"default":""},"$preview":{"width":1440,"height":72}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const active = this.props.active ?? 'home';
+    const items = [
+      ['home', 'HOME', 'Home.dc.html'],
+      ['about', 'ABOUT US', 'About.dc.html'],
+      ['rentals', 'RENTALS', 'Rentals.dc.html'],
+      ['events', 'EVENTS', 'Events.dc.html'],
+      ['partners', 'PARTNERS', 'Home.dc.html#partners'],
+      ['photos', 'PHOTOS', 'Photos.dc.html'],
+      ['contact', 'CONTACT US', 'Contact.dc.html']
+    ];
+    const links = items.map(([id, label, href]) => ({
+      label, href,
+      style: 'text-decoration: none; color: ' + (id === active ? '#F4F4F0' : '#A1A1A6'),
+      mStyle: 'text-decoration: none; padding: 14px 0; border-bottom: 1px solid #2A2A2E; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 22px; color: ' + (id === active ? '#B8FF3C' : '#F4F4F0')
+    }));
+    const q = this.props.quote;
+    return { links, rentLabel: q !== undefined && q !== '' ? 'QUOTE (' + q + ')' : 'RENT GEAR' };
+  }
+}
+</script>
+<script src="dc-runtime.js"></script>
+<a class="pv-back" href="./">&larr; All pages</a>
+<style>
+.pv-back{position:fixed;left:12px;bottom:12px;z-index:50;background:#F4F4F0;color:#0A0A0B;
+font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;
+padding:10px 12px;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,.4)}
+.pv-back:hover{background:#B8FF3C;color:#0A0A0B}
+@media (max-width:900px){.pv-back{bottom:70px;left:auto;right:8px;padding:8px 10px;font-size:10px;opacity:.9}}
+.pv-embed .pv-back{display:none}
+</style>
+<script>if (window.self !== window.top) document.documentElement.classList.add('pv-embed');</script>
+</body>
+</html>
