@@ -14,11 +14,22 @@ Early setup. The site is being built on an open source CMS so the client can edi
 
 ## Project structure
 
-Structure will be added as the build gets underway.
+```
+public/          Static files served by the Worker (index.html, 404.html)
+wrangler.jsonc   Cloudflare Worker config (name: evo-live-pro-website)
+```
+
+## Hosting
+
+The site runs on a Cloudflare Worker named `evo-live-pro-website`, serving `public/` as static assets. Pushes to `main` deploy automatically through Cloudflare Workers Builds once the repo is connected in the dashboard.
 
 ## Getting started
 
-Setup instructions will be added once the stack is in place.
+```bash
+npm install
+npm run dev      # local preview at http://localhost:8787
+npm run deploy   # manual deploy (needs a Cloudflare login or API token)
+```
 
 ## Contributing
 

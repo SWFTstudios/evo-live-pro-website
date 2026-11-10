@@ -22,3 +22,7 @@ npm-debug.log*
 Thumbs.db
 .vscode/
 .idea/
+
+# Wrangler
+.wrangler/
+.dev.vars*
