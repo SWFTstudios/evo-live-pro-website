@@ -12,9 +12,10 @@
 body{margin:0;background:#0A0A0B}
 a{color:#F4F4F0}a:hover{color:#B8FF3C}
 </style>
+
 </head>
 <body>
-<div id="dc-root" style="overflow-x:auto;display:flex;justify-content:center;padding:32px 0;background:#000"></div>
+<div id="dc-root" style="overflow-x:auto;display:flex;justify-content:center;background:#000"></div>
 <template id="dc-template">
 
 <div style="width: 1440px; min-height: 3000px; box-sizing: border-box; background: #0A0A0B; color: #F4F4F0; font-family: Inter, system-ui, sans-serif; padding: 72px 96px 96px; display: flex; flex-direction: column; gap: 88px">
@@ -197,13 +198,17 @@ class Component extends DCLogic {
   }
 }
 </script>
+
 <script src="dc-runtime.js"></script>
 <a class="pv-back" href="./">&larr; All pages</a>
 <style>
-.pv-back{position:fixed;left:16px;bottom:16px;z-index:50;background:#F4F4F0;color:#0A0A0B;
-font:500 12px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;
-padding:12px 14px;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,.4)}
+.pv-back{position:fixed;left:12px;bottom:12px;z-index:50;background:#F4F4F0;color:#0A0A0B;
+font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;
+padding:10px 12px;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,.4)}
 .pv-back:hover{background:#B8FF3C;color:#0A0A0B}
+@media (max-width:900px){.pv-back{bottom:70px;left:auto;right:8px;padding:8px 10px;font-size:10px;opacity:.9}}
+.pv-embed .pv-back{display:none}
 </style>
+<script>if (window.self !== window.top) document.documentElement.classList.add('pv-embed');</script>
 </body>
 </html>

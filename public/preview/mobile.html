@@ -4,93 +4,44 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Evo Live Pro Mobile Home · Preview</title>
+<title>Evo Live Pro Mobile · Preview</title>
 <link rel="icon" href="assets/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-body{margin:0;background:#0A0A0B}
-a{color:#F4F4F0}a:hover{color:#B8FF3C}
+  body { margin: 0; background: #000; color: #F4F4F0; font-family: Inter, system-ui, sans-serif; }
+  .wrap { padding: 40px 16px 80px; }
+  header { max-width: 1320px; margin: 0 auto 32px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: flex-end; }
+  h1 { margin: 0; font-family: Archivo, sans-serif; font-stretch: 118%; font-weight: 800; font-size: clamp(30px, 4vw, 52px); line-height: 1; text-transform: uppercase; }
+  p { margin: 8px 0 0; color: #A1A1A6; font-size: 15px; max-width: 560px; line-height: 1.5; }
+  .row { display: flex; gap: 32px; overflow-x: auto; padding: 8px 0 24px; scroll-snap-type: x mandatory; }
+  figure { margin: 0; flex: none; scroll-snap-align: center; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+  figure:first-child { margin-left: auto; } figure:last-child { margin-right: auto; }
+  .phone { width: 390px; height: 800px; border: 10px solid #1E1E22; border-radius: 44px; overflow: hidden; background: #0A0A0B; box-shadow: 0 0 0 1px #2A2A2E; }
+  .phone iframe { width: 390px; height: 100%; border: 0; display: block; }
+  figcaption { font: 500 12px 'JetBrains Mono', monospace; letter-spacing: .08em; color: #A1A1A6; }
+  figcaption a { color: #F4F4F0; }
+  a.back { font: 500 12px 'JetBrains Mono', monospace; letter-spacing: .08em; color: #F4F4F0; }
+  @media (max-width: 480px) { .phone { width: calc(100vw - 52px); height: 78vh; } .phone iframe { width: 100%; } }
 </style>
 </head>
 <body>
-<div id="dc-root" style="overflow-x:auto;display:flex;justify-content:center;padding:32px 0;background:#000"></div>
-<template id="dc-template">
-
-<div style="width: 390px; height: 2400px; position: relative; overflow: hidden; background: #0A0A0B; color: #F4F4F0; font-family: Inter, system-ui, sans-serif">
-
-  <header style="height: 64px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #2A2A2E">
-    <img src="assets/logo-wordmark.png" alt="Evo Live Pro" style="width: 136px; height: auto">
-    <button type="button" aria-label="Open menu" style="width: 44px; height: 44px; background: transparent; border: 1px solid #2A2A2E; color: #F4F4F0; display: flex; align-items: center; justify-content: center; cursor: pointer">
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14"></path></svg>
-    </button>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Mobile views</h1>
+      <p>Every page at phone size. Scroll inside each phone, tap the menu button, and try the Book Evo / Rent Gear bar pinned to the bottom. Swipe sideways for more pages.</p>
+    </div>
+    <a class="back" href="./">&larr; ALL PAGES</a>
   </header>
-
-  <section style="background: #1E1E22; padding: 120px 16px 28px; display: flex; flex-direction: column; gap: 16px; position: relative">
-    <span style="position: absolute; top: 14px; left: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #A1A1A6">HERO VIDEO · VERTICAL CROP</span>
-    <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #A1A1A6">AUDIO · LIGHTING · VIDEO · DJ</span>
-    <h1 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 118%; font-weight: 800; font-size: 40px; line-height: 0.95; letter-spacing: -0.02em; text-transform: uppercase">Live production for nights people remember</h1>
-    <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #C9C9CC">Book our crew to run the show, or rent the same gear we use.</p>
-    <a href="contact.html" style="background: #B8FF3C; color: #0A0A0B; text-decoration: none; padding: 18px; display: flex; justify-content: space-between; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 18px; text-transform: uppercase">I'm planning an event <span aria-hidden="true">→</span></a>
-    <a href="rentals.html" style="background: #FF6A1F; color: #0A0A0B; text-decoration: none; padding: 18px; display: flex; justify-content: space-between; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 18px; text-transform: uppercase">I need equipment <span aria-hidden="true">→</span></a>
-  </section>
-
-  <section style="padding: 48px 16px; display: flex; flex-direction: column; gap: 16px">
-    <h2 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 30px; text-transform: uppercase">What we do</h2>
-    <div style="display: flex; flex-direction: column">
-      <a href="events.html" style="text-decoration: none; color: #F4F4F0; display: flex; gap: 14px; align-items: center; padding: 14px 0; border-top: 1px solid #2A2A2E"><span style="width: 84px; height: 64px; background: #1E1E22; flex: none"></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 18px; text-transform: uppercase">DJ</span><span style="font-size: 13px; color: #A1A1A6">Open format, reads the room</span></span></a>
-      <a href="events.html" style="text-decoration: none; color: #F4F4F0; display: flex; gap: 14px; align-items: center; padding: 14px 0; border-top: 1px solid #2A2A2E"><span style="width: 84px; height: 64px; background: #1E1E22; flex: none"></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 18px; text-transform: uppercase">Production</span><span style="font-size: 13px; color: #A1A1A6">Sound, lights, LED, staging</span></span></a>
-      <a href="rentals.html" style="text-decoration: none; color: #F4F4F0; display: flex; gap: 14px; align-items: center; padding: 14px 0; border-top: 1px solid #2A2A2E"><span style="width: 84px; height: 64px; background: #1E1E22; flex: none"></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 18px; text-transform: uppercase; color: #FF6A1F">Rentals</span><span style="font-size: 13px; color: #A1A1A6">Show-ready gear, delivered</span></span></a>
-      <a href="events.html" style="text-decoration: none; color: #F4F4F0; display: flex; gap: 14px; align-items: center; padding: 14px 0; border-top: 1px solid #2A2A2E; border-bottom: 1px solid #2A2A2E"><span style="width: 84px; height: 64px; background: #1E1E22; flex: none"></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 18px; text-transform: uppercase">A/V Installs</span><span style="font-size: 13px; color: #A1A1A6">Permanent systems for venues</span></span></a>
-    </div>
-  </section>
-
-  <section style="background: #141416; padding: 48px 16px; display: flex; flex-direction: column; gap: 16px">
-    <h2 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 30px; text-transform: uppercase">Recent setups</h2>
-    <div style="display: flex; gap: 8px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 11px">
-      <span style="background: #F4F4F0; color: #0A0A0B; padding: 12px; flex: none">ALL</span>
-      <span style="border: 1px solid #2A2A2E; color: #A1A1A6; padding: 12px; flex: none">WEDDINGS</span>
-      <span style="border: 1px solid #2A2A2E; color: #A1A1A6; padding: 12px; flex: none">CORPORATE</span>
-      <span style="border: 1px solid #2A2A2E; color: #A1A1A6; padding: 12px; flex: none">CONCERTS</span>
-    </div>
-    <div style="display: flex; gap: 10px; overflow: hidden">
-      <div style="width: 280px; height: 360px; background: #1E1E22; flex: none; display: flex; flex-direction: column; justify-content: flex-end; padding: 16px; box-sizing: border-box; gap: 4px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #B8FF3C">WEDDING</span><span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 18px">The Graziano Wedding</span></div>
-      <div style="width: 280px; height: 360px; background: #1E1E22; flex: none"></div>
-    </div>
-    <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #A1A1A6">SWIPE CAROUSEL</span>
-  </section>
-
-  <section style="padding: 40px 16px; display: flex; flex-direction: column; gap: 14px; border-bottom: 1px solid #2A2A2E">
-    <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #A1A1A6">BRANDS WE'VE PRODUCED FOR</span>
-    <div style="display: flex; flex-wrap: wrap; gap: 10px 22px; font-family: Archivo, sans-serif; font-weight: 700; font-size: 16px; color: #C9C9CC; text-transform: uppercase"><span>Nike</span><span>NBA</span><span>EY</span><span>PwC</span><span>TKO</span><span>Zocdoc</span><span>Darktrace</span><span>+7</span></div>
-  </section>
-
-  <section style="padding: 48px 16px 140px; display: flex; flex-direction: column; gap: 14px">
-    <h2 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 30px; text-transform: uppercase">Tell us about your event</h2>
-    <label style="display: flex; flex-direction: column; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #A1A1A6">DATE<input type="text" style="height: 48px; background: #1E1E22; border: 1px solid #2A2A2E; color: #F4F4F0; padding: 0 12px; font-size: 16px"></label>
-    <label style="display: flex; flex-direction: column; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #A1A1A6">VENUE<input type="text" style="height: 48px; background: #1E1E22; border: 1px solid #2A2A2E; color: #F4F4F0; padding: 0 12px; font-size: 16px"></label>
-    <label style="display: flex; flex-direction: column; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #A1A1A6">TYPE OF EVENT<select style="height: 48px; background: #1E1E22; border: 1px solid #2A2A2E; color: #F4F4F0; padding: 0 12px; font-size: 16px"><option>Wedding</option></select></label>
-    <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #A1A1A6">+ GUESTS, BUDGET, CONTACT · → STAGERA</span>
-  </section>
-
-  <nav aria-label="Quick actions" style="position: absolute; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid #2A2A2E">
-    <a href="contact.html" style="background: #B8FF3C; color: #0A0A0B; text-decoration: none; height: 64px; display: flex; align-items: center; justify-content: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 15px; letter-spacing: 0.04em">BOOK EVO</a>
-    <a href="rentals.html" style="background: #FF6A1F; color: #0A0A0B; text-decoration: none; height: 64px; display: flex; align-items: center; justify-content: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 15px; letter-spacing: 0.04em">RENT GEAR</a>
-  </nav>
+  <div class="row">
+    <figure><div class="phone"><iframe src="home.html" title="Home on mobile" loading="lazy"></iframe></div><figcaption>HOME · <a href="home.html">OPEN</a></figcaption></figure>
+    <figure><div class="phone"><iframe src="rentals.html" title="Rentals on mobile" loading="lazy"></iframe></div><figcaption>RENTALS · <a href="rentals.html">OPEN</a></figcaption></figure>
+    <figure><div class="phone"><iframe src="events.html" title="Events on mobile" loading="lazy"></iframe></div><figcaption>EVENTS · <a href="events.html">OPEN</a></figcaption></figure>
+    <figure><div class="phone"><iframe src="about.html" title="About Us on mobile" loading="lazy"></iframe></div><figcaption>ABOUT US · <a href="about.html">OPEN</a></figcaption></figure>
+    <figure><div class="phone"><iframe src="photos.html" title="Photos on mobile" loading="lazy"></iframe></div><figcaption>PHOTOS · <a href="photos.html">OPEN</a></figcaption></figure>
+    <figure><div class="phone"><iframe src="contact.html" title="Contact Us on mobile" loading="lazy"></iframe></div><figcaption>CONTACT US · <a href="contact.html">OPEN</a></figcaption></figure>
+  </div>
 </div>
-</template>
-<script type="text/x-dc" id="dc-logic" data-props='{"$preview":{"width":390,"height":2400}}'>
-class Component extends DCLogic {
-  renderVals() { return {}; }
-}
-</script>
-<script src="dc-runtime.js"></script>
-<a class="pv-back" href="./">&larr; All pages</a>
-<style>
-.pv-back{position:fixed;left:16px;bottom:16px;z-index:50;background:#F4F4F0;color:#0A0A0B;
-font:500 12px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;
-padding:12px 14px;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,.4)}
-.pv-back:hover{background:#B8FF3C;color:#0A0A0B}
-</style>
 </body>
 </html>

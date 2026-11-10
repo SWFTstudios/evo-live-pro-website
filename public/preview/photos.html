@@ -12,47 +12,45 @@
 body{margin:0;background:#0A0A0B}
 a{color:#F4F4F0}a:hover{color:#B8FF3C}
 </style>
+<style>
+body{margin:0;background:#0A0A0B}
+.evh-links{display:flex}
+.evh-ctas{display:flex}
+.evh-menu{display:none}
+.evh-mbar{display:none}
+.evh-menu summary{list-style:none}
+.evh-menu summary::-webkit-details-marker{display:none}
+@media (max-width: 900px){
+  .evh-links,.evh-ctas{display:none !important}
+  .evh-menu{display:block}
+  .evh-mbar{display:grid}
+  .ev-page{padding-bottom:64px}
+}
+</style>
 </head>
 <body>
 <div id="dc-root"></div>
 <template id="dc-template">
 
-<div style="background: #0A0A0B; color: #F4F4F0; font-family: Inter, system-ui, sans-serif; min-height: 100vh">
+<div class="ev-page" style="background: #0A0A0B; color: #F4F4F0; font-family: Inter, system-ui, sans-serif; min-height: 100vh">
 
-  <header style="position: sticky; top: 0; z-index: 5; background: rgba(10,10,11,0.94); border-bottom: 1px solid #2A2A2E">
-    <nav aria-label="Main" style="max-width: 1320px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap">
-      <a href="home.html" style="display: block"><img src="assets/logo-wordmark.png" alt="Evo Live Pro home" style="width: 168px; height: auto; display: block"></a>
-      <div style="display: flex; gap: 22px; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.08em; flex: 1 1 auto; justify-content: center">
-        <a href="home.html" style="text-decoration: none; color: #A1A1A6">HOME</a>
-        <a href="about.html" style="text-decoration: none; color: #A1A1A6">ABOUT US</a>
-        <a href="rentals.html" style="text-decoration: none; color: #A1A1A6">RENTALS</a>
-        <a href="events.html" style="text-decoration: none; color: #A1A1A6">EVENTS</a>
-        <a href="home.html#partners" style="text-decoration: none; color: #A1A1A6">PARTNERS</a>
-        <a href="photos.html" style="text-decoration: none; color: #F4F4F0">PHOTOS</a>
-        <a href="contact.html" style="text-decoration: none; color: #A1A1A6">CONTACT US</a>
-      </div>
-      <div style="display: flex; gap: 8px">
-        <a href="contact.html" style="background: #B8FF3C; color: #0A0A0B; text-decoration: none; height: 44px; padding: 0 18px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 13px; letter-spacing: 0.04em">BOOK EVO</a>
-        <a href="rentals.html" style="background: #FF6A1F; color: #0A0A0B; text-decoration: none; height: 44px; padding: 0 18px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 13px; letter-spacing: 0.04em">RENT GEAR</a>
-      </div>
-    </nav>
-  </header>
+  <dc-import name="Header" active="photos" hint-size="100%,69px"></dc-import>
 
-  <section style="max-width: 1320px; margin: 0 auto; padding: 72px 24px 32px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: flex-end">
-    <div style="display: flex; flex-direction: column; gap: 16px">
+  <section style="max-width: 1320px; margin: 0 auto; padding: 56px 16px 28px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: flex-end">
+    <div style="display: flex; flex-direction: column; gap: 14px">
       <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">PHOTOS &amp; VIDEO</span>
-      <h1 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 125%; font-weight: 800; font-size: clamp(40px, 6vw, 80px); line-height: 0.95; letter-spacing: -0.02em; text-transform: uppercase">See the work</h1>
+      <h1 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 118%; font-weight: 800; font-size: clamp(28px, 4.2vw, 60px); line-height: 1; text-transform: uppercase">See the work</h1>
     </div>
     <a href="https://instagram.com/evolivepro" style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-underline-offset: 6px">MORE ON INSTAGRAM @EVOLIVEPRO →</a>
   </section>
 
-  <section style="max-width: 1320px; margin: 0 auto; padding: 0 24px 96px; display: flex; flex-direction: column; gap: 24px">
-    <div role="group" aria-label="Filter photos" style="display: flex; gap: 8px; flex-wrap: wrap">
+  <section style="max-width: 1320px; margin: 0 auto; padding: 0 16px 88px; display: flex; flex-direction: column; gap: 20px">
+    <div role="group" aria-label="Filter photos" style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px">
       <sc-for list="{{tabs}}" as="t" hint-placeholder-count="7">
         <button type="button" onClick="{{t.pick}}" style="{{t.style}}">{{t.label}}</button>
       </sc-for>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); grid-auto-rows: 240px; gap: 12px">
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); grid-auto-rows: 240px; gap: 12px">
       <sc-for list="{{shots}}" as="s" hint-placeholder-count="9">
         <div style="{{s.box}}">
           <sc-if value="{{s.video}}" hint-placeholder-val="{{ false }}">
@@ -64,21 +62,21 @@ a{color:#F4F4F0}a:hover{color:#B8FF3C}
         </div>
       </sc-for>
     </div>
-    <p style="margin: 0; font-size: 14px; color: #A1A1A6; line-height: 1.55">Click any tile to open full screen with swipe. Only clean, well-lit shots make the cut, per Tim's notes.</p>
+    <p style="margin: 0; font-size: 14px; color: #A1A1A6; line-height: 1.55">Tap any tile to open full screen with swipe. Only clean, well-lit shots make the cut.</p>
   </section>
 
   <section style="background: #141416; border-top: 1px solid #2A2A2E">
-    <div style="max-width: 1320px; margin: 0 auto; padding: 64px 24px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center">
-      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 40px; line-height: 1; text-transform: uppercase">Want this at your event?</h2>
-      <div style="display: flex; gap: 12px; flex-wrap: wrap">
-        <a href="contact.html" style="background: #B8FF3C; color: #0A0A0B; text-decoration: none; height: 52px; padding: 0 24px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 14px; letter-spacing: 0.04em">BOOK EVO</a>
-        <a href="rentals.html" style="background: #FF6A1F; color: #0A0A0B; text-decoration: none; height: 52px; padding: 0 24px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 14px; letter-spacing: 0.04em">RENT THE GEAR</a>
+    <div style="max-width: 1320px; margin: 0 auto; padding: 56px 16px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center">
+      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: clamp(26px, 3vw, 36px); line-height: 1; text-transform: uppercase">Want this at your event?</h2>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap">
+        <a href="contact.html" style="background: #B8FF3C; color: #0A0A0B; text-decoration: none; height: 52px; padding: 0 22px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 14px; letter-spacing: 0.04em">BOOK EVO</a>
+        <a href="rentals.html" style="background: #FF6A1F; color: #0A0A0B; text-decoration: none; height: 52px; padding: 0 22px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 14px; letter-spacing: 0.04em">RENT THE GEAR</a>
       </div>
     </div>
   </section>
 </div>
 </template>
-<script type="text/x-dc" id="dc-logic" data-props='{"$preview":{"width":1440,"height":2200}}'>
+<script type="text/x-dc" id="dc-logic" data-props='{"$preview":{"width":1440,"height":2100}}'>
 class Component extends DCLogic {
   constructor(props) { super(props); this.state = { tab: 'All' }; }
   renderVals() {
@@ -87,19 +85,19 @@ class Component extends DCLogic {
       { cat: 'Corporate', title: '[Brand event]', src: 'DRIVE · GENERAL PHOTOS', video: false },
       { cat: 'Concerts', title: '[Show · venue]', src: 'INSTAGRAM @EVOLIVEPRO', video: true },
       { cat: 'Weddings', title: 'The Lam Wedding', src: 'DRIVE · LAM WEDDING', video: false },
-      { cat: 'Behind the Scenes', title: 'Tim &amp; Dom', src: 'PATRISSO PHOTOSHOOT', video: false, big: true },
+      { cat: 'Behind the Scenes', title: 'Tim & Dom', src: 'PATRISSO PHOTOSHOOT', video: false, big: true },
       { cat: 'Weddings', title: 'The Sullivan Wedding', src: 'DRIVE · SULLIVAN FOLDER', video: false },
       { cat: 'Private Parties', title: '[Private event]', src: 'DRIVE · GENERAL PHOTOS', video: false },
       { cat: 'Corporate', title: '[LED wall setup]', src: 'DRIVE · GENERAL PHOTOS', video: false },
       { cat: 'Concerts', title: '[Lasers + crowd]', src: 'INSTAGRAM @EVOLIVEPRO', video: false },
       { cat: 'Behind the Scenes', title: '[Load-in / rigging]', src: 'DRIVE · GENERAL PHOTOS', video: false }
-    ].map((s) => ({ ...s, title: s.title.replace('&amp;', '&') }));
+    ];
     const labels = ['All', 'Weddings', 'Corporate', 'Concerts', 'Private Parties', 'Behind the Scenes', 'Video'];
     const tab = this.state.tab;
     const tabs = labels.map((l) => ({
       label: l.toUpperCase(),
       pick: () => this.setState({ tab: l }),
-      style: 'height: 44px; padding: 0 14px; cursor: pointer; font-family: \'JetBrains Mono\', monospace; font-size: 12px; letter-spacing: 0.08em; ' + (l === tab ? 'background: #F4F4F0; color: #0A0A0B; border: 0' : 'background: transparent; color: #A1A1A6; border: 1px solid #2A2A2E')
+      style: "flex: none; height: 44px; padding: 0 14px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; " + (l === tab ? 'background: #F4F4F0; color: #0A0A0B; border: 0' : 'background: transparent; color: #A1A1A6; border: 1px solid #2A2A2E')
     }));
     const shots = all
       .filter((s) => tab === 'All' || (tab === 'Video' ? s.video : s.cat === tab))
@@ -112,13 +110,70 @@ class Component extends DCLogic {
   }
 }
 </script>
+<template id="dc-template-Header">
+
+<header style="background: #0A0A0B; border-bottom: 1px solid #2A2A2E; font-family: Inter, system-ui, sans-serif; color: #F4F4F0; position: relative; z-index: 20">
+  <nav aria-label="Main" style="max-width: 1320px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; gap: 24px; justify-content: space-between">
+    <a href="home.html" style="display: block; flex: none"><img src="assets/logo-wordmark.png" alt="Evo Live Pro home" style="width: 156px; height: auto; display: block"></a>
+    <div class="evh-links" style="gap: 20px; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.08em; justify-content: center; flex: 1 1 auto">
+      <sc-for list="{{links}}" as="l" hint-placeholder-count="7">
+        <a href="{{l.href}}" style="{{l.style}}">{{l.label}}</a>
+      </sc-for>
+    </div>
+    <div class="evh-ctas" style="gap: 8px; flex: none">
+      <a href="contact.html" style="background: #B8FF3C; color: #0A0A0B; text-decoration: none; height: 44px; padding: 0 16px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 13px; letter-spacing: 0.04em">BOOK EVO</a>
+      <a href="rentals.html" style="background: #FF6A1F; color: #0A0A0B; text-decoration: none; height: 44px; padding: 0 16px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 13px; letter-spacing: 0.04em">{{rentLabel}}</a>
+    </div>
+    <details class="evh-menu" style="position: static">
+      <summary aria-label="Open menu" style="width: 44px; height: 44px; border: 1px solid #2A2A2E; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #F4F4F0">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14"></path></svg>
+      </summary>
+      <div style="position: absolute; left: 0; right: 0; top: 100%; background: #0A0A0B; border-bottom: 1px solid #2A2A2E; padding: 8px 16px 20px; display: flex; flex-direction: column">
+        <sc-for list="{{links}}" as="l" hint-placeholder-count="7">
+          <a href="{{l.href}}" style="{{l.mStyle}}">{{l.label}}</a>
+        </sc-for>
+      </div>
+    </details>
+  </nav>
+</header>
+<nav class="evh-mbar" aria-label="Quick actions" style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid #2A2A2E">
+  <a href="contact.html" style="background: #B8FF3C; color: #0A0A0B; text-decoration: none; height: 60px; display: flex; align-items: center; justify-content: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 15px; letter-spacing: 0.04em">BOOK EVO</a>
+  <a href="rentals.html" style="background: #FF6A1F; color: #0A0A0B; text-decoration: none; height: 60px; display: flex; align-items: center; justify-content: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 15px; letter-spacing: 0.04em">{{rentLabel}}</a>
+</nav>
+</template>
+<script type="text/x-dc" id="dc-logic-Header" data-props='{"active":{"editor":"enum","options":["home","about","rentals","events","partners","photos","contact"],"default":"home"},"quote":{"editor":null,"default":""},"$preview":{"width":1440,"height":72}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const active = this.props.active ?? 'home';
+    const items = [
+      ['home', 'HOME', 'Home.dc.html'],
+      ['about', 'ABOUT US', 'About.dc.html'],
+      ['rentals', 'RENTALS', 'Rentals.dc.html'],
+      ['events', 'EVENTS', 'Events.dc.html'],
+      ['partners', 'PARTNERS', 'Home.dc.html#partners'],
+      ['photos', 'PHOTOS', 'Photos.dc.html'],
+      ['contact', 'CONTACT US', 'Contact.dc.html']
+    ];
+    const links = items.map(([id, label, href]) => ({
+      label, href,
+      style: 'text-decoration: none; color: ' + (id === active ? '#F4F4F0' : '#A1A1A6'),
+      mStyle: 'text-decoration: none; padding: 14px 0; border-bottom: 1px solid #2A2A2E; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 22px; color: ' + (id === active ? '#B8FF3C' : '#F4F4F0')
+    }));
+    const q = this.props.quote;
+    return { links, rentLabel: q !== undefined && q !== '' ? 'QUOTE (' + q + ')' : 'RENT GEAR' };
+  }
+}
+</script>
 <script src="dc-runtime.js"></script>
 <a class="pv-back" href="./">&larr; All pages</a>
 <style>
-.pv-back{position:fixed;left:16px;bottom:16px;z-index:50;background:#F4F4F0;color:#0A0A0B;
-font:500 12px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;
-padding:12px 14px;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,.4)}
+.pv-back{position:fixed;left:12px;bottom:12px;z-index:50;background:#F4F4F0;color:#0A0A0B;
+font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;
+padding:10px 12px;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,.4)}
 .pv-back:hover{background:#B8FF3C;color:#0A0A0B}
+@media (max-width:900px){.pv-back{bottom:70px;left:auto;right:8px;padding:8px 10px;font-size:10px;opacity:.9}}
+.pv-embed .pv-back{display:none}
 </style>
+<script>if (window.self !== window.top) document.documentElement.classList.add('pv-embed');</script>
 </body>
 </html>

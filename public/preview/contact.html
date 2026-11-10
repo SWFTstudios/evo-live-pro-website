@@ -12,67 +12,73 @@
 body{margin:0;background:#0A0A0B}
 a{color:#F4F4F0}a:hover{color:#B8FF3C}
 </style>
+<style>
+body{margin:0;background:#0A0A0B}
+.evh-links{display:flex}
+.evh-ctas{display:flex}
+.evh-menu{display:none}
+.evh-mbar{display:none}
+.evh-menu summary{list-style:none}
+.evh-menu summary::-webkit-details-marker{display:none}
+@media (max-width: 900px){
+  .evh-links,.evh-ctas{display:none !important}
+  .evh-menu{display:block}
+  .evh-mbar{display:grid}
+  .ev-page{padding-bottom:64px}
+}
+</style>
 </head>
 <body>
 <div id="dc-root"></div>
 <template id="dc-template">
 
-<div style="background: #0A0A0B; color: #F4F4F0; font-family: Inter, system-ui, sans-serif; min-height: 100vh">
+<div class="ev-page" style="background: #0A0A0B; color: #F4F4F0; font-family: Inter, system-ui, sans-serif; min-height: 100vh">
 
-  <header style="position: sticky; top: 0; z-index: 5; background: rgba(10,10,11,0.94); border-bottom: 1px solid #2A2A2E">
-    <nav aria-label="Main" style="max-width: 1320px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap">
-      <a href="home.html" style="display: block"><img src="assets/logo-wordmark.png" alt="Evo Live Pro home" style="width: 168px; height: auto; display: block"></a>
-      <div style="display: flex; gap: 22px; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.08em; flex: 1 1 auto; justify-content: center">
-        <a href="home.html" style="text-decoration: none; color: #A1A1A6">HOME</a>
-        <a href="about.html" style="text-decoration: none; color: #A1A1A6">ABOUT US</a>
-        <a href="rentals.html" style="text-decoration: none; color: #A1A1A6">RENTALS</a>
-        <a href="events.html" style="text-decoration: none; color: #A1A1A6">EVENTS</a>
-        <a href="home.html#partners" style="text-decoration: none; color: #A1A1A6">PARTNERS</a>
-        <a href="photos.html" style="text-decoration: none; color: #A1A1A6">PHOTOS</a>
-        <a href="contact.html" style="text-decoration: none; color: #F4F4F0">CONTACT US</a>
+  <dc-import name="Header" active="contact" hint-size="100%,69px"></dc-import>
+
+  <div style="max-width: 1320px; margin: 0 auto; padding: 56px 16px 88px; display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+    <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">CONTACT US</span>
+        <h1 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 118%; font-weight: 800; font-size: clamp(28px, 4.2vw, 60px); line-height: 1; text-transform: uppercase">Ready to elevate your next event?</h1>
+        <p style="margin: 0; font-size: 17px; line-height: 1.55; color: #C9C9CC; max-width: 640px">Whether you are a venue manager looking for a full production install or a fellow professional seeking a rental, we are ready to assist.</p>
       </div>
-    </nav>
-  </header>
-
-  <div style="max-width: 1320px; margin: 0 auto; padding: 72px 24px 96px; display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start">
-    <main style="flex: 999 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
-      <h1 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 125%; font-weight: 800; font-size: clamp(40px, 5.5vw, 76px); line-height: 0.95; letter-spacing: -0.02em; text-transform: uppercase">What are you planning?</h1>
-      <div role="group" aria-label="Choose a path" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px">
-        <button type="button" onClick="{{pickBook}}" style="{{bookCard}}"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em">HIRE THE CREW</span><span style="font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 26px; text-transform: uppercase">Book Evo</span><span style="font-size: 14px; line-height: 1.45">DJ, production or a full event</span></button>
-        <button type="button" onClick="{{pickRent}}" style="{{rentCard}}"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em">GEAR ONLY</span><span style="font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 26px; text-transform: uppercase">Rent equipment</span><span style="font-size: 14px; line-height: 1.45">Pickup or delivery, setup optional</span></button>
+      <div role="group" aria-label="Choose a path" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px">
+        <button type="button" onClick="{{pickBook}}" style="{{bookCard}}"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em">HIRE THE CREW</span><span style="font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 24px; text-transform: uppercase">Book Evo</span><span style="font-size: 14px; line-height: 1.45">DJ, production or a full event</span></button>
+        <button type="button" onClick="{{pickRent}}" style="{{rentCard}}"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em">GEAR ONLY</span><span style="font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 24px; text-transform: uppercase">Rent equipment</span><span style="font-size: 14px; line-height: 1.45">Pickup or delivery, setup optional</span></button>
       </div>
 
-      <form style="display: flex; flex-direction: column; gap: 16px; background: #141416; border: 1px solid #2A2A2E; padding: 28px">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px">
+      <form style="display: flex; flex-direction: column; gap: 14px; background: #141416; border: 1px solid #2A2A2E; padding: 24px">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px">
           <label style="display: flex; flex-direction: column; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">{{dateLabel}}<input type="text" placeholder="MM / DD / YYYY" style="height: 48px; background: #1E1E22; border: 1px solid #2A2A2E; color: #F4F4F0; padding: 0 14px; font-family: Inter, sans-serif; font-size: 16px"></label>
           <label style="display: flex; flex-direction: column; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">VENUE<input type="text" placeholder="Venue name or address" style="height: 48px; background: #1E1E22; border: 1px solid #2A2A2E; color: #F4F4F0; padding: 0 14px; font-family: Inter, sans-serif; font-size: 16px"></label>
           <sc-if value="{{isBook}}" hint-placeholder-val="{{ true }}">
             <label style="display: flex; flex-direction: column; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">TYPE OF EVENT<select style="height: 48px; background: #1E1E22; border: 1px solid #2A2A2E; color: #F4F4F0; padding: 0 14px; font-family: Inter, sans-serif; font-size: 16px"><option>Wedding</option><option>Corporate</option><option>Concert / live</option><option>Private party</option><option>Other</option></select></label>
             <label style="display: flex; flex-direction: column; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">GUEST COUNT<input type="text" placeholder="Approx." style="height: 48px; background: #1E1E22; border: 1px solid #2A2A2E; color: #F4F4F0; padding: 0 14px; font-family: Inter, sans-serif; font-size: 16px"></label>
-            <label style="display: flex; flex-direction: column; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">BUDGET RANGE<select style="height: 48px; background: #1E1E22; border: 1px solid #2A2A2E; color: #F4F4F0; padding: 0 14px; font-family: Inter, sans-serif; font-size: 16px"><option>[Range 1]</option><option>[Range 2]</option><option>[Range 3]</option><option>Not sure yet</option></select></label>
+            <label style="display: flex; flex-direction: column; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">BUDGET RANGE<select style="height: 48px; background: #1E1E22; border: 1px solid #2A2A2E; color: #F4F4F0; padding: 0 14px; font-family: Inter, sans-serif; font-size: 16px"><option>Under $2,500</option><option>$2,500 – $5,500</option><option>$5,500 – $8,500</option><option>$8,500 – $12,500</option><option>$12,500+</option><option>Not sure yet</option></select></label>
           </sc-if>
           <sc-if value="{{isRent}}" hint-placeholder-val="{{ false }}">
             <label style="display: flex; flex-direction: column; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">RETURN DATE<input type="text" placeholder="MM / DD / YYYY" style="height: 48px; background: #1E1E22; border: 1px solid #2A2A2E; color: #F4F4F0; padding: 0 14px; font-family: Inter, sans-serif; font-size: 16px"></label>
-            <label style="display: flex; flex-direction: column; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">PICKUP OR DELIVERY<select style="height: 48px; background: #1E1E22; border: 1px solid #2A2A2E; color: #F4F4F0; padding: 0 14px; font-family: Inter, sans-serif; font-size: 16px"><option>Delivery + setup</option><option>Delivery only</option><option>Warehouse pickup</option></select></label>
+            <label style="display: flex; flex-direction: column; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">PICKUP OR DELIVERY<select style="height: 48px; background: #1E1E22; border: 1px solid #2A2A2E; color: #F4F4F0; padding: 0 14px; font-family: Inter, sans-serif; font-size: 16px"><option>Delivery + setup</option><option>Delivery only</option><option>Warehouse pickup (Lyndhurst, NJ)</option></select></label>
           </sc-if>
           <label style="display: flex; flex-direction: column; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">NAME<input type="text" style="height: 48px; background: #1E1E22; border: 1px solid #2A2A2E; color: #F4F4F0; padding: 0 14px; font-family: Inter, sans-serif; font-size: 16px"></label>
           <label style="display: flex; flex-direction: column; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">EMAIL<input type="email" style="height: 48px; background: #1E1E22; border: 1px solid #2A2A2E; color: #F4F4F0; padding: 0 14px; font-family: Inter, sans-serif; font-size: 16px"></label>
           <label style="display: flex; flex-direction: column; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">PHONE<input type="tel" style="height: 48px; background: #1E1E22; border: 1px solid #2A2A2E; color: #F4F4F0; padding: 0 14px; font-family: Inter, sans-serif; font-size: 16px"></label>
         </div>
         <label style="display: flex; flex-direction: column; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">{{notesLabel}}<textarea rows="4" style="background: #1E1E22; border: 1px solid #2A2A2E; color: #F4F4F0; padding: 12px 14px; font-family: Inter, sans-serif; font-size: 16px; resize: vertical"></textarea></label>
-        <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap">
+        <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap">
           <button type="submit" style="{{submitStyle}}">{{submitLabel}}</button>
           <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #A1A1A6">→ CREATES A {{stageraRecord}} IN STAGERA</span>
         </div>
       </form>
     </main>
 
-    <aside style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 24px; padding-top: 8px">
-      <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">CALL OR TEXT</span><span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 22px">[Phone]</span></div>
-      <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">EMAIL</span><span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 22px">[Email]</span></div>
-      <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">INSTAGRAM</span><a href="https://instagram.com/evolivepro" style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 22px; text-decoration: none">@evolivepro</a></div>
-      <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">RESPONSE TIME</span><span style="font-size: 16px; color: #C9C9CC; line-height: 1.5">[Usually within one business day]</span></div>
-      <div style="background: #1E1E22; min-height: 220px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #A1A1A6">PHOTO · CREW AT LOAD-IN</div>
+    <aside style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 22px; padding-top: 8px">
+      <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">CALL OR TEXT</span><a href="tel:+12019139558" style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 22px; text-decoration: none">(201) 913-9558</a></div>
+      <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">EMAIL</span><a href="mailto:evolivepro@gmail.com" style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 22px; text-decoration: none">evolivepro@gmail.com</a></div>
+      <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">BASED IN</span><span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 22px">Lyndhurst, NJ 07071</span></div>
+      <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">INSTAGRAM</span><a href="https://instagram.com/evolivepro" style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 22px; text-decoration: none">@evolivepro</a></div>
+      <div style="background: #1E1E22; min-height: 200px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #A1A1A6">PHOTO · CREW AT LOAD-IN</div>
     </aside>
   </div>
 </div>
@@ -82,7 +88,7 @@ class Component extends DCLogic {
   constructor(props) { super(props); this.state = { mode: 'book' }; }
   renderVals() {
     const book = this.state.mode === 'book';
-    const card = (on, color) => 'display: flex; flex-direction: column; gap: 6px; text-align: left; padding: 22px; cursor: pointer; min-height: 132px; font-family: Inter, sans-serif; ' + (on ? 'background: ' + color + '; color: #0A0A0B; border: 1px solid ' + color : 'background: #141416; color: #F4F4F0; border: 1px solid #2A2A2E');
+    const card = (on, color) => 'display: flex; flex-direction: column; gap: 6px; text-align: left; padding: 20px; cursor: pointer; min-height: 124px; font-family: Inter, sans-serif; ' + (on ? 'background: ' + color + '; color: #0A0A0B; border: 1px solid ' + color : 'background: #141416; color: #F4F4F0; border: 1px solid #2A2A2E');
     const accent = book ? '#B8FF3C' : '#FF6A1F';
     return {
       pickBook: () => this.setState({ mode: 'book' }),
@@ -92,21 +98,78 @@ class Component extends DCLogic {
       isBook: book,
       isRent: !book,
       dateLabel: book ? 'EVENT DATE' : 'PICKUP DATE',
-      notesLabel: book ? 'TELL US THE VIBE' : 'WHAT GEAR DO YOU NEED?',
+      notesLabel: book ? 'TELL US THE VIBE (OR WHICH PACKAGE)' : 'WHAT GEAR DO YOU NEED?',
       submitLabel: book ? 'Request a booking' : 'Request a rental quote',
       stageraRecord: book ? 'BOOKING INQUIRY' : 'RENTAL QUOTE',
-      submitStyle: 'height: 52px; padding: 0 28px; border: 0; cursor: pointer; background: ' + accent + '; color: #0A0A0B; font-family: Archivo, sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase'
+      submitStyle: 'height: 52px; padding: 0 24px; border: 0; cursor: pointer; background: ' + accent + '; color: #0A0A0B; font-family: Archivo, sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase'
     };
+  }
+}
+</script>
+<template id="dc-template-Header">
+
+<header style="background: #0A0A0B; border-bottom: 1px solid #2A2A2E; font-family: Inter, system-ui, sans-serif; color: #F4F4F0; position: relative; z-index: 20">
+  <nav aria-label="Main" style="max-width: 1320px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; gap: 24px; justify-content: space-between">
+    <a href="home.html" style="display: block; flex: none"><img src="assets/logo-wordmark.png" alt="Evo Live Pro home" style="width: 156px; height: auto; display: block"></a>
+    <div class="evh-links" style="gap: 20px; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.08em; justify-content: center; flex: 1 1 auto">
+      <sc-for list="{{links}}" as="l" hint-placeholder-count="7">
+        <a href="{{l.href}}" style="{{l.style}}">{{l.label}}</a>
+      </sc-for>
+    </div>
+    <div class="evh-ctas" style="gap: 8px; flex: none">
+      <a href="contact.html" style="background: #B8FF3C; color: #0A0A0B; text-decoration: none; height: 44px; padding: 0 16px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 13px; letter-spacing: 0.04em">BOOK EVO</a>
+      <a href="rentals.html" style="background: #FF6A1F; color: #0A0A0B; text-decoration: none; height: 44px; padding: 0 16px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 13px; letter-spacing: 0.04em">{{rentLabel}}</a>
+    </div>
+    <details class="evh-menu" style="position: static">
+      <summary aria-label="Open menu" style="width: 44px; height: 44px; border: 1px solid #2A2A2E; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #F4F4F0">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14"></path></svg>
+      </summary>
+      <div style="position: absolute; left: 0; right: 0; top: 100%; background: #0A0A0B; border-bottom: 1px solid #2A2A2E; padding: 8px 16px 20px; display: flex; flex-direction: column">
+        <sc-for list="{{links}}" as="l" hint-placeholder-count="7">
+          <a href="{{l.href}}" style="{{l.mStyle}}">{{l.label}}</a>
+        </sc-for>
+      </div>
+    </details>
+  </nav>
+</header>
+<nav class="evh-mbar" aria-label="Quick actions" style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid #2A2A2E">
+  <a href="contact.html" style="background: #B8FF3C; color: #0A0A0B; text-decoration: none; height: 60px; display: flex; align-items: center; justify-content: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 15px; letter-spacing: 0.04em">BOOK EVO</a>
+  <a href="rentals.html" style="background: #FF6A1F; color: #0A0A0B; text-decoration: none; height: 60px; display: flex; align-items: center; justify-content: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 15px; letter-spacing: 0.04em">{{rentLabel}}</a>
+</nav>
+</template>
+<script type="text/x-dc" id="dc-logic-Header" data-props='{"active":{"editor":"enum","options":["home","about","rentals","events","partners","photos","contact"],"default":"home"},"quote":{"editor":null,"default":""},"$preview":{"width":1440,"height":72}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const active = this.props.active ?? 'home';
+    const items = [
+      ['home', 'HOME', 'Home.dc.html'],
+      ['about', 'ABOUT US', 'About.dc.html'],
+      ['rentals', 'RENTALS', 'Rentals.dc.html'],
+      ['events', 'EVENTS', 'Events.dc.html'],
+      ['partners', 'PARTNERS', 'Home.dc.html#partners'],
+      ['photos', 'PHOTOS', 'Photos.dc.html'],
+      ['contact', 'CONTACT US', 'Contact.dc.html']
+    ];
+    const links = items.map(([id, label, href]) => ({
+      label, href,
+      style: 'text-decoration: none; color: ' + (id === active ? '#F4F4F0' : '#A1A1A6'),
+      mStyle: 'text-decoration: none; padding: 14px 0; border-bottom: 1px solid #2A2A2E; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 22px; color: ' + (id === active ? '#B8FF3C' : '#F4F4F0')
+    }));
+    const q = this.props.quote;
+    return { links, rentLabel: q !== undefined && q !== '' ? 'QUOTE (' + q + ')' : 'RENT GEAR' };
   }
 }
 </script>
 <script src="dc-runtime.js"></script>
 <a class="pv-back" href="./">&larr; All pages</a>
 <style>
-.pv-back{position:fixed;left:16px;bottom:16px;z-index:50;background:#F4F4F0;color:#0A0A0B;
-font:500 12px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;
-padding:12px 14px;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,.4)}
+.pv-back{position:fixed;left:12px;bottom:12px;z-index:50;background:#F4F4F0;color:#0A0A0B;
+font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;
+padding:10px 12px;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,.4)}
 .pv-back:hover{background:#B8FF3C;color:#0A0A0B}
+@media (max-width:900px){.pv-back{bottom:70px;left:auto;right:8px;padding:8px 10px;font-size:10px;opacity:.9}}
+.pv-embed .pv-back{display:none}
 </style>
+<script>if (window.self !== window.top) document.documentElement.classList.add('pv-embed');</script>
 </body>
 </html>

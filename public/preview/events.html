@@ -11,128 +11,226 @@
 <style>
 body{margin:0;background:#0A0A0B}
 a{color:#F4F4F0}a:hover{color:#B8FF3C}
+@media (max-width: 640px){
+  .ev-cap{grid-template-columns: 32px 1fr !important}
+  .ev-cap > span:last-child{grid-column: 2}
+}
+</style>
+<style>
+body{margin:0;background:#0A0A0B}
+.evh-links{display:flex}
+.evh-ctas{display:flex}
+.evh-menu{display:none}
+.evh-mbar{display:none}
+.evh-menu summary{list-style:none}
+.evh-menu summary::-webkit-details-marker{display:none}
+@media (max-width: 900px){
+  .evh-links,.evh-ctas{display:none !important}
+  .evh-menu{display:block}
+  .evh-mbar{display:grid}
+  .ev-page{padding-bottom:64px}
+}
 </style>
 </head>
 <body>
 <div id="dc-root"></div>
 <template id="dc-template">
 
-<div style="background: #0A0A0B; color: #F4F4F0; font-family: Inter, system-ui, sans-serif; min-height: 100vh">
+<div class="ev-page" style="background: #0A0A0B; color: #F4F4F0; font-family: Inter, system-ui, sans-serif; min-height: 100vh">
 
-  <header style="position: sticky; top: 0; z-index: 5; background: rgba(10,10,11,0.94); border-bottom: 1px solid #2A2A2E">
-    <nav aria-label="Main" style="max-width: 1320px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap">
-      <a href="home.html" style="display: block"><img src="assets/logo-wordmark.png" alt="Evo Live Pro home" style="width: 168px; height: auto; display: block"></a>
-      <div style="display: flex; gap: 22px; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.08em; flex: 1 1 auto; justify-content: center">
-        <a href="home.html" style="text-decoration: none; color: #A1A1A6">HOME</a>
-        <a href="about.html" style="text-decoration: none; color: #A1A1A6">ABOUT US</a>
-        <a href="rentals.html" style="text-decoration: none; color: #A1A1A6">RENTALS</a>
-        <a href="events.html" style="text-decoration: none; color: #F4F4F0">EVENTS</a>
-        <a href="home.html#partners" style="text-decoration: none; color: #A1A1A6">PARTNERS</a>
-        <a href="photos.html" style="text-decoration: none; color: #A1A1A6">PHOTOS</a>
-        <a href="contact.html" style="text-decoration: none; color: #A1A1A6">CONTACT US</a>
-      </div>
-      <a href="contact.html" style="background: #B8FF3C; color: #0A0A0B; text-decoration: none; height: 44px; padding: 0 18px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 13px; letter-spacing: 0.04em">BOOK EVO</a>
-    </nav>
-  </header>
+  <dc-import name="Header" active="events" hint-size="100%,69px"></dc-import>
 
   <section style="border-bottom: 1px solid #2A2A2E">
-    <div style="max-width: 1320px; margin: 0 auto; padding: 72px 24px 56px; display: flex; flex-direction: column; gap: 16px">
-      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #B8FF3C">EVENTS · OUR CAPABILITIES · EVENT SERVICES, PRODUCTION &amp; GEAR</span>
-      <h1 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 125%; font-weight: 800; font-size: clamp(40px, 6vw, 80px); line-height: 0.95; letter-spacing: -0.02em; text-transform: uppercase; max-width: 1000px">You bring the guests. We bring the night.</h1>
-      <p style="margin: 0; font-size: 18px; line-height: 1.55; color: #C9C9CC; max-width: 640px">Weddings, corporate events, concerts and private parties. We design the setup, load it in and run it live.</p>
+    <div style="max-width: 1320px; margin: 0 auto; padding: 56px 16px 44px; display: flex; flex-direction: column; gap: 14px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #B8FF3C">EVENTS · OUR CAPABILITIES</span>
+      <h1 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 118%; font-weight: 800; font-size: clamp(28px, 4.2vw, 60px); line-height: 1; text-transform: uppercase; max-width: 900px">You bring the guests. We bring the night.</h1>
+      <p style="margin: 0; font-size: 17px; line-height: 1.55; color: #C9C9CC; max-width: 620px">Weddings, corporate events, concerts and private parties. We design the setup, load it in and run it live.</p>
     </div>
   </section>
 
-  <section style="max-width: 1320px; margin: 0 auto; padding: 88px 24px; display: flex; flex-direction: column; gap: 32px">
-    <h2 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 44px; line-height: 1; text-transform: uppercase">Event services</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px">
-      <a href="contact.html" style="text-decoration: none; color: #F4F4F0; position: relative; background: #1E1E22; min-height: 380px; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; gap: 8px; box-sizing: border-box">
-        <span style="position: absolute; top: 18px; left: 24px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #A1A1A6">PHOTO · GRAZIANO / LAM / SULLIVAN</span>
-        <span style="font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 32px; text-transform: uppercase">Weddings</span>
-        <span style="font-size: 15px; color: #C9C9CC; line-height: 1.5">Ceremony audio, cocktail hour, uplighting and a dance floor that stays full.</span>
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #B8FF3C; letter-spacing: 0.08em">BOOK A WEDDING →</span>
-      </a>
-      <a href="contact.html" style="text-decoration: none; color: #F4F4F0; position: relative; background: #1E1E22; min-height: 380px; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; gap: 8px; box-sizing: border-box">
-        <span style="position: absolute; top: 18px; left: 24px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #A1A1A6">PHOTO · BRAND EVENT, LED WALL</span>
-        <span style="font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 32px; text-transform: uppercase">Corporate Events</span>
-        <span style="font-size: 15px; color: #C9C9CC; line-height: 1.5">Keynotes, launches and holiday parties for brands like Nike, EY and PwC.</span>
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #B8FF3C; letter-spacing: 0.08em">PLAN A CORPORATE EVENT →</span>
-      </a>
-      <a href="contact.html" style="text-decoration: none; color: #F4F4F0; position: relative; background: #1E1E22; min-height: 380px; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; gap: 8px; box-sizing: border-box">
-        <span style="position: absolute; top: 18px; left: 24px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #A1A1A6">PHOTO · LASERS, CROWD</span>
-        <span style="font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 32px; text-transform: uppercase">Concerts &amp; Live Events</span>
-        <span style="font-size: 15px; color: #C9C9CC; line-height: 1.5">Full-scale sound, lighting and video for headliners and festival stages.</span>
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #B8FF3C; letter-spacing: 0.08em">PRODUCE A SHOW →</span>
-      </a>
-      <a href="contact.html" style="text-decoration: none; color: #F4F4F0; position: relative; background: #1E1E22; min-height: 380px; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; gap: 8px; box-sizing: border-box">
-        <span style="position: absolute; top: 18px; left: 24px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #A1A1A6">PHOTO · PRIVATE PARTY</span>
-        <span style="font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 32px; text-transform: uppercase">Private Parties</span>
-        <span style="font-size: 15px; color: #C9C9CC; line-height: 1.5">Birthdays, milestones and house parties with a club-level setup.</span>
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #B8FF3C; letter-spacing: 0.08em">BOOK A PARTY →</span>
-      </a>
-      <a href="rentals.html" style="text-decoration: none; color: #F4F4F0; position: relative; background: #1E1E22; min-height: 380px; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; gap: 8px; box-sizing: border-box; border-top: 4px solid #FF6A1F">
-        <span style="position: absolute; top: 18px; left: 24px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #A1A1A6">PHOTO · CASED GEAR READY TO SHIP</span>
-        <span style="font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 32px; text-transform: uppercase">Rentals</span>
-        <span style="font-size: 15px; color: #C9C9CC; line-height: 1.5">Just need the gear? Rent our sound, lighting, video, staging, DJ and FX equipment.</span>
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #FF6A1F; letter-spacing: 0.08em">BROWSE RENTALS →</span>
-      </a>
+  <section style="max-width: 1320px; margin: 0 auto; padding: 72px 16px; display: flex; flex-direction: column; gap: 28px">
+    <h2 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: clamp(28px, 3.2vw, 40px); line-height: 1; text-transform: uppercase">Event services</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px">
+      <sc-for list="{{services}}" as="s" hint-placeholder-count="5">
+        <a href="{{s.href}}" style="{{s.box}}">
+          <span style="position: absolute; top: 16px; left: 20px; right: 20px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #A1A1A6">{{s.photo}}</span>
+          <span style="font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 26px; line-height: 1.05; text-transform: uppercase">{{s.title}}</span>
+          <span style="font-size: 14px; color: #C9C9CC; line-height: 1.5">{{s.copy}}</span>
+          <span style="{{s.ctaStyle}}">{{s.cta}}</span>
+        </a>
+      </sc-for>
     </div>
   </section>
 
-  <section style="background: #141416; border-top: 1px solid #2A2A2E; border-bottom: 1px solid #2A2A2E">
-    <div style="max-width: 1320px; margin: 0 auto; padding: 88px 24px; display: flex; flex-wrap: wrap; gap: 48px">
-      <div style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 16px">
-        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 44px; line-height: 1; text-transform: uppercase">Production &amp; gear</h2>
-        <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #C9C9CC">Everything we run on our own shows. Need it without the crew? Every item is also on the rentals page.</p>
-        <a href="rentals.html" style="align-self: flex-start; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.08em; color: #FF6A1F; text-underline-offset: 6px">RENT IT INSTEAD →</a>
+  <section id="packages" style="background: #141416; border-top: 1px solid #2A2A2E; border-bottom: 1px solid #2A2A2E">
+    <div style="max-width: 1320px; margin: 0 auto; padding: 72px 16px; display: flex; flex-direction: column; gap: 28px">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap">
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #B8FF3C">2026 WEDDING PACKAGES</span>
+          <h2 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: clamp(28px, 3.2vw, 40px); line-height: 1; text-transform: uppercase">Pick your night</h2>
+        </div>
+        <span style="font-size: 14px; color: #A1A1A6">All include a 4-hour reception, online playlist tool and planning consultations. Plus applicable tax.</span>
       </div>
-      <div style="flex: 2 1 560px; display: flex; flex-direction: column">
-        <div style="display: grid; grid-template-columns: 64px 1fr 1.6fr; gap: 16px; padding: 22px 0; border-top: 1px solid #2A2A2E; align-items: baseline"><span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #A1A1A6">A</span><span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 24px">Audio</span><span style="font-size: 15px; color: #C9C9CC; line-height: 1.5">PA systems, wireless mics, mixing and monitoring</span></div>
-        <div style="display: grid; grid-template-columns: 64px 1fr 1.6fr; gap: 16px; padding: 22px 0; border-top: 1px solid #2A2A2E; align-items: baseline"><span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #A1A1A6">D</span><span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 24px">DJ</span><span style="font-size: 15px; color: #C9C9CC; line-height: 1.5">Open format DJs, CDJs, mixers and booths</span></div>
-        <div style="display: grid; grid-template-columns: 64px 1fr 1.6fr; gap: 16px; padding: 22px 0; border-top: 1px solid #2A2A2E; align-items: baseline"><span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #A1A1A6">L</span><span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 24px">Lighting</span><span style="font-size: 15px; color: #C9C9CC; line-height: 1.5">Moving heads, uplighting, lasers and programming</span></div>
-        <div style="display: grid; grid-template-columns: 64px 1fr 1.6fr; gap: 16px; padding: 22px 0; border-top: 1px solid #2A2A2E; align-items: baseline"><span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #A1A1A6">S</span><span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 24px">Staging &amp; Rigging</span><span style="font-size: 15px; color: #C9C9CC; line-height: 1.5">Risers, truss, power distribution and cable safety</span></div>
-        <div style="display: grid; grid-template-columns: 64px 1fr 1.6fr; gap: 16px; padding: 22px 0; border-top: 1px solid #2A2A2E; border-bottom: 1px solid #2A2A2E; align-items: baseline"><span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #A1A1A6">V</span><span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 24px">Video &amp; LED Walls</span><span style="font-size: 15px; color: #C9C9CC; line-height: 1.5">LED walls, projection, screens and content playback</span></div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px">
+        <sc-for list="{{tiers}}" as="t" hint-placeholder-count="4">
+          <div style="{{t.box}}">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #A1A1A6">{{t.guests}}</span>
+            <span style="font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 22px; line-height: 1.1; text-transform: uppercase">{{t.name}}</span>
+            <span style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 30px; color: #B8FF3C">{{t.price}}</span>
+            <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.6; color: #C9C9CC">
+              <sc-for list="{{t.lines}}" as="l" hint-placeholder-count="5"><li>{{l}}</li></sc-for>
+            </ul>
+            <a href="contact.html" style="margin-top: auto; background: #B8FF3C; color: #0A0A0B; text-decoration: none; height: 48px; display: flex; align-items: center; justify-content: center; font-family: Archivo, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.04em">CHECK MY DATE</a>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px; padding-top: 12px">
+        <h3 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 22px; text-transform: uppercase">À la carte</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0 32px">
+          <sc-for list="{{carte}}" as="c" hint-placeholder-count="12">
+            <div style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #2A2A2E; font-size: 14px"><span>{{c.name}}</span><span style="font-family: 'JetBrains Mono', monospace; color: #B8FF3C; white-space: nowrap">{{c.price}}</span></div>
+          </sc-for>
+        </div>
       </div>
     </div>
   </section>
 
-  <section style="max-width: 1320px; margin: 0 auto; padding: 88px 24px; display: flex; flex-direction: column; gap: 28px">
-    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap">
-      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 44px; line-height: 1; text-transform: uppercase">Venues we know</h2>
-      <p style="margin: 0; font-size: 15px; color: #A1A1A6; max-width: 420px">We have loaded in here before, so we know the power, the rules and the elevators.</p>
+  <section style="max-width: 1320px; margin: 0 auto; padding: 72px 16px; display: flex; flex-wrap: wrap; gap: 40px">
+    <div style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 14px">
+      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: clamp(28px, 3.2vw, 40px); line-height: 1; text-transform: uppercase">Production &amp; gear</h2>
+      <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #C9C9CC">Everything we run on our own shows. Need it without the crew? It is all on the rentals page.</p>
+      <a href="rentals.html" style="align-self: flex-start; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.08em; color: #FF6A1F; text-underline-offset: 6px">RENT IT INSTEAD →</a>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; border-top: 1px solid #2A2A2E">
-      <span style="padding: 18px 0; border-bottom: 1px solid #2A2A2E; font-family: Archivo, sans-serif; font-weight: 700; font-size: 18px">[Venue name]</span>
-      <span style="padding: 18px 0; border-bottom: 1px solid #2A2A2E; font-family: Archivo, sans-serif; font-weight: 700; font-size: 18px">[Venue name]</span>
-      <span style="padding: 18px 0; border-bottom: 1px solid #2A2A2E; font-family: Archivo, sans-serif; font-weight: 700; font-size: 18px">[Venue name]</span>
-      <span style="padding: 18px 0; border-bottom: 1px solid #2A2A2E; font-family: Archivo, sans-serif; font-weight: 700; font-size: 18px">[Venue name]</span>
-      <span style="padding: 18px 0; border-bottom: 1px solid #2A2A2E; font-family: Archivo, sans-serif; font-weight: 700; font-size: 18px">[Venue name]</span>
-      <span style="padding: 18px 0; border-bottom: 1px solid #2A2A2E; font-family: Archivo, sans-serif; font-weight: 700; font-size: 18px">[Venue name]</span>
-      <span style="padding: 18px 0; border-bottom: 1px solid #2A2A2E; font-family: Archivo, sans-serif; font-weight: 700; font-size: 18px">[Venue name]</span>
-      <span style="padding: 18px 0; border-bottom: 1px solid #2A2A2E; font-family: Archivo, sans-serif; font-weight: 700; font-size: 18px">[Venue name]</span>
+    <div style="flex: 2 1 520px; min-width: 0; display: flex; flex-direction: column">
+      <div class="ev-cap" style="display: grid; grid-template-columns: 56px 1fr 1.6fr; gap: 8px 16px; padding: 20px 0; border-top: 1px solid #2A2A2E; align-items: baseline"><span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #A1A1A6">A</span><span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 22px">Audio</span><span style="font-size: 15px; color: #C9C9CC; line-height: 1.5">RCF line arrays, columns and subs, Shure wireless, Allen &amp; Heath mixing</span></div>
+      <div class="ev-cap" style="display: grid; grid-template-columns: 56px 1fr 1.6fr; gap: 8px 16px; padding: 20px 0; border-top: 1px solid #2A2A2E; align-items: baseline"><span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #A1A1A6">D</span><span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 22px">DJ</span><span style="font-size: 15px; color: #C9C9CC; line-height: 1.5">Lead DJ/MC, secondary DJ, CDJ-3000s, DJM-A9 and custom booths</span></div>
+      <div class="ev-cap" style="display: grid; grid-template-columns: 56px 1fr 1.6fr; gap: 8px 16px; padding: 20px 0; border-top: 1px solid #2A2A2E; align-items: baseline"><span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #A1A1A6">L</span><span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 22px">Lighting</span><span style="font-size: 15px; color: #C9C9CC; line-height: 1.5">Intelligent moving heads, lasers, retro hexagons, uplighting and a lighting director</span></div>
+      <div class="ev-cap" style="display: grid; grid-template-columns: 56px 1fr 1.6fr; gap: 8px 16px; padding: 20px 0; border-top: 1px solid #2A2A2E; align-items: baseline"><span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #A1A1A6">S</span><span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 22px">Staging &amp; Rigging</span><span style="font-size: 15px; color: #C9C9CC; line-height: 1.5">Stage decks, ProX truss towers, power distribution and cable safety</span></div>
+      <div class="ev-cap" style="display: grid; grid-template-columns: 56px 1fr 1.6fr; gap: 8px 16px; padding: 20px 0; border-top: 1px solid #2A2A2E; border-bottom: 1px solid #2A2A2E; align-items: baseline"><span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #A1A1A6">V</span><span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 22px">Video &amp; LED Walls</span><span style="font-size: 15px; color: #C9C9CC; line-height: 1.5">Modular LED walls up to 16.5'×9.5', media screens and a VJ</span></div>
+    </div>
+  </section>
+
+  <section style="max-width: 1320px; margin: 0 auto; padding: 0 16px 72px; display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap">
+      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: clamp(28px, 3.2vw, 40px); line-height: 1; text-transform: uppercase">Venues we know</h2>
+      <p style="margin: 0; font-size: 14px; color: #A1A1A6; max-width: 420px">We have loaded in here before, so we know the power, the rules and the elevators.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); border-top: 1px solid #2A2A2E">
+      <span style="padding: 16px 0; border-bottom: 1px solid #2A2A2E; font-family: Archivo, sans-serif; font-weight: 700; font-size: 17px">[Venue name]</span>
+      <span style="padding: 16px 0; border-bottom: 1px solid #2A2A2E; font-family: Archivo, sans-serif; font-weight: 700; font-size: 17px">[Venue name]</span>
+      <span style="padding: 16px 0; border-bottom: 1px solid #2A2A2E; font-family: Archivo, sans-serif; font-weight: 700; font-size: 17px">[Venue name]</span>
+      <span style="padding: 16px 0; border-bottom: 1px solid #2A2A2E; font-family: Archivo, sans-serif; font-weight: 700; font-size: 17px">[Venue name]</span>
+      <span style="padding: 16px 0; border-bottom: 1px solid #2A2A2E; font-family: Archivo, sans-serif; font-weight: 700; font-size: 17px">[Venue name]</span>
+      <span style="padding: 16px 0; border-bottom: 1px solid #2A2A2E; font-family: Archivo, sans-serif; font-weight: 700; font-size: 17px">[Venue name]</span>
     </div>
   </section>
 
   <section style="background: #B8FF3C; color: #0A0A0B">
-    <div style="max-width: 1320px; margin: 0 auto; padding: 72px 24px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center">
-      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 125%; font-weight: 800; font-size: clamp(32px, 4vw, 56px); line-height: 1; text-transform: uppercase">Got a date? Let's build it.</h2>
-      <a href="contact.html" style="background: #0A0A0B; color: #F4F4F0; text-decoration: none; height: 56px; padding: 0 28px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 15px; letter-spacing: 0.04em">CHECK AVAILABILITY</a>
+    <div style="max-width: 1320px; margin: 0 auto; padding: 56px 16px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center">
+      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 118%; font-weight: 800; font-size: clamp(28px, 3.6vw, 48px); line-height: 1; text-transform: uppercase">Got a date? Let's build it.</h2>
+      <a href="contact.html" style="background: #0A0A0B; color: #F4F4F0; text-decoration: none; height: 54px; padding: 0 24px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 15px; letter-spacing: 0.04em">CHECK AVAILABILITY</a>
     </div>
   </section>
 </div>
 </template>
-<script type="text/x-dc" id="dc-logic" data-props='{"$preview":{"width":1440,"height":3000}}'>
+<script type="text/x-dc" id="dc-logic" data-props='{"$preview":{"width":1440,"height":4200}}'>
 class Component extends DCLogic {
-  renderVals() { return {}; }
+  renderVals() {
+    const card = 'text-decoration: none; color: #F4F4F0; position: relative; background: #1E1E22; min-height: 340px; display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; gap: 8px; box-sizing: border-box';
+    const svc = [
+      ['Weddings', 'PHOTO · GRAZIANO / LAM / SULLIVAN', 'Ceremony, cocktail hour and a reception that stays packed. Packages from $5,500.', 'SEE PACKAGES →', '#packages', false],
+      ['Corporate Events', 'PHOTO · BRAND EVENT, LED WALL', 'Keynotes, launches and parties for brands like Nike, EY and PwC.', 'PLAN A CORPORATE EVENT →', 'Contact.dc.html', false],
+      ['Concerts &amp; Live Events', 'PHOTO · LASERS, CROWD', 'Line arrays, lasers, CO2 and LED walls for headliners and festival stages.', 'PRODUCE A SHOW →', 'Contact.dc.html', false],
+      ['Private Parties', 'PHOTO · PRIVATE PARTY', 'Birthdays, milestones and house parties with a club-level setup.', 'BOOK A PARTY →', 'Contact.dc.html', false],
+      ['Rentals', 'PHOTO · CASED GEAR', 'Just need the gear? Rent our sound, lighting, video, staging, DJ and FX equipment.', 'BROWSE RENTALS →', 'Rentals.dc.html', true]
+    ];
+    const services = svc.map(([title, photo, copy, cta, href, rent]) => ({
+      title: title.replace('&amp;', '&'), photo, copy, cta, href,
+      box: card + (rent ? '; border-top: 4px solid #FF6A1F' : ''),
+      ctaStyle: "font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: " + (rent ? '#FF6A1F' : '#B8FF3C')
+    }));
+    const tierBox = 'background: #0A0A0B; border: 1px solid #2A2A2E; padding: 22px; display: flex; flex-direction: column; gap: 10px';
+    const tiers = [
+      ['UP TO 150 GUESTS', 'The Architectural Essentials', '$5,500', ['Custom DJ furniture', '(2) intelligent lights', '(12) wireless uplights', 'High-end sound system', 'Lead DJ/MC, secondary DJ, production tech']],
+      ['UP TO 250 GUESTS', 'The Elevated Design Experience', '$8,500', ['Custom DJ furniture', '(4) intelligent lights, (18) uplights', 'Digital photo booth + attendant', 'FX: (2) cold sparks or Dancing on the Clouds', 'Lead DJ/MC, secondary DJ']],
+      ['UP TO 350 GUESTS', 'The Nightlife Reserve', '$12,500', ['DJ furniture with media screen', '(6) intelligent lights, (24) uplights', 'FX suite: CO2 cannons, CO2 jets, (4) cold sparks', 'Concert-level sound', 'Lighting director, content creator, production techs']],
+      ['NO LIMIT', 'The Bespoke Production Reserve', '$22,500+', ['Custom modular LED video wall', 'Tailored stage build, (8) intelligent lights', 'Full FX: lasers, CO2, cold sparks, low fog', 'RCF line array system', 'Master LD, VJ, audio tech, content creator, photo booth']]
+    ].map(([guests, name, price, lines]) => ({ guests, name, price, lines, box: tierBox + (price === '$22,500+' ? '; border-color: #B8FF3C' : '') }));
+    const carte = [
+      ['Ceremony', '$800'], ['Cocktail hour', '$700'], ['Ceremony + cocktail bundle', '$1,300'], ['After party DJ', '$1,000+'],
+      ['(2) Retro hexagons', '$300'], ['(2) Lasers + operator', '$1,400'], ['(2) CO2 jets', '$500'], ['Handheld CO2 cannon', '$350'],
+      ['Dancing on the Clouds', '$400'], ['(2) Cold sparks + permit', '$600'], ['Media screens', '$250'], ['Content creator', '$850+'],
+      ["Video wall 8'×4'", '$1,200'], ["Video wall 14'×7'", '$3,400'], ["Video wall 16.5'×9.5'", '$5,500'], ['Travel', 'TBD'],
+      ["Stage 4'×8'", '$175'], ["Stage 8'×8'", '$350'], ["Stage 12'×8'", '$500'], ["Stage 16'×8'", '$650']
+    ].map(([name, price]) => ({ name, price }));
+    return { services, tiers, carte };
+  }
+}
+</script>
+<template id="dc-template-Header">
+
+<header style="background: #0A0A0B; border-bottom: 1px solid #2A2A2E; font-family: Inter, system-ui, sans-serif; color: #F4F4F0; position: relative; z-index: 20">
+  <nav aria-label="Main" style="max-width: 1320px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; gap: 24px; justify-content: space-between">
+    <a href="home.html" style="display: block; flex: none"><img src="assets/logo-wordmark.png" alt="Evo Live Pro home" style="width: 156px; height: auto; display: block"></a>
+    <div class="evh-links" style="gap: 20px; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.08em; justify-content: center; flex: 1 1 auto">
+      <sc-for list="{{links}}" as="l" hint-placeholder-count="7">
+        <a href="{{l.href}}" style="{{l.style}}">{{l.label}}</a>
+      </sc-for>
+    </div>
+    <div class="evh-ctas" style="gap: 8px; flex: none">
+      <a href="contact.html" style="background: #B8FF3C; color: #0A0A0B; text-decoration: none; height: 44px; padding: 0 16px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 13px; letter-spacing: 0.04em">BOOK EVO</a>
+      <a href="rentals.html" style="background: #FF6A1F; color: #0A0A0B; text-decoration: none; height: 44px; padding: 0 16px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 13px; letter-spacing: 0.04em">{{rentLabel}}</a>
+    </div>
+    <details class="evh-menu" style="position: static">
+      <summary aria-label="Open menu" style="width: 44px; height: 44px; border: 1px solid #2A2A2E; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #F4F4F0">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14"></path></svg>
+      </summary>
+      <div style="position: absolute; left: 0; right: 0; top: 100%; background: #0A0A0B; border-bottom: 1px solid #2A2A2E; padding: 8px 16px 20px; display: flex; flex-direction: column">
+        <sc-for list="{{links}}" as="l" hint-placeholder-count="7">
+          <a href="{{l.href}}" style="{{l.mStyle}}">{{l.label}}</a>
+        </sc-for>
+      </div>
+    </details>
+  </nav>
+</header>
+<nav class="evh-mbar" aria-label="Quick actions" style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid #2A2A2E">
+  <a href="contact.html" style="background: #B8FF3C; color: #0A0A0B; text-decoration: none; height: 60px; display: flex; align-items: center; justify-content: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 15px; letter-spacing: 0.04em">BOOK EVO</a>
+  <a href="rentals.html" style="background: #FF6A1F; color: #0A0A0B; text-decoration: none; height: 60px; display: flex; align-items: center; justify-content: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 15px; letter-spacing: 0.04em">{{rentLabel}}</a>
+</nav>
+</template>
+<script type="text/x-dc" id="dc-logic-Header" data-props='{"active":{"editor":"enum","options":["home","about","rentals","events","partners","photos","contact"],"default":"home"},"quote":{"editor":null,"default":""},"$preview":{"width":1440,"height":72}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const active = this.props.active ?? 'home';
+    const items = [
+      ['home', 'HOME', 'Home.dc.html'],
+      ['about', 'ABOUT US', 'About.dc.html'],
+      ['rentals', 'RENTALS', 'Rentals.dc.html'],
+      ['events', 'EVENTS', 'Events.dc.html'],
+      ['partners', 'PARTNERS', 'Home.dc.html#partners'],
+      ['photos', 'PHOTOS', 'Photos.dc.html'],
+      ['contact', 'CONTACT US', 'Contact.dc.html']
+    ];
+    const links = items.map(([id, label, href]) => ({
+      label, href,
+      style: 'text-decoration: none; color: ' + (id === active ? '#F4F4F0' : '#A1A1A6'),
+      mStyle: 'text-decoration: none; padding: 14px 0; border-bottom: 1px solid #2A2A2E; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 22px; color: ' + (id === active ? '#B8FF3C' : '#F4F4F0')
+    }));
+    const q = this.props.quote;
+    return { links, rentLabel: q !== undefined && q !== '' ? 'QUOTE (' + q + ')' : 'RENT GEAR' };
+  }
 }
 </script>
 <script src="dc-runtime.js"></script>
 <a class="pv-back" href="./">&larr; All pages</a>
 <style>
-.pv-back{position:fixed;left:16px;bottom:16px;z-index:50;background:#F4F4F0;color:#0A0A0B;
-font:500 12px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;
-padding:12px 14px;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,.4)}
+.pv-back{position:fixed;left:12px;bottom:12px;z-index:50;background:#F4F4F0;color:#0A0A0B;
+font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;
+padding:10px 12px;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,.4)}
 .pv-back:hover{background:#B8FF3C;color:#0A0A0B}
+@media (max-width:900px){.pv-back{bottom:70px;left:auto;right:8px;padding:8px 10px;font-size:10px;opacity:.9}}
+.pv-embed .pv-back{display:none}
 </style>
+<script>if (window.self !== window.top) document.documentElement.classList.add('pv-embed');</script>
 </body>
 </html>

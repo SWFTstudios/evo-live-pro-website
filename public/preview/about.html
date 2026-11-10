@@ -12,84 +12,79 @@
 body{margin:0;background:#0A0A0B}
 a{color:#F4F4F0}a:hover{color:#B8FF3C}
 </style>
+<style>
+body{margin:0;background:#0A0A0B}
+.evh-links{display:flex}
+.evh-ctas{display:flex}
+.evh-menu{display:none}
+.evh-mbar{display:none}
+.evh-menu summary{list-style:none}
+.evh-menu summary::-webkit-details-marker{display:none}
+@media (max-width: 900px){
+  .evh-links,.evh-ctas{display:none !important}
+  .evh-menu{display:block}
+  .evh-mbar{display:grid}
+  .ev-page{padding-bottom:64px}
+}
+</style>
 </head>
 <body>
 <div id="dc-root"></div>
 <template id="dc-template">
 
-<div style="background: #0A0A0B; color: #F4F4F0; font-family: Inter, system-ui, sans-serif; min-height: 100vh">
+<div class="ev-page" style="background: #0A0A0B; color: #F4F4F0; font-family: Inter, system-ui, sans-serif; min-height: 100vh">
 
-  <header style="position: sticky; top: 0; z-index: 5; background: rgba(10,10,11,0.94); border-bottom: 1px solid #2A2A2E">
-    <nav aria-label="Main" style="max-width: 1320px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap">
-      <a href="home.html" style="display: block"><img src="assets/logo-wordmark.png" alt="Evo Live Pro home" style="width: 168px; height: auto; display: block"></a>
-      <div style="display: flex; gap: 22px; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.08em; flex: 1 1 auto; justify-content: center">
-        <a href="home.html" style="text-decoration: none; color: #A1A1A6">HOME</a>
-        <a href="about.html" style="text-decoration: none; color: #F4F4F0">ABOUT US</a>
-        <a href="rentals.html" style="text-decoration: none; color: #A1A1A6">RENTALS</a>
-        <a href="events.html" style="text-decoration: none; color: #A1A1A6">EVENTS</a>
-        <a href="home.html#partners" style="text-decoration: none; color: #A1A1A6">PARTNERS</a>
-        <a href="photos.html" style="text-decoration: none; color: #A1A1A6">PHOTOS</a>
-        <a href="contact.html" style="text-decoration: none; color: #A1A1A6">CONTACT US</a>
-      </div>
-      <div style="display: flex; gap: 8px">
-        <a href="contact.html" style="background: #B8FF3C; color: #0A0A0B; text-decoration: none; height: 44px; padding: 0 18px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 13px; letter-spacing: 0.04em">BOOK EVO</a>
-        <a href="rentals.html" style="background: #FF6A1F; color: #0A0A0B; text-decoration: none; height: 44px; padding: 0 18px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 13px; letter-spacing: 0.04em">RENT GEAR</a>
-      </div>
-    </nav>
-  </header>
+  <dc-import name="Header" active="about" hint-size="100%,69px"></dc-import>
 
-  <section style="max-width: 1320px; margin: 0 auto; padding: 72px 24px; display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
-    <div style="flex: 1 1 440px; display: flex; flex-direction: column; gap: 18px">
-      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">ABOUT · OUR ORIGINS</span>
-      <h1 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 125%; font-weight: 800; font-size: clamp(40px, 5.5vw, 76px); line-height: 0.95; letter-spacing: -0.02em; text-transform: uppercase">Two guys, one warehouse, a lot of gaff tape</h1>
-      <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #C9C9CC">[Origin story from Tim and Dom: how Evo started, the first gig, and how it grew from DJ sets into full production. 2–3 short paragraphs.]</p>
+  <section style="max-width: 1320px; margin: 0 auto; padding: 56px 16px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center">
+    <div style="flex: 1 1 400px; display: flex; flex-direction: column; gap: 16px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">ABOUT US · OUR ORIGINS</span>
+      <h1 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 118%; font-weight: 800; font-size: clamp(28px, 4.2vw, 60px); line-height: 1; text-transform: uppercase">Two founders, one warehouse, a lot of gaff tape</h1>
+      <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #C9C9CC">[Origin story from Tim and Dom: how Evo started in Lyndhurst, NJ, the first gig, and how it grew from DJ sets into full production. 2–3 short paragraphs.]</p>
     </div>
-    <div style="flex: 1 1 440px; background: #1E1E22; min-height: 460px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #A1A1A6; text-align: center; padding: 24px">PHOTO · TIM + DOM TOGETHER<br>Brandon Patrisso shoot</div>
+    <div style="flex: 1 1 400px; background: #1E1E22; min-height: 420px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #A1A1A6; text-align: center; padding: 24px">PHOTO · TIM + DOM TOGETHER<br>Brandon Patrisso shoot</div>
   </section>
 
   <section style="background: #141416; border-top: 1px solid #2A2A2E; border-bottom: 1px solid #2A2A2E">
-    <div style="max-width: 1320px; margin: 0 auto; padding: 88px 24px; display: flex; flex-direction: column; gap: 40px">
-      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 44px; line-height: 1; text-transform: uppercase">Meet the crew</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
-        <div style="display: flex; flex-direction: column; gap: 14px">
+    <div style="max-width: 1320px; margin: 0 auto; padding: 72px 16px; display: flex; flex-direction: column; gap: 32px">
+      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: clamp(28px, 3.2vw, 40px); line-height: 1; text-transform: uppercase">Meet the crew</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
+        <div style="display: flex; flex-direction: column; gap: 12px">
           <div style="background: #1E1E22; aspect-ratio: 4 / 5; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #A1A1A6">PORTRAIT · TIMOTHY</div>
-          <span style="font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 28px; text-transform: uppercase">Timothy</span>
+          <span style="font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 26px; text-transform: uppercase">Timothy</span>
           <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #B8FF3C">CO-FOUNDER &amp; CREATIVE DIRECTOR</span>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; flex-direction: column; gap: 12px">
           <div style="background: #1E1E22; aspect-ratio: 4 / 5; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #A1A1A6">PORTRAIT · DOMINICK</div>
-          <span style="font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 28px; text-transform: uppercase">Dominick</span>
+          <span style="font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 26px; text-transform: uppercase">Dominick</span>
           <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #B8FF3C">CO-FOUNDER &amp; TECHNICAL OPERATIONS</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section style="max-width: 1320px; margin: 0 auto; padding: 88px 24px; display: flex; flex-direction: column; gap: 32px">
-    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap">
-      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 44px; line-height: 1; text-transform: uppercase">Off the record</h2>
-      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">TIM · DOM</span>
-    </div>
+  <section style="max-width: 1320px; margin: 0 auto; padding: 72px 16px; display: flex; flex-direction: column; gap: 28px">
+    <h2 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: clamp(28px, 3.2vw, 40px); line-height: 1; text-transform: uppercase">Off the record</h2>
     <div style="display: flex; flex-direction: column">
       <sc-for list="{{qa}}" as="r" hint-placeholder-count="6">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px 32px; padding: 26px 0; border-top: 1px solid #2A2A2E">
-          <span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 20px; line-height: 1.3">{{r.q}}</span>
-          <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #A1A1A6">TIM</span><span style="font-size: 17px; line-height: 1.5">{{r.tim}}</span></div>
-          <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #A1A1A6">DOM</span><span style="font-size: 17px; line-height: 1.5; color: #A1A1A6">{{r.dom}}</span></div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px 32px; padding: 22px 0; border-top: 1px solid #2A2A2E">
+          <span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 19px; line-height: 1.3">{{r.q}}</span>
+          <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #A1A1A6">TIM</span><span style="font-size: 16px; line-height: 1.5">{{r.tim}}</span></div>
+          <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #A1A1A6">DOM</span><span style="font-size: 16px; line-height: 1.5; color: #A1A1A6">{{r.dom}}</span></div>
         </div>
       </sc-for>
     </div>
   </section>
 
   <section style="border-top: 1px solid #2A2A2E">
-    <div style="max-width: 1320px; margin: 0 auto; padding: 72px 24px; display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center">
+    <div style="max-width: 1320px; margin: 0 auto; padding: 64px 16px; display: flex; flex-direction: column; gap: 12px; align-items: center; text-align: center">
       <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #A1A1A6">WHAT EVO BRINGS THAT OTHERS DON'T, IN THREE WORDS</span>
-      <span style="font-family: Archivo, sans-serif; font-stretch: 125%; font-weight: 800; font-size: clamp(36px, 5vw, 72px); text-transform: uppercase; line-height: 1">[Word] · [Word] · [Word]</span>
+      <span style="font-family: Archivo, sans-serif; font-stretch: 118%; font-weight: 800; font-size: clamp(28px, 4vw, 56px); text-transform: uppercase; line-height: 1">[Word] · [Word] · [Word]</span>
     </div>
   </section>
 </div>
 </template>
-<script type="text/x-dc" id="dc-logic" data-props='{"$preview":{"width":1440,"height":2700}}'>
+<script type="text/x-dc" id="dc-logic" data-props='{"$preview":{"width":1440,"height":2600}}'>
 class Component extends DCLogic {
   renderVals() {
     const d = "[Dom's answer]";
@@ -106,13 +101,70 @@ class Component extends DCLogic {
   }
 }
 </script>
+<template id="dc-template-Header">
+
+<header style="background: #0A0A0B; border-bottom: 1px solid #2A2A2E; font-family: Inter, system-ui, sans-serif; color: #F4F4F0; position: relative; z-index: 20">
+  <nav aria-label="Main" style="max-width: 1320px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; gap: 24px; justify-content: space-between">
+    <a href="home.html" style="display: block; flex: none"><img src="assets/logo-wordmark.png" alt="Evo Live Pro home" style="width: 156px; height: auto; display: block"></a>
+    <div class="evh-links" style="gap: 20px; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.08em; justify-content: center; flex: 1 1 auto">
+      <sc-for list="{{links}}" as="l" hint-placeholder-count="7">
+        <a href="{{l.href}}" style="{{l.style}}">{{l.label}}</a>
+      </sc-for>
+    </div>
+    <div class="evh-ctas" style="gap: 8px; flex: none">
+      <a href="contact.html" style="background: #B8FF3C; color: #0A0A0B; text-decoration: none; height: 44px; padding: 0 16px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 13px; letter-spacing: 0.04em">BOOK EVO</a>
+      <a href="rentals.html" style="background: #FF6A1F; color: #0A0A0B; text-decoration: none; height: 44px; padding: 0 16px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 13px; letter-spacing: 0.04em">{{rentLabel}}</a>
+    </div>
+    <details class="evh-menu" style="position: static">
+      <summary aria-label="Open menu" style="width: 44px; height: 44px; border: 1px solid #2A2A2E; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #F4F4F0">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14"></path></svg>
+      </summary>
+      <div style="position: absolute; left: 0; right: 0; top: 100%; background: #0A0A0B; border-bottom: 1px solid #2A2A2E; padding: 8px 16px 20px; display: flex; flex-direction: column">
+        <sc-for list="{{links}}" as="l" hint-placeholder-count="7">
+          <a href="{{l.href}}" style="{{l.mStyle}}">{{l.label}}</a>
+        </sc-for>
+      </div>
+    </details>
+  </nav>
+</header>
+<nav class="evh-mbar" aria-label="Quick actions" style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid #2A2A2E">
+  <a href="contact.html" style="background: #B8FF3C; color: #0A0A0B; text-decoration: none; height: 60px; display: flex; align-items: center; justify-content: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 15px; letter-spacing: 0.04em">BOOK EVO</a>
+  <a href="rentals.html" style="background: #FF6A1F; color: #0A0A0B; text-decoration: none; height: 60px; display: flex; align-items: center; justify-content: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 15px; letter-spacing: 0.04em">{{rentLabel}}</a>
+</nav>
+</template>
+<script type="text/x-dc" id="dc-logic-Header" data-props='{"active":{"editor":"enum","options":["home","about","rentals","events","partners","photos","contact"],"default":"home"},"quote":{"editor":null,"default":""},"$preview":{"width":1440,"height":72}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const active = this.props.active ?? 'home';
+    const items = [
+      ['home', 'HOME', 'Home.dc.html'],
+      ['about', 'ABOUT US', 'About.dc.html'],
+      ['rentals', 'RENTALS', 'Rentals.dc.html'],
+      ['events', 'EVENTS', 'Events.dc.html'],
+      ['partners', 'PARTNERS', 'Home.dc.html#partners'],
+      ['photos', 'PHOTOS', 'Photos.dc.html'],
+      ['contact', 'CONTACT US', 'Contact.dc.html']
+    ];
+    const links = items.map(([id, label, href]) => ({
+      label, href,
+      style: 'text-decoration: none; color: ' + (id === active ? '#F4F4F0' : '#A1A1A6'),
+      mStyle: 'text-decoration: none; padding: 14px 0; border-bottom: 1px solid #2A2A2E; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 22px; color: ' + (id === active ? '#B8FF3C' : '#F4F4F0')
+    }));
+    const q = this.props.quote;
+    return { links, rentLabel: q !== undefined && q !== '' ? 'QUOTE (' + q + ')' : 'RENT GEAR' };
+  }
+}
+</script>
 <script src="dc-runtime.js"></script>
 <a class="pv-back" href="./">&larr; All pages</a>
 <style>
-.pv-back{position:fixed;left:16px;bottom:16px;z-index:50;background:#F4F4F0;color:#0A0A0B;
-font:500 12px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;
-padding:12px 14px;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,.4)}
+.pv-back{position:fixed;left:12px;bottom:12px;z-index:50;background:#F4F4F0;color:#0A0A0B;
+font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;
+padding:10px 12px;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,.4)}
 .pv-back:hover{background:#B8FF3C;color:#0A0A0B}
+@media (max-width:900px){.pv-back{bottom:70px;left:auto;right:8px;padding:8px 10px;font-size:10px;opacity:.9}}
+.pv-embed .pv-back{display:none}
 </style>
+<script>if (window.self !== window.top) document.documentElement.classList.add('pv-embed');</script>
 </body>
 </html>

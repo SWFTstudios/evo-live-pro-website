@@ -28,12 +28,48 @@
     return m ? lookup(m[1], scope) : undefined;
   }
 
+  const registry = {};
+  function component(name) {
+    if (registry[name]) return registry[name];
+    const suffix = name ? '-' + name : '';
+    const tpl = document.getElementById('dc-template' + suffix);
+    const logic = document.getElementById('dc-logic' + suffix);
+    if (!tpl || !logic) return null;
+    const decl = JSON.parse(logic.getAttribute('data-props') || '{}');
+    const defaults = {};
+    for (const k in decl) if (k[0] !== '$' && decl[k] && 'default' in decl[k]) defaults[k] = decl[k].default;
+    const Cls = new Function('DCLogic', logic.textContent + '\nreturn Component;')(DCLogic);
+    return (registry[name] = { tpl, defaults, Cls });
+  }
+  function instantiate(entry, props, host) {
+    const c = new entry.Cls(Object.assign({}, entry.defaults, props));
+    c._render = () => { host.textContent = ''; renderNodes(entry.tpl.content, host, c.renderVals() || {}); };
+    c._render();
+    return c;
+  }
+
   function renderNodes(src, dst, scope) {
     for (const n of src.childNodes) {
       if (n.nodeType === 3) { dst.appendChild(document.createTextNode(interp(n.nodeValue, scope))); continue; }
       if (n.nodeType !== 1) continue;
       const tag = n.localName;
       if (tag === 'helmet') continue;
+      if (tag === 'dc-import') {
+        const entry = component(n.getAttribute('name'));
+        if (!entry) continue;
+        const props = {};
+        for (const a of Array.from(n.attributes)) {
+          if (a.name === 'name' || a.name.startsWith('hint-')) continue;
+          const key = a.name.replace(/-([a-z])/g, (_, ch) => ch.toUpperCase());
+          const m = a.value.match(WHOLE);
+          props[key] = m ? lookup(m[1], scope) : interp(a.value, scope);
+        }
+        const host = document.createElement('div');
+        host.style.display = 'contents';
+        instantiate(entry, props, host);
+        dst.appendChild(host);
+        continue;
+      }
       if (tag === 'sc-for') {
         const as = n.getAttribute('as') || 'item';
         (bound(n, 'list', scope) || []).forEach((it, i) => {
@@ -60,17 +96,12 @@
   }
 
   function mount() {
-    const tpl = document.getElementById('dc-template');
-    const logic = document.getElementById('dc-logic');
     const root = document.getElementById('dc-root');
-    const decl = JSON.parse(logic.getAttribute('data-props') || '{}');
-    const props = {};
-    for (const k in decl) if (k[0] !== '$' && decl[k] && 'default' in decl[k]) props[k] = decl[k].default;
-    const Component = new Function('DCLogic', logic.textContent + '\nreturn Component;')(DCLogic);
-    const c = new Component(props);
+    const entry = component('');
+    const c = new entry.Cls(Object.assign({}, entry.defaults));
     c._render = () => {
       root.textContent = '';
-      renderNodes(tpl.content, root, c.renderVals() || {});
+      renderNodes(entry.tpl.content, root, c.renderVals() || {});
       for (const f of root.querySelectorAll('form')) {
         f.addEventListener('submit', (e) => {
           e.preventDefault();
