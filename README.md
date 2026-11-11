@@ -356,6 +356,7 @@ To add a brand-new list (a "collection"), copy an existing file in `src/collecti
 
 | What you see | What it probably means | What to do |
 | --- | --- | --- |
+| Creating the first account on the live site says "Something went wrong" and the logs show `InvalidConfiguration` | Payload hashes passwords with 600,000 PBKDF2 rounds, but Cloudflare Workers allows at most 100,000 | Keep `auth.passwordHashIterations: 100000` in `src/payload.config.ts` (already set) |
 | Live site shows error 1101 and logs say `loadManifest(...preview-props.json)` | Next.js is older than the OpenNext adapter supports | Use Next 16.4.5 or newer with `@opennextjs/cloudflare` 1.20.16 or newer |
 | `Unsupported engine` warning when installing | Your Node is older than Payload prefers | Update Node. It still worked in testing, so it is only a warning. |
 | Dashboard says it can't find a secret | `.env` is missing or `PAYLOAD_SECRET` is empty | Create `.env` from `.env.example` and fill it in |

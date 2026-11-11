@@ -82,6 +82,10 @@ export default buildConfig({
       titleSuffix: ' | Evo Live Pro Dashboard',
     },
   },
+  auth: {
+    // Workers' WebCrypto allows at most 100,000 PBKDF2 rounds. Payload's default (600,000) fails there with InvalidConfiguration.
+    passwordHashIterations: 100000,
+  },
   collections: [
     Inquiries,
     EquipmentCategories,
