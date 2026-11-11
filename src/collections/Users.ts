@@ -32,7 +32,7 @@ export const Users: CollectionConfig = {
       name: 'role',
       type: 'select',
       required: true,
-      defaultValue: 'editor',
+      defaultValue: ({ user }) => (user ? 'editor' : 'admin'),
       saveToJWT: true,
       options: [
         { label: 'Admin (can manage users and settings)', value: 'admin' },

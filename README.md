@@ -310,6 +310,20 @@ A production build talks to your real Cloudflare account to learn about the data
 
 ---
 
+## How the dashboard is designed
+
+The dashboard is styled to feel like Webflow's CMS (dark panels, Webflow blue, compact fields) and is co-branded **SWFT Studios × Evo Live Pro**. You can change the look without touching Payload itself:
+
+| What | Where |
+| --- | --- |
+| Colors, fonts, spacing for the whole dashboard | `src/app/(payload)/custom.scss` (the `--theme-elevation-*` grey scale and `--wf-*` colors at the top) |
+| Logos on the login page, sidebar and header | `src/components/admin/CoBrand.tsx`, images in `public/brand/` (`swft-badge.webp`, `logo-wordmark.png`, `logo-mark.png`) |
+| The home screen (welcome, counts, quick actions) | `src/components/admin/DashboardHome.tsx` |
+| Category tags and Live / Hidden dots in the inventory list | `src/components/admin/CategoryCell.tsx`, `src/components/admin/StatusCell.tsx` |
+| Which components are used where | `admin.components` in `src/payload.config.ts` |
+
+After adding or renaming a dashboard component, run `pnpm generate:importmap` so Payload can find it.
+
 ## Changing what the dashboard can edit
 
 Say Tim wants a new field, like "Weight" on equipment.
@@ -358,6 +372,7 @@ To add a brand-new list (a "collection"), copy an existing file in `src/collecti
 | --- | --- | --- |
 | Creating the first account on the live site says "Something went wrong" and the logs show `InvalidConfiguration` | Payload hashes passwords with 600,000 PBKDF2 rounds, but Cloudflare Workers allows at most 100,000 | Keep `auth.passwordHashIterations: 100000` in `src/payload.config.ts` (already set) |
 | Live site shows error 1101 and logs say `loadManifest(...preview-props.json)` | Next.js is older than the OpenNext adapter supports | Use Next 16.4.5 or newer with `@opennextjs/cloudflare` 1.20.16 or newer |
+| Local site suddenly has no content | Changing `database_id` in `wrangler.jsonc` gives local dev a new, empty stand-in database | Run `pnpm seed` |
 | `Unsupported engine` warning when installing | Your Node is older than Payload prefers | Update Node. It still worked in testing, so it is only a warning. |
 | Dashboard says it can't find a secret | `.env` is missing or `PAYLOAD_SECRET` is empty | Create `.env` from `.env.example` and fill it in |
 | The site shows no equipment | The local database is empty | Run `pnpm seed` |

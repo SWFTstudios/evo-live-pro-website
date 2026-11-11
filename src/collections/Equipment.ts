@@ -21,6 +21,7 @@ export const Equipment: CollectionConfig = {
       type: 'relationship',
       relationTo: 'equipment-categories',
       required: true,
+      admin: { components: { Cell: '/components/admin/CategoryCell#CategoryCell' } },
     },
     {
       name: 'subcategory',
@@ -45,7 +46,11 @@ export const Equipment: CollectionConfig = {
       name: 'available',
       type: 'checkbox',
       defaultValue: true,
-      admin: { position: 'sidebar', description: 'Uncheck to hide this item from the website.' },
+      admin: {
+        position: 'sidebar',
+        description: 'Uncheck to hide this item from the website.',
+        components: { Cell: '/components/admin/StatusCell#AvailableCell' },
+      },
     },
   ],
 }

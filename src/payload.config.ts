@@ -79,7 +79,20 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
     meta: {
-      titleSuffix: ' | Evo Live Pro Dashboard',
+      titleSuffix: ' | Evo Live Pro CMS',
+      icons: [{ rel: 'icon', type: 'image/png', url: '/brand/logo-mark.png' }],
+    },
+    theme: 'dark',
+    components: {
+      graphics: {
+        Logo: '/components/admin/CoBrand#AdminLogo',
+        Icon: '/components/admin/CoBrand#AdminIcon',
+      },
+      beforeLogin: ['/components/admin/CoBrand#LoginNote'],
+      beforeNavLinks: ['/components/admin/CoBrand#NavBrand'],
+      afterNavLinks: ['/components/admin/CoBrand#NavFooter'],
+      actions: ['/components/admin/CoBrand#HeaderActions'],
+      beforeDashboard: ['/components/admin/DashboardHome#DashboardHome'],
     },
   },
   auth: {
