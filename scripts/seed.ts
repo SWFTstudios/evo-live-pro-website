@@ -152,19 +152,62 @@ const richText = (paragraphs: string[]) => ({
   root: { type: 'root', version: 1, format: '' as const, indent: 0, direction: 'ltr' as const, children: paragraphs.map(paragraph) },
 })
 
+// Only facts already stated on the site. Tim can edit or add more in the dashboard.
+const faqs: [string, string][] = [
+  ['Do you deliver and set up the gear?', 'Yes. Choose delivery with setup, delivery only, or pick up from our warehouse in Lyndhurst, NJ.'],
+  ['How do I get a price?', 'Add what you need to your quote on the Rentals page, or send a booking request. Many items are priced on quote, so we confirm availability for your date and send you a price.'],
+  ['What do the wedding packages include?', 'Every wedding package includes a 4-hour reception, an online playlist tool and planning consultations. Prices are plus applicable tax.'],
+  ['Are cold sparks safe indoors?', 'Yes. Our cold spark machines are indoor-safe. A permit fee applies.'],
+  ['Do you work with venues and planners?', 'Yes. We rent to planners, venues, DJs and production teams, and we do full production installs for venues, offices and lounges.'],
+]
+
+const howSteps = [
+  { title: 'Tell us the date', text: 'Pick Book Evo or Rent gear and send the details. It takes about two minutes.' },
+  { title: 'We design the setup', text: 'We confirm availability and come back with a plan and a price for your night.' },
+  { title: 'We run the night', text: 'We load in, run the show and break it all down. You enjoy your event.' },
+]
+
+// Safe on a database that already has content: only fills what is missing.
+const addNewContent = async (payload: Awaited<ReturnType<typeof getPayload>>) => {
+  const faqCount = await payload.count({ collection: 'faqs' })
+  if (faqCount.totalDocs === 0) {
+    for (const [i, [question, answer]] of faqs.entries()) {
+      await payload.create({ collection: 'faqs', data: { question, answer, published: true, sortOrder: order(i) } })
+    }
+    payload.logger.info(`Added ${faqs.length} FAQs.`)
+  }
+  const home = await payload.findGlobal({ slug: 'home-page' })
+  const patch: Record<string, unknown> = {}
+  if (!home.howTitle) patch.howTitle = 'How it works'
+  if (!home.howSteps || home.howSteps.length === 0) patch.howSteps = howSteps
+  if (!home.testimonialsTitle) patch.testimonialsTitle = 'What clients say'
+  if (!home.faqTitle) patch.faqTitle = 'Good to know'
+  if (!home.closingHeadline) patch.closingHeadline = 'You bring the guests. We bring the night.'
+  if (!home.closingText) patch.closingText = 'Tell us the date and the vibe. We will come back with a plan and a price.'
+  if (Object.keys(patch).length > 0) {
+    await payload.updateGlobal({ slug: 'home-page', data: patch })
+    payload.logger.info(`Filled ${Object.keys(patch).length} new home page fields.`)
+  }
+  const settings = await payload.findGlobal({ slug: 'site-settings' })
+  if (!settings.siteUrl) {
+    await payload.updateGlobal({ slug: 'site-settings', data: { siteUrl: 'https://evo-live-pro-website.elombe.workers.dev' } })
+  }
+}
+
 const run = async () => {
   const payload = await getPayload({ config })
 
   const existing = await payload.count({ collection: 'equipment-categories' })
   if (existing.totalDocs > 0 && process.env.SEED_RESET !== 'true') {
-    payload.logger.info('Content already exists. Skipping seed. Set SEED_RESET=true to wipe and reseed.')
+    await addNewContent(payload)
+    payload.logger.info('Core content already exists, so only missing new content was added. Set SEED_RESET=true to wipe and reseed.')
     process.exit(0)
   }
 
   if (process.env.SEED_RESET === 'true') {
     for (const collection of [
       'equipment', 'equipment-categories', 'rental-packages', 'wedding-packages', 'a-la-carte',
-      'event-services', 'gallery', 'team', 'brands', 'venues',
+      'event-services', 'gallery', 'team', 'brands', 'venues', 'faqs',
     ] as const) {
       await payload.delete({ collection, where: { id: { exists: true } } })
     }
@@ -258,7 +301,9 @@ const run = async () => {
     },
   })
 
-  payload.logger.info('Seed complete: inventory, packages, pricing, services, gallery, team and page text loaded.')
+  await addNewContent(payload)
+
+  payload.logger.info('Seed complete: inventory, packages, pricing, services, gallery, team, FAQs and page text loaded.')
   process.exit(0)
 }
 

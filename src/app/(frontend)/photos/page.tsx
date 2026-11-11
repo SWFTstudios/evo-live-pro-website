@@ -49,10 +49,22 @@ export default async function PhotosPage() {
         <div className="wrap cta-band">
           <h2>Want this at your event?</h2>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <Link href="/contact?type=book" className="btn btn--book">
+            <Link
+              href="/contact?type=book"
+              className="btn btn--book"
+              data-track="cta_click"
+              data-track-cta-id="photos_book"
+              data-track-location="closing"
+            >
               Book Evo
             </Link>
-            <Link href="/rentals" className="btn btn--rent-outline">
+            <Link
+              href="/rentals"
+              className="btn btn--rent-outline"
+              data-track="cta_click"
+              data-track-cta-id="photos_rent"
+              data-track-location="closing"
+            >
               Rent the gear
             </Link>
           </div>

@@ -77,6 +77,8 @@ export interface Config {
     team: Team;
     brands: Brand;
     venues: Venue;
+    testimonials: Testimonial;
+    faqs: Faq;
     gallery: Gallery;
     media: Media;
     users: User;
@@ -97,6 +99,8 @@ export interface Config {
     team: TeamSelect<false> | TeamSelect<true>;
     brands: BrandsSelect<false> | BrandsSelect<true>;
     venues: VenuesSelect<false> | VenuesSelect<true>;
+    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
+    faqs: FaqsSelect<false> | FaqsSelect<true>;
     gallery: GallerySelect<false> | GallerySelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -422,6 +426,59 @@ export interface Venue {
   createdAt: string;
 }
 /**
+ * Real words from real clients (with their permission). The section stays hidden on the website until at least one is published.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: number;
+  /**
+   * Their words, lightly trimmed. Keep it short.
+   */
+  quote: string;
+  /**
+   * Example: Jess & Mike, or Sarah K.
+   */
+  name: string;
+  /**
+   * Example: Wedding at The Venue, June 2026
+   */
+  eventType?: string | null;
+  photo?: (number | null) | Media;
+  published?: boolean | null;
+  /**
+   * Lower numbers show first on the website. Example: 10 shows before 20.
+   */
+  sortOrder?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Common questions shown near the bottom of the home page. Answer the questions people ask you most.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs".
+ */
+export interface Faq {
+  id: number;
+  question: string;
+  /**
+   * Two or three short sentences.
+   */
+  answer: string;
+  /**
+   * Uncheck to hide this question from the website.
+   */
+  published?: boolean | null;
+  /**
+   * Lower numbers show first on the website. Example: 10 shows before 20.
+   */
+  sortOrder?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * Everything on the Photos page and the "Recent setups" row on the home page.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -543,6 +600,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'venues';
         value: number | Venue;
+      } | null)
+    | ({
+        relationTo: 'testimonials';
+        value: number | Testimonial;
+      } | null)
+    | ({
+        relationTo: 'faqs';
+        value: number | Faq;
       } | null)
     | ({
         relationTo: 'gallery';
@@ -739,6 +804,32 @@ export interface VenuesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials_select".
+ */
+export interface TestimonialsSelect<T extends boolean = true> {
+  quote?: T;
+  name?: T;
+  eventType?: T;
+  photo?: T;
+  published?: T;
+  sortOrder?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs_select".
+ */
+export interface FaqsSelect<T extends boolean = true> {
+  question?: T;
+  answer?: T;
+  published?: T;
+  sortOrder?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "gallery_select".
  */
 export interface GallerySelect<T extends boolean = true> {
@@ -866,6 +957,14 @@ export interface SiteSetting {
   rentButtonLabel?: string | null;
   footerNote?: string | null;
   copyright?: string | null;
+  /**
+   * Looks like GTM-ABC1234. Find it at tagmanager.google.com, top right of your container.
+   */
+  gtmId?: string | null;
+  /**
+   * The main address of the website, used for Google (sitemap and search listing). Change it when the custom domain is connected.
+   */
+  siteUrl?: string | null;
   seoTitle?: string | null;
   seoDescription?: string | null;
   shareImage?: (number | null) | Media;
@@ -905,6 +1004,18 @@ export interface HomePage {
         id?: string | null;
       }[]
     | null;
+  howTitle?: string | null;
+  howSteps?:
+    | {
+        title: string;
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  testimonialsTitle?: string | null;
+  faqTitle?: string | null;
+  closingHeadline?: string | null;
+  closingText?: string | null;
   recentSetupsTitle?: string | null;
   weddingTeaserLabel?: string | null;
   weddingTeaserPrice?: string | null;
@@ -1067,6 +1178,8 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   rentButtonLabel?: T;
   footerNote?: T;
   copyright?: T;
+  gtmId?: T;
+  siteUrl?: T;
   seoTitle?: T;
   seoDescription?: T;
   shareImage?: T;
@@ -1104,6 +1217,18 @@ export interface HomePageSelect<T extends boolean = true> {
         image?: T;
         id?: T;
       };
+  howTitle?: T;
+  howSteps?:
+    | T
+    | {
+        title?: T;
+        text?: T;
+        id?: T;
+      };
+  testimonialsTitle?: T;
+  faqTitle?: T;
+  closingHeadline?: T;
+  closingText?: T;
   recentSetupsTitle?: T;
   weddingTeaserLabel?: T;
   weddingTeaserPrice?: T;

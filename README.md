@@ -310,6 +310,23 @@ A production build talks to your real Cloudflare account to learn about the data
 
 ---
 
+## How the website is designed (the SWFT Method)
+
+The public site follows the SWFT Method's customer journey, so each part of the page has one job:
+
+| Journey stage | What the visitor sees | Edited in the dashboard at |
+| --- | --- | --- |
+| **Discovery** | Google listing (business info, sitemap), sharing image | Site Settings → Google & sharing, Tracking |
+| **Interest** | Hero with two clear paths (Book Evo / Rent gear), moving brand strip | Home Page → Hero; Brands We Produced For |
+| **Engagement** | What we do, How it works (3 steps), Recent setups, packages, rentals quote cart | Home Page → What we do / How it works; Photos & Videos; Rentals |
+| **Trust** | What clients say (hidden until you publish one), Good to know (FAQ) | Testimonials; FAQs |
+| **Conversion** | Closing call to action, sticky Book / Rent / Call bar on phones, contact form | Home Page → Proof & questions; Contact Page |
+| **Retention** | "What happens next" and an Instagram invite after someone sends a request | Contact Page; Site Settings |
+
+Motion is kept subtle on purpose: slow light beams in the hero (until a hero video is uploaded), a gentle fade-in as sections scroll into view, and a slow brand strip. All of it switches off for visitors who turn on "reduce motion" on their device.
+
+**Tracking:** every important button and form sends an event to Google Tag Manager. Setup steps, the event list and what to review monthly are in [`analytics/README.md`](analytics/README.md). Turn it on by pasting the GTM container ID in **Site Settings → Tracking**.
+
 ## How the dashboard is designed
 
 The dashboard is styled to feel like Webflow's CMS (dark panels, Webflow blue, compact fields) and is co-branded **SWFT Studios × Evo Live Pro**. You can change the look without touching Payload itself:

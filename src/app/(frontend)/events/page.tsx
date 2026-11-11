@@ -41,7 +41,13 @@ export default async function EventsPage() {
                 <p className="muted" style={{ fontSize: 15 }}>
                   {service.description}
                 </p>
-                <Link href={service.ctaLink || '/contact'} className={`link-cta${service.accent === 'rent' ? ' link-cta--rent' : ''}`}>
+                <Link
+                  href={service.ctaLink || '/contact'}
+                  className={`link-cta${service.accent === 'rent' ? ' link-cta--rent' : ''}`}
+                  data-track="cta_click"
+                  data-track-cta-id={`events_service_${service.title.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`}
+                  data-track-location="event_services"
+                >
                   {service.ctaLabel}
                 </Link>
               </article>
@@ -73,7 +79,13 @@ export default async function EventsPage() {
               ))}
             </div>
             <div style={{ marginTop: 24 }}>
-              <Link href="/contact?type=book" className="btn btn--book">
+              <Link
+                href="/contact?type=book"
+                className="btn btn--book"
+                data-track="cta_click"
+                data-track-cta-id="events_wedding_check_date"
+                data-track-location="wedding_packages"
+              >
                 {page.weddingButton}
               </Link>
             </div>
@@ -97,7 +109,13 @@ export default async function EventsPage() {
             ))}
           </div>
           <div style={{ marginTop: 24 }}>
-            <Link href="/rentals" className="link-cta link-cta--rent">
+            <Link
+              href="/rentals"
+              className="link-cta link-cta--rent"
+              data-track="cta_click"
+              data-track-cta-id="events_rent_instead"
+              data-track-location="a_la_carte"
+            >
               Rent it instead →
             </Link>
           </div>
@@ -138,7 +156,13 @@ export default async function EventsPage() {
       <section className="section">
         <div className="wrap cta-band">
           <h2>{page.closingHeadline}</h2>
-          <Link href="/contact?type=book" className="btn btn--book">
+          <Link
+            href="/contact?type=book"
+            className="btn btn--book"
+            data-track="cta_click"
+            data-track-cta-id="events_closing_book"
+            data-track-location="closing"
+          >
             {page.closingButton}
           </Link>
         </div>

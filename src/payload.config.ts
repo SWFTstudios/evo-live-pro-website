@@ -21,6 +21,8 @@ import { TeamMembers } from './collections/TeamMembers'
 import { Brands } from './collections/Brands'
 import { Venues } from './collections/Venues'
 import { Inquiries } from './collections/Inquiries'
+import { Faqs } from './collections/Faqs'
+import { Testimonials } from './collections/Testimonials'
 import { SiteSettings } from './globals/SiteSettings'
 import { HomePage } from './globals/HomePage'
 import { AboutPage } from './globals/AboutPage'
@@ -110,6 +112,8 @@ export default buildConfig({
     TeamMembers,
     Brands,
     Venues,
+    Testimonials,
+    Faqs,
     GalleryItems,
     Media,
     Users,

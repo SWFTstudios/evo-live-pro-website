@@ -59,6 +59,28 @@ export const SiteSettings: GlobalConfig = {
           ],
         },
         {
+          label: 'Tracking',
+          description: 'Google Tag Manager collects visits and button clicks. Leave the ID empty to turn tracking off.',
+          fields: [
+            {
+              name: 'gtmId',
+              type: 'text',
+              label: 'Google Tag Manager container ID',
+              admin: { description: 'Looks like GTM-ABC1234. Find it at tagmanager.google.com, top right of your container.' },
+              access: { update: ({ req }) => req.user?.role === 'admin' },
+              validate: (value: string | null | undefined) =>
+                !value || /^GTM-[A-Z0-9]{4,12}$/.test(value.trim()) ? true : 'This should look like GTM-ABC1234.',
+            },
+            {
+              name: 'siteUrl',
+              type: 'text',
+              label: 'Website address',
+              defaultValue: 'https://evo-live-pro-website.elombe.workers.dev',
+              admin: { description: 'The main address of the website, used for Google (sitemap and search listing). Change it when the custom domain is connected.' },
+            },
+          ],
+        },
+        {
           label: 'Google & sharing',
           fields: [
             { name: 'seoTitle', type: 'text', defaultValue: 'Evo Live Pro | DJ, Sound, Lighting & LED Video in NJ' },

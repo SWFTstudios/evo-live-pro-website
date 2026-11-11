@@ -91,7 +91,13 @@ export default async function AboutPage() {
       <section className="section section--stage">
         <div className="wrap cta-band">
           <h2>Let&apos;s build your night</h2>
-          <Link href="/contact?type=book" className="btn btn--book">
+          <Link
+            href="/contact?type=book"
+            className="btn btn--book"
+            data-track="cta_click"
+            data-track-cta-id="about_book"
+            data-track-location="closing"
+          >
             Book Evo
           </Link>
         </div>

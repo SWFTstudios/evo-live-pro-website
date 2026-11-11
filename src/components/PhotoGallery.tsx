@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
+import { track } from '@/lib/analytics'
 
 type Item = {
   id: number
@@ -79,7 +80,7 @@ export function PhotoGallery({ items }: { items: Item[] }) {
     <>
       <div className="tabs" role="group" aria-label="Filter by category">
         {tabs.map((name) => (
-          <button key={name} type="button" className="tab" aria-pressed={tab === name} onClick={() => { setTab(name); setOpen(null) }}>
+          <button key={name} type="button" className="tab" aria-pressed={tab === name} onClick={() => { setTab(name); setOpen(null); track('gallery_filter', { category: name }) }}>
             {name}
           </button>
         ))}
@@ -90,7 +91,10 @@ export function PhotoGallery({ items }: { items: Item[] }) {
             key={item.id}
             type="button"
             className={`tile${item.large && tab === 'All' ? ' tile--large' : ''}`}
-            onClick={() => setOpen(index)}
+            onClick={() => {
+              setOpen(index)
+              track('gallery_open', { item_title: item.title, category: pretty(item.category), is_video: item.isVideo })
+            }}
             aria-label={`Open ${item.title}`}
           >
             <Thumb item={item} />

@@ -46,10 +46,22 @@ export function SiteHeader({ businessName, logoUrl, links, bookLabel, rentLabel 
           ))}
         </nav>
         <div className="header-actions">
-          <Link href={rentHref} className="btn btn--rent">
+          <Link
+            href={rentHref}
+            className="btn btn--rent"
+            data-track="cta_click"
+            data-track-cta-id={count > 0 ? 'header_quote' : 'header_rent'}
+            data-track-location="header"
+          >
             {rentText}
           </Link>
-          <Link href="/contact?type=book" className="btn btn--book">
+          <Link
+            href="/contact?type=book"
+            className="btn btn--book"
+            data-track="cta_click"
+            data-track-cta-id="header_book"
+            data-track-location="header"
+          >
             {bookLabel}
           </Link>
         </div>
@@ -71,10 +83,22 @@ export function SiteHeader({ businessName, logoUrl, links, bookLabel, rentLabel 
                   {link.label}
                 </Link>
               ))}
-              <Link href={rentHref} className="btn btn--rent">
+              <Link
+                href={rentHref}
+                className="btn btn--rent"
+                data-track="cta_click"
+                data-track-cta-id={count > 0 ? 'menu_quote' : 'menu_rent'}
+                data-track-location="mobile_menu"
+              >
                 {rentText}
               </Link>
-              <Link href="/contact?type=book" className="btn btn--book">
+              <Link
+                href="/contact?type=book"
+                className="btn btn--book"
+                data-track="cta_click"
+                data-track-cta-id="menu_book"
+                data-track-location="mobile_menu"
+              >
                 {bookLabel}
               </Link>
             </nav>

@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { useMemo, useState, useSyncExternalStore } from 'react'
+import { useEffect, useMemo, useState, useSyncExternalStore } from 'react'
+import { track } from '@/lib/analytics'
 import { readQuote, subscribeQuote, writeQuote } from '@/lib/quote'
 
 type Item = {
@@ -24,10 +25,37 @@ export function RentalsBrowser({ categories, items, packages }: { categories: st
   const snapshot = useSyncExternalStore(subscribeQuote, getSnapshot, getServerSnapshot)
   const cart = useMemo(() => JSON.parse(snapshot) as string[], [snapshot])
 
-  const toggle = (key: string) => {
+  const toggle = (key: string, meta: { type: 'equipment' | 'package'; category?: string; price?: string }) => {
     const latest = readQuote()
-    writeQuote(latest.includes(key) ? latest.filter((x) => x !== key) : [...latest, key])
+    const removing = latest.includes(key)
+    const next = removing ? latest.filter((x) => x !== key) : [...latest, key]
+    writeQuote(next)
+    track(removing ? 'remove_from_quote' : 'add_to_quote', {
+      item_name: key,
+      item_type: meta.type,
+      item_category: meta.category,
+      price_label: meta.price,
+      quote_size: next.length,
+    })
   }
+
+  const pickCategory = (name: string) => {
+    setCategory(name)
+    track('filter_category', { category: name })
+  }
+
+  useEffect(() => {
+    const term = search.trim()
+    if (term.length < 2) return
+    const timer = window.setTimeout(() => {
+      const needle = term.toLowerCase()
+      const results = items.filter((item) =>
+        [item.name, item.subcategory, item.description].some((text) => text.toLowerCase().includes(needle)),
+      ).length
+      track('search', { search_term: term.slice(0, 60), results })
+    }, 900)
+    return () => window.clearTimeout(timer)
+  }, [search, items])
 
   const visible = useMemo(() => {
     const needle = search.trim().toLowerCase()
@@ -86,7 +114,7 @@ export function RentalsBrowser({ categories, items, packages }: { categories: st
                       className={`btn ${on ? 'btn--rent-outline' : 'btn--rent'}`}
                       style={{ marginTop: 'auto' }}
                       aria-pressed={on}
-                      onClick={() => toggle(key)}
+                      onClick={() => toggle(key, { type: 'package', category: 'Sound + DJ Packages', price: pack.price })}
                     >
                       {on ? 'Added' : '+ Quote'}
                     </button>
@@ -109,7 +137,7 @@ export function RentalsBrowser({ categories, items, packages }: { categories: st
                   type="button"
                   className="cat-btn"
                   aria-pressed={category === name}
-                  onClick={() => setCategory(name)}
+                  onClick={() => pickCategory(name)}
                 >
                   <span>{name}</span>
                   <span className="count">{name === 'All' ? items.length : (counts.get(name) ?? 0)}</span>
@@ -156,7 +184,7 @@ export function RentalsBrowser({ categories, items, packages }: { categories: st
                         type="button"
                         className={`btn ${on ? 'btn--rent-outline' : 'btn--rent'}`}
                         aria-pressed={on}
-                        onClick={() => toggle(item.name)}
+                        onClick={() => toggle(item.name, { type: 'equipment', category: item.category, price: item.priceLabel })}
                       >
                         {on ? 'Added' : '+ Quote'}
                       </button>
@@ -178,7 +206,7 @@ export function RentalsBrowser({ categories, items, packages }: { categories: st
                 {cart.map((name) => (
                   <div key={name} className="quote-line">
                     <span>{name}</span>
-                    <button type="button" aria-label={`Remove ${name}`} onClick={() => toggle(name)}>
+                    <button type="button" aria-label={`Remove ${name}`} onClick={() => toggle(name, { type: name.endsWith(' Package') ? 'package' : 'equipment' })}>
                       ×
                     </button>
                   </div>
@@ -188,6 +216,9 @@ export function RentalsBrowser({ categories, items, packages }: { categories: st
             <Link
               href="/contact?type=rent"
               className="btn btn--rent"
+              data-track="begin_quote_request"
+              data-track-item-count={String(cart.length)}
+              data-track-location="quote_panel"
               aria-disabled={cart.length === 0}
               style={cart.length === 0 ? { opacity: 0.5, pointerEvents: 'none' } : undefined}
             >

@@ -70,6 +70,40 @@ export const HomePage: GlobalConfig = {
           ],
         },
         {
+          label: 'How it works',
+          fields: [
+            { name: 'howTitle', type: 'text', defaultValue: 'How it works' },
+            {
+              name: 'howSteps',
+              type: 'array',
+              labels: { singular: 'Step', plural: 'Steps' },
+              maxRows: 4,
+              defaultValue: [
+                { title: 'Tell us the date', text: 'Pick Book Evo or Rent gear and send the details. It takes about two minutes.' },
+                { title: 'We design the setup', text: 'We confirm availability and come back with a plan and a price for your night.' },
+                { title: 'We run the night', text: 'We load in, run the show and break it all down. You enjoy your event.' },
+              ],
+              fields: [
+                { name: 'title', type: 'text', required: true },
+                { name: 'text', type: 'textarea', required: true },
+              ],
+            },
+          ],
+        },
+        {
+          label: 'Proof & questions',
+          fields: [
+            { name: 'testimonialsTitle', type: 'text', defaultValue: 'What clients say' },
+            { name: 'faqTitle', type: 'text', defaultValue: 'Good to know' },
+            { name: 'closingHeadline', type: 'text', defaultValue: 'You bring the guests. We bring the night.' },
+            {
+              name: 'closingText',
+              type: 'textarea',
+              defaultValue: 'Tell us the date and the vibe. We will come back with a plan and a price.',
+            },
+          ],
+        },
+        {
           label: 'Packages',
           fields: [
             { name: 'recentSetupsTitle', type: 'text', defaultValue: 'Recent setups' },

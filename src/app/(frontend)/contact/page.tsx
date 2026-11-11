@@ -33,6 +33,9 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
             eventTypes={list(page.eventTypes)}
             budgets={list(page.budgetRanges)}
             fulfillment={list(page.fulfillmentOptions)}
+            instagram={
+              settings.instagramUrl ? { url: settings.instagramUrl, handle: settings.instagramHandle ?? '' } : null
+            }
           />
         </div>
         <aside className="stack" style={{ gap: 24 }}>

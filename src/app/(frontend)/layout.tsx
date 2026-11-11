@@ -3,6 +3,10 @@ import type { Metadata, Viewport } from 'next'
 import { Archivo, Inter, JetBrains_Mono } from 'next/font/google'
 import { SiteHeader } from '@/components/SiteHeader'
 import { SiteFooter } from '@/components/SiteFooter'
+import { GoogleTagManagerNoScript, GoogleTagManagerScript } from '@/components/GoogleTagManager'
+import { Reveal } from '@/components/Reveal'
+import { StickyActions } from '@/components/StickyActions'
+import { TrackClicks } from '@/components/TrackClicks'
 import { getSiteSettings, resolveMedia } from '@/lib/payload'
 import './styles.css'
 
@@ -32,6 +36,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" className={`${archivo.variable} ${inter.variable} ${mono.variable}`}>
       <body>
+        <GoogleTagManagerNoScript gtmId={settings.gtmId} />
         <a className="skip-link" href="#main">
           Skip to content
         </a>
@@ -44,6 +49,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         />
         <main id="main">{children}</main>
         <SiteFooter settings={settings} logoUrl={wordmark} />
+        <StickyActions
+          phone={settings.phone}
+          bookLabel={settings.bookButtonLabel ?? 'Book Evo'}
+          rentLabel={settings.rentButtonLabel ?? 'Rent gear'}
+        />
+        <TrackClicks />
+        <Reveal />
+        <GoogleTagManagerScript gtmId={settings.gtmId} />
       </body>
     </html>
   )
