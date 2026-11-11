@@ -234,6 +234,16 @@ The first account created on an empty database is always an Admin.
 
 > **Not yet tested.** Everything in this section follows Payload's and Cloudflare's documentation. It has not been run against this project's real Cloudflare account yet. Expect to adjust.
 
+### Status of the Cloudflare setup
+
+Already created in the SWFT Studios Cloudflare account (steps 2, 3 and 4 below are done):
+
+- D1 database `evo-live-pro-website` (its ID is in `wrangler.jsonc`)
+- R2 bucket `evo-live-pro-website`
+- Secret `PAYLOAD_SECRET` on the `evo-live-pro-website` Worker (random value, not stored anywhere else)
+
+Still to do: the first `pnpm run deploy` (step 6), then create the first admin account (step 7). Nothing has been deployed with this app yet, so the live site is still the old static one.
+
 ### What it costs
 
 Payload on Cloudflare Workers needs the **Workers Paid plan** (about $5 a month at the time of writing) because the app is bigger than the free plan's 3 MB limit. D1 and R2 have generous free allowances.

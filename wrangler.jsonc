@@ -18,7 +18,7 @@
   "d1_databases": [
     {
       "binding": "D1",
-      "database_id": "DATABASE_ID",
+      "database_id": "7499c93e-7326-410d-9a82-3ef82f2a765d",
       "database_name": "evo-live-pro-website",
       "remote": true,
     },
@@ -50,7 +50,7 @@
   //     "d1_databases": [
   //       {
   //         "binding": "D1",
-  //         "database_id": "DATABASE_ID",
+  //         "database_id": "7499c93e-7326-410d-9a82-3ef82f2a765d",
   //         "database_name": "my-app-staging",
   //         "remote": true
   //       }
