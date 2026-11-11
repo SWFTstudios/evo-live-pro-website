@@ -1,0 +1,609 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/*
+ * Webflow-style admin theme, SWFT Studios × Evo Live Pro.
+ * Payload's dark theme is driven by a 0–1000 grey scale (--theme-elevation-*).
+ * Remapping that scale restyles nearly every admin surface at once.
+ */
+
+:root {
+  --wf-blue: #146ef5;
+  --wf-blue-hover: #3a86ff;
+  --wf-blue-soft: rgba(20, 110, 245, 0.14);
+  --wf-orange: #ff6a1f;
+  --wf-green: #b8ff3c;
+  --wf-nav-bg: #181818;
+  --wf-panel: #252525;
+  --wf-panel-hover: #2c2c2c;
+  --wf-border: #333333;
+  --wf-border-strong: #404040;
+  --wf-text: #f0f0f0;
+  --wf-text-2: #bdbdbd;
+  --wf-text-3: #8a8a8a;
+
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --style-radius-s: 4px;
+  --style-radius-m: 6px;
+  --style-radius-l: 8px;
+  --base-px: 18;
+}
+
+html[data-theme='dark'] {
+  --theme-elevation-0: #1e1e1e;
+  --theme-elevation-50: #232323;
+  --theme-elevation-100: #2a2a2a;
+  --theme-elevation-150: #333333;
+  --theme-elevation-200: #3a3a3a;
+  --theme-elevation-250: #424242;
+  --theme-elevation-300: #4d4d4d;
+  --theme-elevation-350: #5a5a5a;
+  --theme-elevation-400: #6e6e6e;
+  --theme-elevation-450: #808080;
+  --theme-elevation-500: #8a8a8a;
+  --theme-elevation-550: #9a9a9a;
+  --theme-elevation-600: #a8a8a8;
+  --theme-elevation-650: #b4b4b4;
+  --theme-elevation-700: #bdbdbd;
+  --theme-elevation-750: #cfcfcf;
+  --theme-elevation-800: #e0e0e0;
+  --theme-elevation-850: #ebebeb;
+  --theme-elevation-900: #f0f0f0;
+  --theme-elevation-950: #f7f7f7;
+  --theme-elevation-1000: #ffffff;
+  --theme-bg: #1e1e1e;
+  --theme-text: var(--wf-text);
+  --theme-input-bg: #2a2a2a;
+  --theme-border-color: var(--wf-border);
+}
+
+html[data-theme='dark'] body {
+  font-family: var(--font-body);
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.003em;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn--style-primary,
+.btn--style-primary:focus:not(:focus-visible) {
+  background: var(--wf-blue);
+  color: #fff;
+  border-radius: var(--style-radius-s);
+  font-weight: 500;
+  box-shadow: none;
+}
+.btn--style-primary:hover,
+.btn--style-primary:focus-visible {
+  background: var(--wf-blue-hover);
+  color: #fff;
+}
+.btn--style-secondary {
+  border-radius: var(--style-radius-s);
+  box-shadow: inset 0 0 0 1px var(--wf-border-strong);
+  color: var(--wf-text);
+  font-weight: 500;
+}
+.btn--style-secondary:hover {
+  background: var(--wf-panel-hover);
+  box-shadow: inset 0 0 0 1px var(--wf-text-3);
+}
+.btn--style-pill {
+  border-radius: var(--style-radius-s);
+}
+
+/* ---------- Left navigation (Webflow side panel) ---------- */
+
+.nav {
+  background: var(--wf-nav-bg);
+  border-right: 1px solid var(--wf-border);
+}
+.nav__wrap {
+  padding-top: 14px;
+}
+.nav-group__toggle {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--wf-text-3);
+}
+.nav__link {
+  border-radius: var(--style-radius-s);
+  padding: 5px 10px;
+  margin-inline: -10px;
+  color: var(--wf-text-2);
+  font-size: 13px;
+  font-weight: 400;
+  text-decoration: none;
+}
+.nav__link:hover,
+.nav a.nav__link:focus-visible {
+  background: var(--wf-panel-hover);
+  color: var(--wf-text);
+  text-decoration: none;
+}
+.nav__link.active,
+.nav__link:has(.nav__link-indicator) {
+  background: var(--wf-blue-soft);
+  color: #fff;
+  font-weight: 500;
+  padding-left: 10px;
+}
+.nav__link-indicator {
+  inset-inline-start: 0;
+  height: 100%;
+  top: 0;
+  width: 2px;
+  border-radius: 0;
+  background: var(--wf-blue);
+}
+
+.nav-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 2px 0 16px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--wf-border);
+}
+.nav-brand__site {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border: 1px solid var(--wf-border);
+  border-radius: var(--style-radius-s);
+  background: var(--wf-panel);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--wf-text);
+}
+.nav-brand__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #2ecc71;
+  box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.18);
+}
+.nav-brand__tag {
+  margin-left: auto;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--wf-text-3);
+}
+.nav-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--wf-border);
+  font-size: 12px;
+}
+.nav-footer a {
+  text-decoration: none;
+}
+.nav-footer__link {
+  color: var(--wf-blue-hover);
+}
+.nav-footer__credit {
+  color: var(--wf-text-3);
+}
+.nav-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Co-brand lockup ---------- */
+
+.cobrand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  line-height: 1;
+}
+.cobrand img {
+  display: block;
+  width: auto;
+}
+.cobrand__x {
+  color: var(--wf-text-3);
+  font-weight: 300;
+}
+.cobrand__swft {
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+.cobrand--sm .cobrand__swft {
+  height: 32px;
+}
+.cobrand--sm .cobrand__evo {
+  height: 20px;
+}
+.cobrand--sm .cobrand__x {
+  font-size: 15px;
+}
+.cobrand--md .cobrand__swft {
+  height: 34px;
+}
+.cobrand--md .cobrand__evo {
+  height: 26px;
+}
+.cobrand--lg {
+  gap: 16px;
+}
+.cobrand--lg .cobrand__swft {
+  height: 52px;
+  border-radius: 10px;
+}
+.cobrand--lg .cobrand__evo {
+  height: 36px;
+}
+.cobrand--lg .cobrand__x {
+  font-size: 26px;
+}
+
+.cobrand-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.cobrand-login__caption {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--wf-text-3);
+}
+.login-note {
+  margin: 0 0 8px;
+  color: var(--wf-text-2);
+  text-align: center;
+}
+
+.cobrand-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.cobrand-icon__swft {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+.cobrand-icon__evo {
+  height: 18px;
+  width: auto;
+}
+.cobrand-icon .cobrand__x {
+  font-size: 11px;
+}
+
+/* ---------- App header ---------- */
+
+.app-header__bg,
+.app-header--show-bg .app-header__bg {
+  background: rgba(30, 30, 30, 0.96);
+  border-bottom: 1px solid var(--wf-border);
+}
+
+/* ---------- Login page ---------- */
+
+.template-minimal {
+  background: radial-gradient(900px 420px at 50% -10%, rgba(20, 110, 245, 0.16), transparent 60%), #141414;
+}
+.template-minimal__wrap {
+  background: var(--wf-panel);
+  border: 1px solid var(--wf-border);
+  border-radius: var(--style-radius-l);
+  padding: 36px 32px 28px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+.login__brand {
+  margin-bottom: 18px;
+}
+
+/* ---------- Dashboard: cards become compact Webflow rows ---------- */
+
+.collections__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--wf-text-3);
+  margin-bottom: 10px;
+}
+.collections__card-list {
+  gap: 8px;
+}
+.card {
+  min-height: 0;
+  padding: 12px 14px;
+  background: var(--wf-panel);
+  border: 1px solid var(--wf-border);
+  border-radius: var(--style-radius-m);
+  box-shadow: none;
+}
+.card:hover,
+.card--has-onclick:hover {
+  background: var(--wf-panel-hover);
+  border-color: var(--wf-border-strong);
+}
+.card__title {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+/* ---------- Dashboard home (custom) ---------- */
+
+.wf-home {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 10px;
+  /* Payload's collection grid sits inside an extra 6px wrapper; match it so edges line up. */
+  padding-inline: 6px;
+}
+.wf-home__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--wf-border);
+}
+.wf-eyebrow {
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wf-text-3);
+}
+.wf-home__title {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+.wf-home__sub {
+  margin: 6px 0 0;
+  color: var(--wf-text-2);
+}
+.wf-section-label {
+  margin: 8px 0 -6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--wf-text-3);
+}
+.wf-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
+}
+.wf-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px;
+  background: var(--wf-panel);
+  border: 1px solid var(--wf-border);
+  border-radius: var(--style-radius-m);
+  text-decoration: none;
+  color: inherit;
+}
+.wf-stat:hover {
+  background: var(--wf-panel-hover);
+  border-color: var(--wf-border-strong);
+}
+.wf-stat--highlight {
+  border-color: var(--wf-blue);
+  background: var(--wf-blue-soft);
+}
+.wf-stat__value {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.wf-stat__label {
+  font-size: 12px;
+  color: var(--wf-text-2);
+}
+.wf-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 8px;
+}
+.wf-action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--wf-panel);
+  border: 1px solid var(--wf-border);
+  border-radius: var(--style-radius-m);
+  color: inherit;
+  text-decoration: none;
+}
+.wf-action:hover {
+  background: var(--wf-panel-hover);
+  border-color: var(--wf-border-strong);
+}
+.wf-action__icon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex: none;
+  border-radius: var(--style-radius-s);
+  background: #1e1e1e;
+  border: 1px solid var(--wf-border);
+  color: var(--wf-blue-hover);
+}
+.wf-action__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.wf-action__title {
+  font-weight: 500;
+}
+.wf-action__note {
+  font-size: 12px;
+  color: var(--wf-text-3);
+}
+.wf-action__chevron {
+  margin-left: auto;
+  color: var(--wf-text-3);
+  font-size: 18px;
+}
+.wf-icon {
+  width: 16px;
+  height: 16px;
+}
+.wf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: var(--style-radius-s);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.wf-btn--primary {
+  background: var(--wf-blue);
+  color: #fff;
+}
+.wf-btn--primary:hover {
+  background: var(--wf-blue-hover);
+}
+.wf-btn--ghost {
+  color: var(--wf-text);
+  box-shadow: inset 0 0 0 1px var(--wf-border-strong);
+}
+.wf-btn--ghost:hover {
+  background: var(--wf-panel-hover);
+}
+
+/* ---------- Collection list (Webflow CMS item table) ---------- */
+
+.list-header__title,
+.doc-header__title {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+.table table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.table th {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--wf-text-3);
+  background: var(--wf-panel);
+  border-bottom: 1px solid var(--wf-border);
+}
+.table td {
+  border-bottom: 1px solid #2a2a2a;
+}
+.table tbody tr:nth-child(odd) td,
+.table tbody tr:nth-child(even) td {
+  background-color: transparent;
+}
+.table tbody tr:hover td {
+  background-color: var(--wf-panel-hover);
+}
+.table-wrap {
+  border: 1px solid var(--wf-border);
+  border-radius: var(--style-radius-m);
+  overflow: hidden;
+}
+
+.wf-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--wf-blue-soft);
+  color: #9cc3ff;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.wf-tag--muted {
+  background: var(--wf-panel-hover);
+  color: var(--wf-text-3);
+}
+
+.wf-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+}
+.wf-status__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.wf-status--live {
+  color: var(--wf-text);
+}
+.wf-status--live .wf-status__dot {
+  background: #2ecc71;
+}
+.wf-status--off {
+  color: var(--wf-text-3);
+}
+.wf-status--off .wf-status__dot {
+  background: #6e6e6e;
+}
+
+/* ---------- Edit forms: compact Webflow fields ---------- */
+
+.field-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--wf-text-2);
+}
+.field-type input:not([type='checkbox']):not([type='radio']),
+.field-type textarea,
+.rs__control {
+  background: var(--theme-input-bg);
+  border: 1px solid var(--wf-border-strong);
+  border-radius: var(--style-radius-s);
+  box-shadow: none;
+}
+.field-type input:not([type='checkbox']):not([type='radio']):focus,
+.field-type textarea:focus,
+.rs__control--menu-is-open {
+  border-color: var(--wf-blue);
+  box-shadow: 0 0 0 3px var(--wf-blue-soft);
+  outline: none;
+}
+.tabs-field__tab-button {
+  font-weight: 500;
+}
+.tabs-field__tab-button--active {
+  color: #fff;
+  box-shadow: inset 0 -2px 0 var(--wf-blue);
+}
+
+/* Payload's own "brand" badges in the step nav use the icon; keep it small. */
+.step-nav__home {
+  display: inline-flex;
+  align-items: center;
+}
