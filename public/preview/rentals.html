@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#0A0A0B}
-a{color:#F4F4F0}a:hover{color:#FF6A1F}
+a{color:#F4F4F0}a:hover{color:#00D4F0}
 @media (max-width: 900px){
   .ev-cats{flex-direction:row !important;overflow-x:auto;flex-basis:100% !important;gap:8px !important}
   .ev-cats > span{display:none}
@@ -44,7 +44,7 @@ body{margin:0;background:#0A0A0B}
   <section style="border-bottom: 1px solid #2A2A2E">
     <div style="max-width: 1320px; margin: 0 auto; padding: 56px 16px 40px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: flex-end">
       <div style="display: flex; flex-direction: column; gap: 14px; max-width: 720px">
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #FF6A1F">RENTALS · FOR PLANNERS, VENUES, DJS &amp; PRODUCTION TEAMS</span>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #00D4F0">RENTALS · FOR PLANNERS, VENUES, DJS &amp; PRODUCTION TEAMS</span>
         <h1 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 118%; font-weight: 800; font-size: clamp(28px, 4.2vw, 60px); line-height: 1; text-transform: uppercase">Show-ready gear</h1>
         <p style="margin: 0; font-size: 17px; line-height: 1.55; color: #C9C9CC">RCF audio, AlphaTheta and Pioneer DJ backline, intelligent lighting, LED walls and FX. Add what you need to your quote and we will confirm availability, delivery and setup.</p>
       </div>
@@ -63,10 +63,10 @@ body{margin:0;background:#0A0A0B}
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px">
       <sc-for list="{{packages}}" as="p" hint-placeholder-count="4">
-        <div style="background: #141416; border: 1px solid #2A2A2E; border-top: 4px solid #FF6A1F; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+        <div style="background: #141416; border: 1px solid #2A2A2E; border-top: 4px solid #00D4F0; padding: 20px; display: flex; flex-direction: column; gap: 10px">
           <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #A1A1A6">{{p.guests}}</span>
           <span style="font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 22px; text-transform: uppercase">{{p.name}}</span>
-          <span style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 28px; color: #FF6A1F">{{p.price}}</span>
+          <span style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 28px; color: #00D4F0">{{p.price}}</span>
           <span style="font-size: 14px; line-height: 1.55; color: #C9C9CC">{{p.gear}}</span>
           <button type="button" onClick="{{p.add}}" style="{{p.btnStyle}}">{{p.btn}}</button>
         </div>
@@ -105,7 +105,7 @@ body{margin:0;background:#0A0A0B}
       </div>
     </main>
 
-    <aside aria-label="Your quote" style="flex: 1 1 260px; max-width: 100%; background: #141416; border: 1px solid #2A2A2E; border-top: 4px solid #FF6A1F; padding: 20px; display: flex; flex-direction: column; gap: 14px; box-sizing: border-box">
+    <aside aria-label="Your quote" style="flex: 1 1 260px; max-width: 100%; background: #141416; border: 1px solid #2A2A2E; border-top: 4px solid #00D4F0; padding: 20px; display: flex; flex-direction: column; gap: 14px; box-sizing: border-box">
       <span style="font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 20px; text-transform: uppercase">Your quote</span>
       <sc-if value="{{empty}}" hint-placeholder-val="{{ true }}">
         <span style="font-size: 14px; color: #A1A1A6; line-height: 1.5">Nothing added yet. Tap + Quote on any item or package.</span>
@@ -115,7 +115,7 @@ body{margin:0;background:#0A0A0B}
       </sc-for>
       <label style="display: flex; flex-direction: column; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #A1A1A6">RENTAL DATES<input type="text" placeholder="Pickup → Return" style="height: 44px; background: #1E1E22; border: 1px solid #2A2A2E; color: #F4F4F0; padding: 0 12px; font-family: Inter, sans-serif; font-size: 15px"></label>
       <label style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #C9C9CC"><input type="checkbox" style="width: 18px; height: 18px">Add delivery + setup crew</label>
-      <button type="button" style="height: 52px; border: 0; background: #FF6A1F; color: #0A0A0B; font-family: Archivo, sans-serif; font-weight: 800; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer">Send quote request</button>
+      <button type="button" style="height: 52px; border: 0; background: #00D4F0; color: #0A0A0B; font-family: Archivo, sans-serif; font-weight: 800; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer">Send quote request</button>
       <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #A1A1A6">→ CREATES A QUOTE IN STAGERA</span>
     </aside>
   </div>
@@ -185,12 +185,12 @@ class Component extends DCLogic {
     const cat = this.state.cat;
     const cart = this.state.cart;
     const toggle = (name) => () => this.setState({ cart: cart.indexOf(name) !== -1 ? cart.filter((x) => x !== name) : cart.concat([name]) });
-    const btnStyle = (on, wide) => 'height: 44px; padding: 0 14px; cursor: pointer; font-family: Archivo, sans-serif; font-weight: 800; font-size: 13px; text-transform: uppercase; ' + (wide ? 'margin-top: auto; ' : '') + (on ? 'background: transparent; color: #FF6A1F; border: 1px solid #FF6A1F' : 'background: #FF6A1F; color: #0A0A0B; border: 0');
+    const btnStyle = (on, wide) => 'height: 44px; padding: 0 14px; cursor: pointer; font-family: Archivo, sans-serif; font-weight: 800; font-size: 13px; text-transform: uppercase; ' + (wide ? 'margin-top: auto; ' : '') + (on ? 'background: transparent; color: #00D4F0; border: 1px solid #00D4F0' : 'background: #00D4F0; color: #0A0A0B; border: 0');
     const cats = names.map((n) => ({
       label: n,
       n: String(n === 'All' ? data.length : data.filter((d) => d.cat === n).length),
       pick: () => this.setState({ cat: n }),
-      style: 'display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border: 0; text-align: left; cursor: pointer; font-family: Archivo, sans-serif; font-weight: 700; font-size: 15px; ' + (n === cat ? 'background: #1E1E22; color: #F4F4F0; box-shadow: inset 3px 0 0 #FF6A1F' : 'background: transparent; color: #C9C9CC')
+      style: 'display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border: 0; text-align: left; cursor: pointer; font-family: Archivo, sans-serif; font-weight: 700; font-size: 15px; ' + (n === cat ? 'background: #1E1E22; color: #F4F4F0; box-shadow: inset 3px 0 0 #00D4F0' : 'background: transparent; color: #C9C9CC')
     }));
     const items = data.filter((d) => cat === 'All' || d.cat === cat).map((d) => {
       const on = cart.indexOf(d.name) !== -1;
@@ -228,8 +228,8 @@ class Component extends DCLogic {
       </sc-for>
     </div>
     <div class="evh-ctas" style="gap: 8px; flex: none">
-      <a href="contact.html" style="background: #B8FF3C; color: #0A0A0B; text-decoration: none; height: 44px; padding: 0 16px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 13px; letter-spacing: 0.04em">BOOK EVO</a>
-      <a href="rentals.html" style="background: #FF6A1F; color: #0A0A0B; text-decoration: none; height: 44px; padding: 0 16px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 13px; letter-spacing: 0.04em">{{rentLabel}}</a>
+      <a href="contact.html" style="background: #E6307F; color: #0A0A0B; text-decoration: none; height: 44px; padding: 0 16px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 13px; letter-spacing: 0.04em">BOOK EVO</a>
+      <a href="rentals.html" style="background: #00D4F0; color: #0A0A0B; text-decoration: none; height: 44px; padding: 0 16px; display: inline-flex; align-items: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 13px; letter-spacing: 0.04em">{{rentLabel}}</a>
     </div>
     <details class="evh-menu" style="position: static">
       <summary aria-label="Open menu" style="width: 44px; height: 44px; border: 1px solid #2A2A2E; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #F4F4F0">
@@ -244,8 +244,8 @@ class Component extends DCLogic {
   </nav>
 </header>
 <nav class="evh-mbar" aria-label="Quick actions" style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid #2A2A2E">
-  <a href="contact.html" style="background: #B8FF3C; color: #0A0A0B; text-decoration: none; height: 60px; display: flex; align-items: center; justify-content: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 15px; letter-spacing: 0.04em">BOOK EVO</a>
-  <a href="rentals.html" style="background: #FF6A1F; color: #0A0A0B; text-decoration: none; height: 60px; display: flex; align-items: center; justify-content: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 15px; letter-spacing: 0.04em">{{rentLabel}}</a>
+  <a href="contact.html" style="background: #E6307F; color: #0A0A0B; text-decoration: none; height: 60px; display: flex; align-items: center; justify-content: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 15px; letter-spacing: 0.04em">BOOK EVO</a>
+  <a href="rentals.html" style="background: #00D4F0; color: #0A0A0B; text-decoration: none; height: 60px; display: flex; align-items: center; justify-content: center; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 15px; letter-spacing: 0.04em">{{rentLabel}}</a>
 </nav>
 </template>
 <script type="text/x-dc" id="dc-logic-Header" data-props='{"active":{"editor":"enum","options":["home","about","rentals","events","partners","photos","contact"],"default":"home"},"quote":{"editor":null,"default":""},"$preview":{"width":1440,"height":72}}'>
@@ -264,7 +264,7 @@ class Component extends DCLogic {
     const links = items.map(([id, label, href]) => ({
       label, href,
       style: 'text-decoration: none; color: ' + (id === active ? '#F4F4F0' : '#A1A1A6'),
-      mStyle: 'text-decoration: none; padding: 14px 0; border-bottom: 1px solid #2A2A2E; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 22px; color: ' + (id === active ? '#B8FF3C' : '#F4F4F0')
+      mStyle: 'text-decoration: none; padding: 14px 0; border-bottom: 1px solid #2A2A2E; font-family: Archivo, sans-serif; font-stretch: 112%; font-weight: 800; font-size: 22px; color: ' + (id === active ? '#E6307F' : '#F4F4F0')
     }));
     const q = this.props.quote;
     return { links, rentLabel: q !== undefined && q !== '' ? 'QUOTE (' + q + ')' : 'RENT GEAR' };
@@ -277,7 +277,7 @@ class Component extends DCLogic {
 .pv-back{position:fixed;left:12px;bottom:12px;z-index:50;background:#F4F4F0;color:#0A0A0B;
 font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;
 padding:10px 12px;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,.4)}
-.pv-back:hover{background:#B8FF3C;color:#0A0A0B}
+.pv-back:hover{background:#E6307F;color:#0A0A0B}
 @media (max-width:900px){.pv-back{bottom:70px;left:auto;right:8px;padding:8px 10px;font-size:10px;opacity:.9}}
 .pv-embed .pv-back{display:none}
 </style>
