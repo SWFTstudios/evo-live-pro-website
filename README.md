@@ -232,17 +232,20 @@ The first account created on an empty database is always an Admin.
 
 > **Read this before merging to `main`.** The live site today is a plain static Worker. This version is a full app that needs a database, a photo bucket and a secret before it can run. If it is deployed before those exist, the build will fail. Do the steps below first.
 
-> **Not yet tested.** Everything in this section follows Payload's and Cloudflare's documentation. It has not been run against this project's real Cloudflare account yet. Expect to adjust.
+> **Tested once.** The steps below were run for this project's first deploy. The commands are the ones that worked. The template's `deploy` script calls `pnpm` directly, so `pnpm` must be on your PATH.
 
 ### Status of the Cloudflare setup
 
-Already created in the SWFT Studios Cloudflare account (steps 2, 3 and 4 below are done):
+Already done in the SWFT Studios Cloudflare account:
 
-- D1 database `evo-live-pro-website` (its ID is in `wrangler.jsonc`)
-- R2 bucket `evo-live-pro-website`
-- Secret `PAYLOAD_SECRET` on the `evo-live-pro-website` Worker (random value, not stored anywhere else)
+- D1 database `evo-live-pro-website` created (its ID is in `wrangler.jsonc`) and the initial migration applied
+- R2 bucket `evo-live-pro-website` created
+- Secret `PAYLOAD_SECRET` set on the `evo-live-pro-website` Worker (random value, not stored anywhere else)
+- First deploy done. The app is live at `https://evo-live-pro-website.elombe.workers.dev`
 
-Still to do: the first `pnpm run deploy` (step 6), then create the first admin account (step 7). Nothing has been deployed with this app yet, so the live site is still the old static one.
+Still to do: **create the first admin account at `/admin` (the first person to register becomes the admin, so do it right away)**, then load the starter content (step 8). A custom domain is not connected yet.
+
+**Versions matter.** The first deploy crashed with `Unexpected loadManifest(/.next/server/preview-props.json)`. The template pinned Next 16.4.1, but the OpenNext Cloudflare adapter needs Next 16.4.5 or newer. Next is now 16.4.6 with `@opennextjs/cloudflare` 1.20.16 and wrangler 4.160. Payload 3.93 works with it. If you upgrade one of these, check the adapter's supported Next range first.
 
 ### What it costs
 
@@ -301,9 +304,9 @@ Payload on Cloudflare Workers needs the **Workers Paid plan** (about $5 a month 
 
 If the Worker is connected to this repo in the Cloudflare dashboard (Workers Builds), change its **build command** to `pnpm run deploy`, and add `PAYLOAD_SECRET` under the Worker's variables and secrets. The build machine also needs a Cloudflare API token so it can reach D1 during the build.
 
-### Important: `pnpm build` needs Cloudflare
+### Important: production builds need Cloudflare
 
-A production build connects to your real Cloudflare account to learn about the database. On a laptop that is not logged in, `pnpm build` fails with "No API token found" or a remote proxy error. That is expected. For day-to-day work use `pnpm dev`, which runs fully offline.
+A production build talks to your real Cloudflare account to learn about the database. On a laptop that is not logged in, it fails with "No API token found" or a remote proxy error. That is expected. For day-to-day work use `pnpm dev`, which runs fully offline. The app bundle is about 4 MB gzipped, which fits the Paid Workers limit.
 
 ---
 
@@ -353,6 +356,7 @@ To add a brand-new list (a "collection"), copy an existing file in `src/collecti
 
 | What you see | What it probably means | What to do |
 | --- | --- | --- |
+| Live site shows error 1101 and logs say `loadManifest(...preview-props.json)` | Next.js is older than the OpenNext adapter supports | Use Next 16.4.5 or newer with `@opennextjs/cloudflare` 1.20.16 or newer |
 | `Unsupported engine` warning when installing | Your Node is older than Payload prefers | Update Node. It still worked in testing, so it is only a warning. |
 | Dashboard says it can't find a secret | `.env` is missing or `PAYLOAD_SECRET` is empty | Create `.env` from `.env.example` and fill it in |
 | The site shows no equipment | The local database is empty | Run `pnpm seed` |
