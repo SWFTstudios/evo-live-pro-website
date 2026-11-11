@@ -1,0 +1,93 @@
+/* Evo motion prototype: first-load intro + Book/Rent hand-off */
+
+/* Cover the page before scripts run, so nothing flashes under the intro or hand-off. */
+html.evo-intro body::before,
+html.evo-handoff body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: var(--evo-cover, #0A0A0B);
+}
+
+.evo-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #0A0A0B;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+.evo-beam {
+  position: absolute;
+  bottom: -6vh;
+  width: 36vmax;
+  height: 150vh;
+  transform-origin: 50% 100%;
+  background: linear-gradient(to top, var(--beam) 0%, color-mix(in srgb, var(--beam) 35%, transparent) 45%, transparent 90%);
+  clip-path: polygon(47% 100%, 53% 100%, 100% 0, 0 0);
+  mix-blend-mode: screen;
+  opacity: 0;
+}
+.evo-beam.l { left: 4vw; --beam: #E6307F; }
+.evo-beam.r { right: 4vw; --beam: #00D4F0; }
+.evo-mark { position: relative; width: clamp(72px, 9vw, 112px); aspect-ratio: 600 / 699; }
+.evo-mark svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.evo-mark img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; }
+.evo-skip {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  font: 500 11px/1 'JetBrains Mono', monospace;
+  letter-spacing: .08em;
+  color: #A1A1A6;
+  background: transparent;
+  border: 1px solid #2A2A2E;
+  padding: 12px 14px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.evo-skip:hover { color: #F4F4F0; border-color: #F4F4F0; }
+
+/* Full-screen color that carries the Book / Rent choice into the next page. */
+.evo-flood {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+.evo-flood span {
+  font-family: Archivo, sans-serif;
+  font-stretch: 125%;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -.01em;
+  color: #0A0A0B;
+  font-size: clamp(36px, 8vw, 112px);
+  line-height: 1;
+}
+
+/* Hover: a light cone swings into the Book / Rent buttons like a moving head. */
+.evo-cone {
+  position: absolute;
+  left: 50%;
+  top: -40%;
+  width: 140%;
+  height: 220%;
+  margin-left: -70%;
+  transform-origin: 50% 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, .55), rgba(255, 255, 255, 0) 75%);
+  clip-path: polygon(48% 0, 52% 0, 75% 100%, 25% 100%);
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.evo-intro body::before,
+  html.evo-handoff body::before { display: none; }
+  .evo-curtain, .evo-flood, .evo-cone { display: none !important; }
+}
