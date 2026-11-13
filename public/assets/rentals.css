@@ -28,7 +28,9 @@
 .r-card.added { border-color: var(--accent); }
 .r-open { all: unset; cursor: pointer; display: flex; flex-direction: column; gap: 10px; border-radius: 12px; }
 .r-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-.r-ph { display: flex; align-items: center; justify-content: center; aspect-ratio: 1; border-radius: 12px; background: radial-gradient(circle at 50% 60%, #2A2A2A 0%, #141414 65%); padding: 14px; }
+.r-ph { display: flex; align-items: center; justify-content: center; aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: radial-gradient(circle at 50% 40%, #F4F3EF 0%, #E4E2DC 100%); }
+.r-ph .r-img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; transition: transform .5s var(--ease); }
+.r-card:hover .r-img { transform: scale(1.04); }
 .r-meta { display: flex; flex-direction: column; gap: 3px; padding: 0 2px 4px; }
 .r-meta .k { font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
 .r-meta .n { font-size: 15px; font-weight: 700; line-height: 1.25; }

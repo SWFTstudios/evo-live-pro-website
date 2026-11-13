@@ -1,11 +1,14 @@
 // Evo Live Pro: rentals catalog. Inventory lives in gear.js (2026 Master Inventory).
 (function () {
   'use strict';
-  var CATS = window.EvoGear.CATS, GEAR = window.EvoGear.GEAR;
+  var CATS = window.EvoGear.CATS, GEAR = window.EvoGear.GEAR, PHOTOS = window.EvoGear.PHOTOS;
   var catName = {}; CATS.forEach(function (c) { catName[c[0]] = c[2]; });
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
-  var ICON = '<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#4A4A48" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"></rect><circle cx="12" cy="14.5" r="3.5"></circle><circle cx="12" cy="7.5" r="1"></circle></svg>';
+  var ICON = '<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#B3B1AA" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="1.6"></circle><path d="M21 16l-5-5-8 9"></path></svg>';
 
+  var photo = function (name, size) {
+    return PHOTOS[name] ? '<img class="r-img" src="/assets/media/gear/' + PHOTOS[name] + '.webp" alt="" width="' + size + '" height="' + size + '" loading="lazy" decoding="async">' : ICON;
+  };
   var state = { cat: 0, q: '', quote: {}, order: [], detail: -1, qty: 1 };
   try { var saved = JSON.parse(sessionStorage.getItem('evo-quote') || 'null'); if (saved && saved.order) { state.quote = saved.quote; state.order = saved.order; } } catch (e) {}
   var params = new URLSearchParams(location.search);
@@ -39,7 +42,7 @@
       var i = GEAR.indexOf(g), added = !!state.quote[g[0]];
       return '<li class="r-card' + (added ? ' added' : '') + '">' +
         '<button type="button" class="r-open" data-open="' + i + '" aria-haspopup="dialog">' +
-        '<span class="r-ph" aria-hidden="true">' + ICON + '</span>' +
+        '<span class="r-ph" aria-hidden="true">' + photo(g[0], 320) + '</span>' +
         '<span class="r-meta"><span class="k">' + esc(catName[g[1]]) + '</span><span class="n">' + esc(g[0]) + '</span><span class="p">Price on request</span></span></button>' +
         '<button type="button" class="r-add" data-toggle="' + i + '" aria-pressed="' + added + '" aria-label="' + (added ? 'Remove ' : 'Add ') + esc(g[0]) + (added ? ' from quote' : ' to quote') + '">' +
         (added ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>'
@@ -99,7 +102,7 @@
   var openDetail = function (i) {
     var g = GEAR[i];
     state.detail = i; state.qty = state.quote[g[0]] || 1;
-    $('d-ph').innerHTML = ICON.replace('width="44" height="44"', 'width="72" height="72"');
+    $('d-ph').innerHTML = PHOTOS[g[0]] ? photo(g[0], 480) : ICON.replace('width="44" height="44"', 'width="72" height="72"');
     $('d-cat').textContent = catName[g[1]];
     $('d-name').textContent = g[0];
     $('d-note').textContent = g[2] + '. Delivery, setup and pickup available. Pair it with a tech for the night if you want someone running it.';

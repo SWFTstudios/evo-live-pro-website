@@ -25,6 +25,7 @@ public/
   assets/rentals.css  Rentals styles
   assets/rentals.js   Rentals inventory (2026 Master Inventory) and quote cart
   assets/media/       Photos (WebP), hero video, logo
+  assets/media/gear/  Rental product photos; mapped to items in assets/gear.js (PHOTOS)
   preview/            Earlier wireframes and motion prototype (noindex)
 wrangler.jsonc        Cloudflare Worker config (name: evo-live-pro-website)
 ```

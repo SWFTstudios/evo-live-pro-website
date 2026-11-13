@@ -71,5 +71,38 @@ window.EvoGear = (function () {
     ['Disco balls', 'fx', 'From 8" to 30"'],
     ['Salsa digital photo booth', 'fx', 'Digital photo booth with attendant']
   ];
-  return { CATS: CATS, GEAR: GEAR };
+  // Product photos in /assets/media/gear, keyed by item name. Items not listed show a placeholder.
+  var PHOTOS = {
+      "RCF EVOX 12": "rcf-evox-12",
+      "RCF HDL6-A line array": "rcf-hdl6-a-line-array",
+      "RCF ART 915A": "rcf-art-915a",
+      "RCF SUB 8006-AS": "rcf-sub-8006-as",
+      "Shure SLXD24D+ / SM58": "shure-slxd24d-sm58",
+      "Allen & Heath CQ-12T": "allen-heath-cq-12t",
+      "AlphaTheta Wave-Eight": "alphatheta-wave-eight",
+      "50\" media screen": "50-media-screen",
+      "55\" media screen": "50-media-screen",
+      "275W beam moving head": "275w-beam-moving-head",
+      "19x15W LED wash moving head": "19x15w-led-wash-moving-head",
+      "260W LED strobe panel": "260w-led-strobe-panel",
+      "LED wash light bar": "led-wash-light-bar",
+      "Wireless uplight": "wireless-uplight",
+      "Stage decks + risers": "stage-decks-risers",
+      "ProX StageQ 2x8": "prox-stageq-2x8",
+      "ProX StageQ 4x8": "stage-decks-risers",
+      "ProX F34 truss towers": "prox-f34-truss-towers",
+      "Weighted base plates": "weighted-base-plates",
+      "Pioneer DJ CDJ-3000": "pioneer-dj-cdj-3000",
+      "AlphaTheta XDJ-AZ": "alphatheta-xdj-az",
+      "Pioneer DJ DJM-A9": "pioneer-dj-djm-a9",
+      "Cold spark machine": "cold-spark-machine",
+      "CO2 stage blaster jet": "co2-stage-blaster-jet",
+      "CO2 handheld cannon": "co2-handheld-cannon",
+      "CO2 siphon tank": "co2-siphon-tank",
+      "Dancing on the clouds": "dancing-on-the-clouds",
+      "Water-based hazer": "water-based-hazer",
+      "Confetti cannon": "confetti-cannon",
+      "Salsa digital photo booth": "salsa-digital-photo-booth"
+  };
+  return { CATS: CATS, GEAR: GEAR, PHOTOS: PHOTOS };
 })();
