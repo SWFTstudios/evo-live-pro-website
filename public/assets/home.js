@@ -23,18 +23,19 @@
 
   if (listEl) {
     listEl.innerHTML = WORK.map(function (w, i) {
-      return '<a role="listitem" class="work-row' + (i === 0 ? ' on' : '') + '" href="#book" data-i="' + i + '">' +
+      return '<li><a class="work-row' + (i === 0 ? ' on' : '') + '" href="#book" data-i="' + i + '">' +
         '<span class="work-num">' + pad(i + 1) + '</span>' +
         '<img class="work-thumb" src="/assets/media/' + w[3] + '.webp" alt="" loading="lazy">' +
         '<span class="work-t"><span class="disp">' + esc(w[0]) + '</span><span>' + esc(w[2]) + '</span></span>' +
         '<span class="work-end"><span class="work-type hide-sm">' + esc(w[1]) + '</span><span class="work-arrow" aria-hidden="true">→</span></span>' +
-        '</a>';
+        '</a></li>';
     }).join('');
+    var rows = listEl.querySelectorAll('.work-row');
     var current = 0;
     var pick = function (i) {
       if (i === current) return;
-      listEl.children[current].classList.remove('on');
-      listEl.children[i].classList.add('on');
+      rows[current].classList.remove('on');
+      rows[i].classList.add('on');
       if (shots[current]) shots[current].classList.remove('on');
       if (shots[i]) shots[i].classList.add('on');
       title.textContent = WORK[i][0];
@@ -90,5 +91,9 @@
 
   // Keep the hero video playing where browsers are strict about autoplay.
   var v = document.querySelector('.hero video');
-  if (v) { v.muted = true; var p = v.play && v.play(); if (p && p.catch) p.catch(function () {}); }
+  if (v) {
+    v.muted = true;
+    if (document.documentElement.classList.contains('motion-off')) { v.removeAttribute('autoplay'); v.pause(); }
+    else { var p = v.play && v.play(); if (p && p.catch) p.catch(function () {}); }
+  }
 })();
