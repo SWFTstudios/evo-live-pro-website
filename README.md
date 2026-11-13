@@ -15,9 +15,30 @@ Early setup. The site is being built on an open source CMS so the client can edi
 ## Project structure
 
 ```
-public/          Static files served by the Worker (index.html, 404.html)
-wrangler.jsonc   Cloudflare Worker config (name: evo-live-pro-website)
+public/
+  index.html          Home: hero, services, work index, Tim & Dom, spec sheet, reviews, booking
+  rentals.html        Rentals catalog with categories, search and a quote cart
+  404.html            Not found page
+  assets/site.css     Shared styles (design direction "E · Studio")
+  assets/site.js      Search overlay and form sending
+  assets/home.js      Section tabs, booking bar, work index
+  assets/rentals.css  Rentals styles
+  assets/rentals.js   Rentals inventory (2026 Master Inventory) and quote cart
+  assets/media/       Photos (WebP), hero video, logo
+  preview/            Earlier wireframes and motion prototype (noindex)
+wrangler.jsonc        Cloudflare Worker config (name: evo-live-pro-website)
 ```
+
+### Forms
+
+The booking form and the rental quote open the visitor's email app with every field filled in, addressed to evolivepro@gmail.com. Once the Stagera integration is ready, set `data-endpoint` on the form (`#book-form` in `index.html`, `#q-form` in `rentals.html`) to POST the fields there instead.
+
+### Content still needed
+
+- Origin story for the "Liner notes" section and Dom's answers
+- Client reviews
+- Product photos for rental items (cards show placeholders)
+- Rental pricing (cards show "Price on request")
 
 ## Hosting
 

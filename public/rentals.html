@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rentals · Evo Live Pro</title>
+<meta name="description" content="Rent the same sound, lighting, LED video, staging, DJ gear and special FX Evo Live Pro runs every weekend. Delivery, setup and pickup across NJ and NYC.">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" href="/assets/media/logo-wordmark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/rentals.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="Evo Live Pro home"><img src="/assets/media/logo-wordmark.png" alt="Evo Live Pro" width="200" height="34"></a>
+    <nav class="tabs noscroll" aria-label="Site">
+      <a class="tab" href="/#services"><span class="dot" aria-hidden="true"></span>Services</a>
+      <a class="tab" href="/#work"><span class="dot" aria-hidden="true"></span>Work</a>
+      <a class="tab" href="/#crew"><span class="dot" aria-hidden="true"></span>Crew</a>
+      <a class="tab on" href="/rentals" aria-current="page"><span class="dot" aria-hidden="true"></span>Rentals</a>
+      <a class="tab" href="/#reviews"><span class="dot" aria-hidden="true"></span>Reviews</a>
+      <a class="tab" href="/#book"><span class="dot" aria-hidden="true"></span>Book</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="ghost icon-btn" data-open-search aria-label="Search the site">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+      </button>
+      <button type="button" class="btn" data-open-quote id="q-btn" aria-label="Open quote, 0 items">Quote <span class="q-badge" id="q-count">0</span></button>
+    </div>
+  </div>
+</header>
+
+<div class="search" id="search" role="dialog" aria-modal="true" aria-label="Search" hidden>
+  <div class="search-bar">
+    <label class="sr-only" for="search-input">Search</label>
+    <input id="search-input" class="disp" type="search" placeholder="What are you looking for?" autocomplete="off">
+    <button type="button" class="search-close" data-close-search aria-label="Close search"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+  </div>
+  <div class="search-results">
+    <p class="search-label" id="search-label">Popular</p>
+    <div id="search-list"></div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap r-head">
+    <h1 class="disp fade-in">Rentals</h1>
+    <p class="fade-in" style="animation-delay: .15s">The same sound, lights, screens, staging and FX we run every weekend. Tested before it leaves the warehouse in Lyndhurst. Delivery, setup and pickup available.</p>
+  </div>
+
+  <div class="r-tools">
+    <div class="wrap">
+      <label class="r-search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A8A86" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+        <span class="sr-only">Search rentals</span>
+        <input type="search" id="r-q" placeholder="Search speakers, LED, sparks…" autocomplete="off">
+      </label>
+      <div class="r-cats noscroll" role="tablist" aria-label="Categories" id="r-cats"><span class="r-ul" id="r-ul" aria-hidden="true"></span></div>
+    </div>
+  </div>
+
+  <div class="wrap" style="padding-bottom: clamp(72px, 9vw, 128px)">
+    <div class="r-banner" id="r-banner">
+      <img class="on" src="/assets/media/rentals-all.webp" alt="" data-cat="all">
+      <img src="/assets/media/ballroom-wedding.webp" alt="" data-cat="sound" style="object-position: center 55%" loading="lazy">
+      <img src="/assets/media/festival-main-stage.webp" alt="" data-cat="visuals" loading="lazy">
+      <img src="/assets/media/rentals-lighting.webp" alt="" data-cat="lighting" style="object-position: center 20%" loading="lazy">
+      <img src="/assets/media/kearny-tree-lighting.webp" alt="" data-cat="staging" loading="lazy">
+      <img src="/assets/media/paramus-prom.webp" alt="" data-cat="dj" loading="lazy">
+      <img src="/assets/media/club-night.webp" alt="" data-cat="fx" style="object-position: center 30%" loading="lazy">
+      <div class="r-banner-t"><span class="disp" id="r-title">All gear</span><span id="r-blurb">Everything we own, tested before it leaves the warehouse.</span></div>
+    </div>
+    <p class="r-count" id="r-count" aria-live="polite"></p>
+    <div class="r-grid" id="r-grid"></div>
+    <div class="r-empty" id="r-empty" hidden><p style="margin: 0">Nothing matched that search.</p><button type="button" class="ghost" id="r-clear">Clear search</button></div>
+
+    <div class="r-help">
+      <div><span class="disp">Not sure what you need?</span><p>Tell us the room and headcount. Tim or Dom will build the package for you. Sound + DJ packages start at $1,000 for rooms up to 100 guests.</p></div>
+      <a class="ghost btn-lg" href="/#book">Talk to the crew</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-row">
+      <span>DJ · Production · Rentals · AV Installs</span>
+      <span>Lyndhurst, NJ · <a href="https://www.instagram.com/evolivepro/">@evolivepro</a> · <a href="tel:+12019139558">(201) 913-9558</a> · <a href="mailto:evolivepro@gmail.com">evolivepro@gmail.com</a></span>
+    </div>
+    <p class="foot-big disp" aria-hidden="true">Evo Live Pro</p>
+    <span class="foot-copy">© 2026 Evo Live Pro</span>
+  </div>
+</footer>
+
+<button type="button" class="q-bar" id="q-bar" data-open-quote tabindex="-1" aria-hidden="true"><span id="q-bar-label">0 items in your quote</span><span>Review <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></button>
+
+<!-- Item detail -->
+<div class="sheet-wrap" id="detail" hidden>
+  <button type="button" class="scrim" data-close-sheet aria-label="Close details"></button>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="d-name">
+    <span class="grab" aria-hidden="true"></span>
+    <div style="display: flex; justify-content: flex-end"><button type="button" class="sheet-x" data-close-sheet aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>
+    <div class="r-ph" id="d-ph"></div>
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px">
+      <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--accent)" id="d-cat"></span><h2 class="disp" id="d-name"></h2></div>
+      <span style="font-size: 14px; font-weight: 700; white-space: nowrap; padding-top: 18px; color: var(--text-3)">Price on request</span>
+    </div>
+    <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--text-3)" id="d-note"></p>
+    <div class="chips"><span>Tested before every rental</span><span>Delivery + setup available</span><span>Add a tech for the night</span></div>
+    <div style="display: flex; align-items: center; gap: 12px; padding-top: 4px">
+      <div class="qty"><button type="button" id="d-minus" aria-label="Decrease quantity">−</button><output id="d-qty" aria-live="polite">1</output><button type="button" id="d-plus" aria-label="Increase quantity">+</button></div>
+      <button type="button" class="btn btn-lg" style="flex: 1" id="d-add">Add to quote</button>
+    </div>
+  </div>
+</div>
+
+<!-- Quote -->
+<div class="sheet-wrap" id="quote" hidden>
+  <button type="button" class="scrim" data-close-sheet aria-label="Close quote"></button>
+  <div class="sheet quote-sheet" role="dialog" aria-modal="true" aria-labelledby="q-title">
+    <span class="grab" aria-hidden="true"></span>
+    <div style="display: flex; justify-content: space-between; align-items: center"><h2 class="disp" id="q-title">Your quote</h2><button type="button" class="sheet-x" data-close-sheet aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>
+    <div id="q-sent" hidden><h3 class="disp" style="margin: 0; font-weight: 900; font-size: 32px">Request ready.</h3><p style="margin: 6px 0 0; font-size: 15px; color: #3A3A38">Your email app opened with the list filled in. Hit send and we'll confirm availability and pricing for your date.</p></div>
+    <div id="q-body" style="display: flex; flex-direction: column; gap: 14px">
+      <p id="q-none" style="margin: 0; font-size: 15px; color: #5A5A56">Nothing added yet. Tap + on any item to start a quote.</p>
+      <ul class="q-list" id="q-list"></ul>
+      <form class="q-form" id="q-form">
+        <label>Name<input type="text" name="Name" autocomplete="name" required></label>
+        <div class="two">
+          <label>Email<input type="email" name="Email" autocomplete="email" required></label>
+          <label>Event date<input type="date" name="Event date"></label>
+        </div>
+        <label>Venue or delivery address<input type="text" name="Venue"></label>
+        <label class="check"><input type="checkbox" name="Delivery and setup" value="Yes">Add delivery and setup</label>
+        <button type="submit" class="btn btn-ink btn-lg">Request quote</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<nav class="app-bar" aria-label="App">
+  <a href="/"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"></path></svg>Home</a>
+  <a href="/rentals" aria-current="page"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="2"></rect><circle cx="12" cy="14" r="3"></circle><circle cx="12" cy="7" r="1"></circle></svg>Rentals</a>
+  <a href="/#work"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>Work</a>
+  <button type="button" data-open-quote><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4h6l1 3h4v13H4V7h4z"></path><path d="M9 12h6M9 16h4"></path></svg>Quote</button>
+</nav>
+
+<script src="/assets/site.js"></script>
+<script src="/assets/rentals.js"></script>
+</body>
+</html>
