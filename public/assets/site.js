@@ -201,7 +201,7 @@
     q.set('_x_tr_sl', 'en'); q.set('_x_tr_tl', lang); q.set('_x_tr_hl', 'en'); q.set('_x_tr_pto', 'wapp');
     return 'https://' + h + u.pathname + '?' + q.toString() + u.hash;
   };
-  var PRIORITY = ['es', 'fr', 'pt', 'it', 'ht', 'zh-CN', 'zh-TW', 'ko', 'ru', 'pl', 'ar', 'hi', 'tl', 'vi', 'uk'];
+  var PRIORITY = ['es', 'fr'];
   var ALL = ('af sq am ar hy az eu be bn bs bg ca ceb zh-CN zh-TW co hr cs da nl eo et tl fi fr fy gl ka de el gu ht ha haw iw hi hmn hu is ig id ga it ja jw kn kk km rw ko ku ky lo la lv lt lb mk mg ms ml mt mi mr mn my ne no or ps fa pl pt pa ro ru sm gd sr st sn sd si sk sl so es su sw sv tg ta tt te th tr tk uk ur ug uz vi cy xh yi yo zu').split(' ');
   var langName = function (code) {
     var map = { 'zh-CN': 'zh-Hans', 'zh-TW': 'zh-Hant', iw: 'he', jw: 'jv' };
@@ -220,8 +220,8 @@
     selects.forEach(function (sel) {
       sel.innerHTML = '';
       var en = document.createElement('option'); en.value = ''; en.textContent = translated ? 'English (original)' : 'English'; sel.appendChild(en);
-      var g1 = document.createElement('optgroup'); g1.label = 'Popular'; PRIORITY.forEach(function (c) { g1.appendChild(opt(c)); }); sel.appendChild(g1);
-      var g2 = document.createElement('optgroup'); g2.label = 'All languages'; rest.forEach(function (c) { g2.appendChild(opt(c)); }); sel.appendChild(g2);
+      PRIORITY.forEach(function (c) { sel.appendChild(opt(c)); });
+      var g2 = document.createElement('optgroup'); g2.label = 'More languages'; rest.forEach(function (c) { g2.appendChild(opt(c)); }); sel.appendChild(g2);
       sel.value = current;
       sel.addEventListener('change', function () { location.href = sel.value ? translateUrl(sel.value) : (translated ? originalUrl() : location.href); });
     });
