@@ -382,6 +382,8 @@ Behavior:
 
 `ContactForm.tsx` keeps its current payload shape, analytics events and UX. Only the URL changes. `response.ok` covers 201.
 
+> **As built (Phase 5):** `src/app/api/inquiry/route.ts` (route), `src/lib/inquiry.ts` (pure validation, unit-tested in `tests/int/inquiry.int.spec.ts`), `src/sanity/writeClient.ts` (server-only client). Needs `SANITY_API_WRITE_TOKEN` (Editor role): a Cloudflare secret in production, `.env` locally; without it the route answers 503 and the form shows its error state. Status codes: 201 stored, 200 spam trap (nothing stored), 400 invalid, 413 too large, 415 not JSON, 502 Sanity failed, 503 no token. Payload's `/api/inquiries` still accepts submissions until Phase 7, so it is still a spam surface until then.
+
 ### 5.2 Acceptance
 
 - Submitting the booking form and the rental form (with cart items) on `localhost` creates `inquiry.*` docs in `development`; they show in Studio **Inbox → New** with readable fields; status editable.

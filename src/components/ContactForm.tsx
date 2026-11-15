@@ -42,7 +42,7 @@ export function ContactForm({ initialMode, copy, eventTypes, budgets, fulfillmen
     const get = (key: string) => String(form.get(key) ?? '').trim()
     setStatus('sending')
     try {
-      const response = await fetch('/api/inquiries', {
+      const response = await fetch('/api/inquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
