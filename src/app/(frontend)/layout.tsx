@@ -7,7 +7,8 @@ import { GoogleTagManagerNoScript, GoogleTagManagerScript } from '@/components/G
 import { Reveal } from '@/components/Reveal'
 import { StickyActions } from '@/components/StickyActions'
 import { TrackClicks } from '@/components/TrackClicks'
-import { getSiteSettings, resolveMedia } from '@/lib/payload'
+import { getSiteSettings } from '@/lib/content'
+import { resolveMedia } from '@/sanity/media'
 import './styles.css'
 
 const archivo = Archivo({ subsets: ['latin'], axes: ['wdth'], variable: '--font-archivo', display: 'swap' })

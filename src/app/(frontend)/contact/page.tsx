@@ -1,16 +1,15 @@
 import type { Metadata } from 'next'
 import { ContactForm } from '@/components/ContactForm'
 import { MediaOrPlaceholder } from '@/components/Media'
-import { getClient, getSiteSettings } from '@/lib/payload'
+import { getContactData } from '@/lib/content'
 
 export const dynamic = 'force-dynamic'
 export const metadata: Metadata = { title: 'Contact us' }
 
 export default async function ContactPage({ searchParams }: { searchParams: Promise<{ type?: string }> }) {
   const { type } = await searchParams
-  const payload = await getClient()
-  const [page, settings] = await Promise.all([payload.findGlobal({ slug: 'contact-page', depth: 1 }), getSiteSettings()])
-  const list = (rows: { value: string }[] | null | undefined) => (rows ?? []).map((r) => r.value)
+  const { page, settings } = await getContactData()
+  const list = (rows: string[] | null | undefined) => rows ?? []
 
   return (
     <section className="section">

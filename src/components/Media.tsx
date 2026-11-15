@@ -1,5 +1,5 @@
-import type { MediaRef } from '@/lib/payload'
-import { resolveMedia } from '@/lib/payload'
+import type { MediaRef } from '@/sanity/media'
+import { resolveMedia } from '@/sanity/media'
 
 type Props = {
   media: MediaRef

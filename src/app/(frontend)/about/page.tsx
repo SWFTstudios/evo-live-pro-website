@@ -1,19 +1,15 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { RichText } from '@payloadcms/richtext-lexical/react'
 import { MediaOrPlaceholder } from '@/components/Media'
-import { getClient } from '@/lib/payload'
+import { RichText } from '@/components/RichText'
+import { getAboutData } from '@/lib/content'
 
 export const dynamic = 'force-dynamic'
 export const metadata: Metadata = { title: 'About us' }
 
 export default async function AboutPage() {
-  const payload = await getClient()
-  const [page, team] = await Promise.all([
-    payload.findGlobal({ slug: 'about-page', depth: 2 }),
-    payload.find({ collection: 'team', sort: 'sortOrder', limit: 20, depth: 1 }),
-  ])
-  const words = (page.threeWords ?? []).map((w) => w.word)
+  const { page, team } = await getAboutData()
+  const words = page.threeWords ?? []
 
   return (
     <>
@@ -22,9 +18,9 @@ export default async function AboutPage() {
           <div className="stack">
             <span className="eyebrow">{page.eyebrow}</span>
             <h1 style={{ fontSize: 'clamp(36px, 5.5vw, 72px)' }}>{page.headline}</h1>
-            {page.originStory && (
+            {page.originStory && page.originStory.length > 0 && (
               <div className="rich">
-                <RichText data={page.originStory} />
+                <RichText value={page.originStory} />
               </div>
             )}
           </div>
@@ -37,14 +33,14 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {team.docs.length > 0 && (
+      {team.length > 0 && (
         <section className="section section--stage">
           <div className="wrap">
             <div className="section-head">
               <h2>{page.crewTitle}</h2>
             </div>
             <div className="grid grid--cards">
-              {team.docs.map((person) => (
+              {team.map((person) => (
                 <div key={person.id} className="stack">
                   <div className="card-media" style={{ aspectRatio: '4 / 5' }}>
                     <MediaOrPlaceholder media={person.portrait} placeholder={`Portrait · ${person.name}`} />
@@ -65,12 +61,12 @@ export default async function AboutPage() {
               <h2>{page.offTheRecordTitle}</h2>
             </div>
             {(page.offTheRecord ?? []).map((row) => (
-              <div key={row.id ?? row.question} className="qa">
+              <div key={row._key} className="qa">
                 <span className="eyebrow">{row.question}</span>
                 {(row.answers ?? []).map((a) => {
-                  const person = typeof a.person === 'object' ? a.person : null
+                  const person = a.person
                   return (
-                    <p key={a.id ?? a.answer}>
+                    <p key={a._key}>
                       <strong style={{ color: 'var(--laser)' }}>{person?.name?.toUpperCase() ?? ''}</strong>{' '}
                       {a.answer}
                     </p>

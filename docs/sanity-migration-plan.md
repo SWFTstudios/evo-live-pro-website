@@ -346,6 +346,8 @@ Prefer fetching each page's data in **one** GROQ query with named keys (`{ "home
 - Null-safety: Sanity returns `null` for missing singletons. In `layout.tsx` and pages, fall back to the same defaults Payload's `defaultValue`s provided (centralize in `src/sanity/defaults.ts`) so the site renders even on an empty dataset. This is new behavior Payload gave for free.
 - Keep `export const dynamic = 'force-dynamic'` for now (decision 8).
 
+> **As built (Phase 4):** the data layer is `src/sanity/{env,client,media,queries}.ts` plus `src/lib/content.ts` (typed fetchers and empty-dataset fallbacks); `src/components/RichText.tsx` renders Portable Text. Differences from the text above: (1) env vars are server-only and read lazily, named `SANITY_PROJECT_ID`, `SANITY_DATASET`, `SANITY_API_VERSION`, `SANITY_USE_CDN` (no `NEXT_PUBLIC_` prefix, because the browser never talks to Sanity); (2) `@sanity/client` is used directly, not `next-sanity`, and `@sanity/image-url` is not installed: images are resized with CDN query parameters (`?w=…&auto=format`), so **crop and hotspot set in the Studio are not applied yet** (a follow-up); (3) `wrangler.jsonc` sets `SANITY_DATASET` to `development` for pre-merge testing: **change it to `production` at cutover**. The contact form still posts to Payload until Phase 5. `src/lib/payload.ts` remains until Phase 7.
+
 ### 4.5 Do this behind a switch, page by page
 
 Add `src/lib/content.ts` exposing the same functions each page needs (`getHomeData()`, `getRentalsData()`, …). Implement Sanity versions first, switch pages one at a time, compare visually against the Payload version on the same content (run migration into `development` first). No feature flag at runtime is needed; git history is the switch.

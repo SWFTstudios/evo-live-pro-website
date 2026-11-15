@@ -1,20 +1,13 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { MediaOrPlaceholder } from '@/components/Media'
-import { getClient } from '@/lib/payload'
+import { getEventsData } from '@/lib/content'
 
 export const dynamic = 'force-dynamic'
 export const metadata: Metadata = { title: 'Events' }
 
 export default async function EventsPage() {
-  const payload = await getClient()
-  const [page, services, weddings, alaCarte, venues] = await Promise.all([
-    payload.findGlobal({ slug: 'events-page', depth: 1 }),
-    payload.find({ collection: 'event-services', sort: 'sortOrder', limit: 20, depth: 1 }),
-    payload.find({ collection: 'wedding-packages', sort: 'sortOrder', limit: 20 }),
-    payload.find({ collection: 'a-la-carte', sort: 'sortOrder', limit: 60 }),
-    payload.find({ collection: 'venues', sort: 'sortOrder', limit: 60 }),
-  ])
+  const { page, services, weddings, alaCarte, venues } = await getEventsData()
 
   return (
     <>
@@ -32,7 +25,7 @@ export default async function EventsPage() {
             <h2>{page.servicesTitle}</h2>
           </div>
           <div className="grid grid--cards">
-            {services.docs.map((service) => (
+            {services.map((service) => (
               <article key={service.id} className="stack">
                 <div className="card-media">
                   <MediaOrPlaceholder media={service.image} placeholder={`Photo · ${service.title}`} />
@@ -56,7 +49,7 @@ export default async function EventsPage() {
         </div>
       </section>
 
-      {weddings.docs.length > 0 && (
+      {weddings.length > 0 && (
         <section id="packages" className="section section--stage">
           <div className="wrap">
             <div className="section-head">
@@ -65,14 +58,14 @@ export default async function EventsPage() {
               <p className="muted">{page.weddingNote}</p>
             </div>
             <div className="grid grid--cards">
-              {weddings.docs.map((tier) => (
+              {weddings.map((tier) => (
                 <div key={tier.id} className="card" style={{ background: 'var(--blackout)' }}>
                   <span className="tag">{tier.guestsLabel}</span>
                   <h3>{tier.name}</h3>
                   <span className="price price--book">{tier.priceLabel}</span>
                   <ul className="list-plain">
                     {(tier.includes ?? []).map((line) => (
-                      <li key={line.id ?? line.item}>{line.item}</li>
+                      <li key={line}>{line}</li>
                     ))}
                   </ul>
                 </div>
@@ -101,7 +94,7 @@ export default async function EventsPage() {
             <p className="muted">{page.alaCarteNote}</p>
           </div>
           <div className="price-rows">
-            {alaCarte.docs.map((row) => (
+            {alaCarte.map((row) => (
               <div key={row.id} className="price-row">
                 <span>{row.name}</span>
                 <span>{row.priceLabel}</span>
@@ -122,7 +115,7 @@ export default async function EventsPage() {
           {(page.capabilities ?? []).length > 0 && (
             <div className="grid grid--cards" style={{ marginTop: 48 }}>
               {(page.capabilities ?? []).map((cap) => (
-                <div key={cap.id ?? cap.letter} className="card">
+                <div key={cap._key} className="card">
                   <span className="price price--book">{cap.letter}</span>
                   <h3>{cap.title}</h3>
                   <p className="muted" style={{ fontSize: 15 }}>
@@ -135,7 +128,7 @@ export default async function EventsPage() {
         </div>
       </section>
 
-      {venues.docs.length > 0 && (
+      {venues.length > 0 && (
         <section className="section section--stage">
           <div className="wrap">
             <div className="section-head">
@@ -143,7 +136,7 @@ export default async function EventsPage() {
               <p className="muted">{page.venuesNote}</p>
             </div>
             <div className="brand-grid">
-              {venues.docs.map((venue) => (
+              {venues.map((venue) => (
                 <div key={venue.id} className="brand">
                   {venue.name}
                 </div>

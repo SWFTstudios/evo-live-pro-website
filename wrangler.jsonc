@@ -11,6 +11,11 @@
     // see https://developers.cloudflare.com/workers/configuration/compatibility-flags/#global-fetch-strictly-public
     "global_fetch_strictly_public",
   ],
+  "vars": {
+    // Pre-merge testing reads the seeded "development" dataset. At cutover (docs/sanity-migration-plan.md,
+    // Phase 7) run the migration, then change this to "production".
+    "SANITY_DATASET": "development",
+  },
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS",
