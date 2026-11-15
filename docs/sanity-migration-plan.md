@@ -152,6 +152,8 @@ Use `defineType` / `defineField` / `defineArrayMember` everywhere. Give every do
   - `sortOrderField()` → `number`, title "Sort order", `initialValue: 100`, same description.
   - `priceLabelField(initial = 'Price on quote')` → `string`, title "Price shown on the website", same description.
 
+> **Implementation notes (from Phase 1–2 as built):** the Studio exists in `studio/` against project `ax3lhw5y` (dataset `production`). `@sanity/icons` v5 has no root icon exports: import each icon from its subpath, e.g. `import {CogIcon} from '@sanity/icons/Cog'`. Schemas live in `studio/schemaTypes/{objects,documents,singletons}`, the sidebar in `studio/structure/index.ts`, and generated types in `src/sanity/types.ts` (`pnpm typegen`). Create a `development` dataset before running seed or migration scripts.
+
 ### 2.3 Documents (one per former collection)
 
 Sanity `_type` uses camelCase singular names. Keep Payload slugs in a comment for traceability.

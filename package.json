@@ -17,6 +17,7 @@
     "generate:types:payload": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
     "studio": "pnpm --filter evo-live-pro-studio dev",
     "studio:build": "pnpm --filter evo-live-pro-studio build",
+    "typegen": "pnpm --filter evo-live-pro-studio typegen",
     "studio:deploy": "pnpm --filter evo-live-pro-studio deploy",
     "lint": "cross-env NODE_OPTIONS=--no-deprecation eslint .",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
