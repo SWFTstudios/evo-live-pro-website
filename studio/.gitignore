@@ -28,3 +28,6 @@
 # Dotenv and similar local-only files
 *.local
 schema.json
+
+# Raw Payload export and media map (may contain customer data)
+/.migration

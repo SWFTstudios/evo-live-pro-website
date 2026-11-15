@@ -269,6 +269,8 @@ Content on the live Payload site may have been edited after seeding, and uploade
 6. Write with `createOrReplace` in batched transactions (≤ 200 mutations each), documents published directly (no `drafts.` prefix).
 7. Print a reconciliation table: counts per type in Payload vs Sanity, media uploaded/failed. Exit non-zero on any mismatch.
 
+> **As built (Phase 3):** `studio/scripts/{lib,seedData,seed,migrate-from-payload}.ts`, run with `pnpm seed` and `pnpm migrate` (both via `sanity exec --with-user-token`). Seed data is copied mechanically from the Payload seed, and Payload's `defaultValue`s are re-applied from the schemas' `initialValue`s so they are not typed twice. The migration was tested against Payload-shaped fixtures (full write path, references, Portable Text, reconciliation); it has **not** been run against the live Payload site, which was unreachable from the build environment. The free Sanity plan allows only 2 datasets (`production`, `development`), so there is no spare dataset for experiments. **Still unverified:** that `inquiry.*` documents are unreadable anonymously (the Phase 0 spike). That check must be run from a machine with no injected credentials, for example `curl 'https://ax3lhw5y.apicdn.sanity.io/v2026-11-01/data/query/development?query=*%5B_type%3D%3D%22inquiry%22%5D'` after the migration or a test write.
+
 ### 3.3 Acceptance
 
 - `pnpm --filter evo-live-pro-studio seed` on an empty `development` dataset produces the same counts as the Payload seed (51 equipment items, 8 categories; compute the rest from the arrays) and running it twice changes nothing.
