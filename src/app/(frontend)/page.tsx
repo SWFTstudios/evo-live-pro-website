@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { FaqList } from '@/components/FaqList'
 import { MediaOrPlaceholder } from '@/components/Media'
+import { stegaClean } from '@sanity/client/stega'
 import { getHomeData } from '@/lib/content'
 import { resolveMedia } from '@/sanity/media'
 
@@ -171,7 +172,7 @@ export default async function HomePage() {
                   data-track="cta_click"
                   data-track-cta-id="home_recent_setup"
                   data-track-location="recent_setups"
-                  data-track-cta-text={item.title}
+                  data-track-cta-text={stegaClean(item.title)}
                 >
                   <MediaOrPlaceholder media={item.media} placeholder={item.category.replace(/-/g, ' ')} />
                   <span className="tile__caption">

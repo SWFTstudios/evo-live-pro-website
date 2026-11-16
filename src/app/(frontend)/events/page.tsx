@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { MediaOrPlaceholder } from '@/components/Media'
+import { stegaClean } from '@sanity/client/stega'
 import { getEventsData } from '@/lib/content'
 
 export const dynamic = 'force-dynamic'
@@ -35,10 +36,10 @@ export default async function EventsPage() {
                   {service.description}
                 </p>
                 <Link
-                  href={service.ctaLink || '/contact'}
-                  className={`link-cta${service.accent === 'rent' ? ' link-cta--rent' : ''}`}
+                  href={stegaClean(service.ctaLink) || '/contact'}
+                  className={`link-cta${stegaClean(service.accent) === 'rent' ? ' link-cta--rent' : ''}`}
                   data-track="cta_click"
-                  data-track-cta-id={`events_service_${service.title.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`}
+                  data-track-cta-id={`events_service_${stegaClean(service.title).toLowerCase().replace(/[^a-z0-9]+/g, '_')}`}
                   data-track-location="event_services"
                 >
                   {service.ctaLabel}

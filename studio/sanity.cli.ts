@@ -10,6 +10,8 @@ export default defineCliConfig({
     schema: 'schema.json',
     generates: '../src/sanity/types.ts',
   },
+  // Deployed with `pnpm studio:deploy` to https://evo-live-pro.sanity.studio
+  studioHost: 'evo-live-pro',
   deployment: {
     /**
      * Enable auto-updates for studios.

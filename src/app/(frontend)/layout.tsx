@@ -1,9 +1,11 @@
 import React from 'react'
 import type { Metadata, Viewport } from 'next'
+import { draftMode } from 'next/headers'
 import { Archivo, Inter, JetBrains_Mono } from 'next/font/google'
 import { SiteHeader } from '@/components/SiteHeader'
 import { SiteFooter } from '@/components/SiteFooter'
 import { GoogleTagManagerNoScript, GoogleTagManagerScript } from '@/components/GoogleTagManager'
+import { PreviewTools } from '@/components/PreviewTools'
 import { Reveal } from '@/components/Reveal'
 import { StickyActions } from '@/components/StickyActions'
 import { TrackClicks } from '@/components/TrackClicks'
@@ -32,12 +34,15 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const settings = await getSiteSettings()
+  // Draft Mode = an editor previewing in the Studio's visual editor. No analytics for them.
+  const preview = (await draftMode()).isEnabled
+  const gtmId = preview ? null : settings.gtmId
   const wordmark = resolveMedia(settings.logoWordmark)?.url ?? '/brand/logo-wordmark.png'
 
   return (
     <html lang="en" className={`${archivo.variable} ${inter.variable} ${mono.variable}`}>
       <body>
-        <GoogleTagManagerNoScript gtmId={settings.gtmId} />
+        <GoogleTagManagerNoScript gtmId={gtmId} />
         <a className="skip-link" href="#main">
           Skip to content
         </a>
@@ -57,7 +62,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         />
         <TrackClicks />
         <Reveal />
-        <GoogleTagManagerScript gtmId={settings.gtmId} />
+        <GoogleTagManagerScript gtmId={gtmId} />
+        {preview && <PreviewTools />}
       </body>
     </html>
   )

@@ -1,5 +1,6 @@
 import { cache } from 'react'
 import type { PortableTextBlock } from '@portabletext/react'
+import { stegaClean } from '@sanity/client/stega'
 import { sanityFetch } from '@/sanity/client'
 import type { MediaRef } from '@/sanity/media'
 import {
@@ -130,11 +131,16 @@ export type ContactPage = {
   sidePhoto?: MediaRef
 }
 
+// Visual editing ("stega") hides invisible markers inside text so editors can click it to edit.
+// Those markers must never reach links, phone numbers, form option values, the quote cart, analytics
+// or <head> tags, so anything used that way is cleaned here, in one place. Display-only text keeps them.
+const clean = <T>(value: T): T => stegaClean(value) as T
+
 // A page that has never been published (an empty dataset) must still render, not crash.
 const FALLBACK_SETTINGS: SiteSettings = { businessName: 'Evo Live Pro', navigation: [] }
 
 export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
-  return (await sanityFetch<SiteSettings | null>(settingsQuery)) ?? FALLBACK_SETTINGS
+  return (await sanityFetch<SiteSettings | null>(settingsQuery, {}, { stega: false })) ?? FALLBACK_SETTINGS
 })
 
 export const getHomeData = async () => {
@@ -146,7 +152,7 @@ export const getHomeData = async () => {
     faqs: { id: string; question: string; answer: string }[]
     testimonials: { id: string; quote: string; name: string; eventType?: string | null }[]
   }>(homeQuery)
-  return { ...data, home: data.home ?? {}, settings: data.settings ?? FALLBACK_SETTINGS }
+  return { ...data, home: data.home ?? {}, settings: clean(data.settings) ?? FALLBACK_SETTINGS }
 }
 
 export const getRentalsData = async () => {
@@ -163,7 +169,12 @@ export const getRentalsData = async () => {
     }[]
     packages: { id: string; name: string; guests: string; price: string; gear: string }[]
   }>(rentalsQuery)
-  return data
+  return {
+    // Category names are filter tabs and item names go into the quote cart and the inquiry: clean them.
+    categories: clean(data.categories),
+    equipment: data.equipment.map((item) => ({ ...item, name: clean(item.name), category: clean(item.category), imageUrl: clean(item.imageUrl) })),
+    packages: data.packages.map((pack) => ({ ...pack, name: clean(pack.name) })),
+  }
 }
 
 export const getEventsData = async () => {
@@ -195,10 +206,23 @@ export const getAboutData = async () => {
 
 export const getPhotosData = async () => {
   const data = await sanityFetch<{ gallery: GalleryDoc[]; settings: SiteSettings | null }>(photosQuery)
-  return { ...data, settings: data.settings ?? FALLBACK_SETTINGS }
+  return {
+    gallery: data.gallery.map((item) => ({ ...item, category: clean(item.category), title: clean(item.title), videoUrl: clean(item.videoUrl) })),
+    settings: clean(data.settings) ?? FALLBACK_SETTINGS,
+  }
 }
 
 export const getContactData = async () => {
   const data = await sanityFetch<{ page: ContactPage | null; settings: SiteSettings | null }>(contactQuery)
-  return { page: data.page ?? {}, settings: data.settings ?? FALLBACK_SETTINGS }
+  const page = data.page ?? {}
+  return {
+    // The option lists become <option> values that are submitted with the form: clean them.
+    page: {
+      ...page,
+      eventTypes: clean(page.eventTypes),
+      budgetRanges: clean(page.budgetRanges),
+      fulfillmentOptions: clean(page.fulfillmentOptions),
+    },
+    settings: clean(data.settings) ?? FALLBACK_SETTINGS,
+  }
 }

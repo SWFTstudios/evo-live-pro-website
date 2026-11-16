@@ -4,7 +4,9 @@ import {FolderIcon} from '@sanity/icons/Folder'
 import {ImagesIcon} from '@sanity/icons/Images'
 import {PackageIcon} from '@sanity/icons/Package'
 import {TagIcon} from '@sanity/icons/Tag'
+import {HomeIcon} from '@sanity/icons/Home'
 import type {StructureBuilder, StructureResolver} from 'sanity/structure'
+import {Overview} from '../components/Overview'
 
 // Mirrors the old Payload dashboard sidebar: same groups, same names, same order.
 const bySortOrder = [{field: 'sortOrder', direction: 'asc' as const}]
@@ -17,8 +19,9 @@ const sortedList = (S: StructureBuilder, type: string, title: string) =>
 const singleton = (S: StructureBuilder, type: string, title: string) =>
   S.listItem().title(title).id(type).child(S.document().schemaType(type).documentId(type).title(title))
 
-const inquiryList = (S: StructureBuilder, title: string, filter: string) =>
+const inquiryList = (S: StructureBuilder, id: string, title: string, filter: string) =>
   S.listItem()
+    .id(id)
     .title(title)
     .schemaType('inquiry')
     .child(
@@ -34,20 +37,28 @@ export const structure: StructureResolver = (S) =>
     .title('Evo Live Pro CMS')
     .items([
       S.listItem()
+        .id('overview')
+        .title('Overview')
+        .icon(HomeIcon)
+        .child(S.component(Overview).id('overview-pane').title('Overview')),
+      S.divider(),
+      S.listItem()
+        .id('inbox')
         .title('Inbox')
         .icon(EnvelopeIcon)
         .child(
           S.list()
             .title('Inquiries (Form Submissions)')
             .items([
-              inquiryList(S, 'New', 'status == "new"'),
-              inquiryList(S, 'In progress', 'status == "in-progress"'),
-              inquiryList(S, 'Quoted', 'status == "quoted"'),
-              inquiryList(S, 'All inquiries', ''),
+              inquiryList(S, 'new', 'New', 'status == "new"'),
+              inquiryList(S, 'in-progress', 'In progress', 'status == "in-progress"'),
+              inquiryList(S, 'quoted', 'Quoted', 'status == "quoted"'),
+              inquiryList(S, 'all', 'All inquiries', ''),
             ]),
         ),
 
       S.listItem()
+        .id('rentals')
         .title('Rentals')
         .icon(PackageIcon)
         .child(
@@ -55,6 +66,7 @@ export const structure: StructureResolver = (S) =>
             .title('Rentals')
             .items([
               S.listItem()
+                .id('equipment')
                 .title('Equipment (Inventory)')
                 .schemaType('equipment')
                 .child(
@@ -62,6 +74,7 @@ export const structure: StructureResolver = (S) =>
                     .title('Equipment (Inventory)')
                     .items([
                       S.listItem()
+                        .id('all')
                         .title('All items')
                         .schemaType('equipment')
                         .child(
@@ -70,6 +83,7 @@ export const structure: StructureResolver = (S) =>
                             .defaultOrdering(bySortOrder),
                         ),
                       S.listItem()
+                        .id('by-category')
                         .title('By category')
                         .child(
                           S.documentTypeList('equipmentCategory')
@@ -85,6 +99,7 @@ export const structure: StructureResolver = (S) =>
                             ),
                         ),
                       S.listItem()
+                        .id('hidden')
                         .title('Hidden items')
                         .schemaType('equipment')
                         .child(
@@ -102,6 +117,7 @@ export const structure: StructureResolver = (S) =>
         ),
 
       S.listItem()
+        .id('events-pricing')
         .title('Events & Pricing')
         .icon(TagIcon)
         .child(
@@ -114,6 +130,7 @@ export const structure: StructureResolver = (S) =>
         ),
 
       S.listItem()
+        .id('pages')
         .title('Pages & Content')
         .icon(CogIcon)
         .child(
@@ -136,6 +153,7 @@ export const structure: StructureResolver = (S) =>
         ),
 
       S.listItem()
+        .id('library')
         .title('Library')
         .icon(FolderIcon)
         .child(
