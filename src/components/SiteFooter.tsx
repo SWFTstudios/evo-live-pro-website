@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import type { SiteSetting } from '@/payload-types'
+import type { SiteSettings } from '@/lib/content'
 
-export function SiteFooter({ settings, logoUrl }: { settings: SiteSetting; logoUrl: string }) {
+export function SiteFooter({ settings, logoUrl }: { settings: SiteSettings; logoUrl: string }) {
   const year = new Date().getFullYear()
   return (
     <footer className="site-footer">
@@ -17,7 +17,7 @@ export function SiteFooter({ settings, logoUrl }: { settings: SiteSetting; logoU
           <div className="footer-col">
             <span className="muted">Pages</span>
             {(settings.navigation ?? []).map((link) => (
-              <Link key={link.id ?? link.label} href={link.url}>
+              <Link key={link._key} href={link.url}>
                 {link.label}
               </Link>
             ))}

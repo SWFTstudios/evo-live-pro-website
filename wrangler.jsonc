@@ -1,78 +1,31 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "main": ".open-next/worker.js",
+  // The website: Next.js built for Cloudflare Workers by OpenNext (`pnpm run deploy`).
+  // Content lives in Sanity, so the Worker needs no database or storage bindings.
   "name": "evo-live-pro-website",
+  "main": ".open-next/worker.js",
   "compatibility_date": "2025-08-15",
   "compatibility_flags": [
-    // Enable Node.js API
-    // see https://developers.cloudflare.com/workers/configuration/compatibility-flags/#nodejs-compatibility-flag
+    // Node.js APIs for Next.js. https://developers.cloudflare.com/workers/configuration/compatibility-flags/#nodejs-compatibility-flag
     "nodejs_compat",
-    // Allow to fetch URLs in your app
-    // see https://developers.cloudflare.com/workers/configuration/compatibility-flags/#global-fetch-strictly-public
+    // fetch() may only reach public URLs (Sanity's API). https://developers.cloudflare.com/workers/configuration/compatibility-flags/#global-fetch-strictly-public
     "global_fetch_strictly_public",
   ],
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS",
   },
-  "d1_databases": [
-    {
-      "binding": "D1",
-      "database_id": "7499c93e-7326-410d-9a82-3ef82f2a765d",
-      "database_name": "evo-live-pro-website",
-      "remote": true,
-    },
-  ],
-  "services": [
-    // The service should match the "name" of your worker
-    // {
-    //   "binding": "WORKER_SELF_REFERENCE",
-    //   "service": "evo-live-pro-website"
-    // },
-  ],
-  "r2_buckets": [
-    {
-      "binding": "R2",
-      "bucket_name": "evo-live-pro-website",
-    },
-    // Create a R2 binding with the binding name "NEXT_INC_CACHE_R2_BUCKET"
-    // {
-    //   "binding": "NEXT_INC_CACHE_R2_BUCKET",
-    //   "bucket_name": "<BUCKET_NAME>",
-    // },
-  ],
-
-  // Here's how to configure an additional environment
-  // It can be deployed with `CLOUDFLARE_ENV=staging pnpm run deploy`
-  // "env": {
-  //   "staging": {
-  //     "name": "my-app-staging",
-  //     "d1_databases": [
-  //       {
-  //         "binding": "D1",
-  //         "database_id": "7499c93e-7326-410d-9a82-3ef82f2a765d",
-  //         "database_name": "my-app-staging",
-  //         "remote": true
-  //       }
-  //     ],
-  //     "services": [
-  //       // The service should match the "name" of your worker
-  //       // {
-  //       //   "binding": "WORKER_SELF_REFERENCE",
-  //       //   "service": "my-app-staging"
-  //       // },
-  //     ],
-  //     "r2_buckets": [
-  //       {
-  //         "binding": "R2",
-  //         "bucket_name": "my-app-staging"
-  //       }
-  //       // Create a R2 binding with the binding name "NEXT_INC_CACHE_R2_BUCKET"
-  //       // {
-  //       //   "binding": "NEXT_INC_CACHE_R2_BUCKET",
-  //       //   "bucket_name": "<BUCKET_NAME>",
-  //       // },
-  //     ]
-  //   }
-  // }
+  "vars": {
+    // Which Sanity dataset the site reads. "development" holds seeded test content.
+    // Switch to "production" once the real content has been migrated into it (see README, "Going live").
+    "SANITY_DATASET": "development",
+  },
+  // Secrets are not stored here. Set them with:
+  //   pnpm wrangler secret put SANITY_API_WRITE_TOKEN   (contact form, Sanity "Editor" token)
+  //   pnpm wrangler secret put SANITY_API_READ_TOKEN    (visual editor drafts, Sanity "Viewer" token)
+  "workers_dev": true,
+  "preview_urls": true,
+  "observability": {
+    "enabled": true,
+  },
 }

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { track } from '@/lib/analytics'
 
 type Item = {
-  id: number
+  id: string
   title: string
   category: string
   large: boolean

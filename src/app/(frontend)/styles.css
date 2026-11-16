@@ -1220,3 +1220,11 @@ html.reveal-ready [data-reveal].is-visible {
     transition: none;
   }
 }
+
+/* Shown only in preview (Draft Mode) when the page is opened outside the Studio */
+.preview-exit {
+  position: fixed;
+  top: 84px;
+  right: 16px;
+  z-index: 1000;
+}

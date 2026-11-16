@@ -6,7 +6,7 @@ import { track } from '@/lib/analytics'
 import { readQuote, subscribeQuote, writeQuote } from '@/lib/quote'
 
 type Item = {
-  id: number
+  id: string
   name: string
   category: string
   subcategory: string
@@ -14,7 +14,7 @@ type Item = {
   priceLabel: string
   imageUrl: string | null
 }
-type Pack = { id: number; name: string; guests: string; price: string; gear: string }
+type Pack = { id: string; name: string; guests: string; price: string; gear: string }
 
 const getSnapshot = () => JSON.stringify(readQuote())
 const getServerSnapshot = () => '[]'

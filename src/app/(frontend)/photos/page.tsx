@@ -1,19 +1,16 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PhotoGallery } from '@/components/PhotoGallery'
-import { getClient, getSiteSettings, resolveMedia } from '@/lib/payload'
+import { getPhotosData } from '@/lib/content'
+import { resolveMedia } from '@/sanity/media'
 
 export const dynamic = 'force-dynamic'
 export const metadata: Metadata = { title: 'Photos & video' }
 
 export default async function PhotosPage() {
-  const payload = await getClient()
-  const [gallery, settings] = await Promise.all([
-    payload.find({ collection: 'gallery', sort: 'sortOrder', limit: 300, depth: 1 }),
-    getSiteSettings(),
-  ])
+  const { gallery, settings } = await getPhotosData()
 
-  const items = gallery.docs.map((doc) => {
+  const items = gallery.map((doc) => {
     const file = resolveMedia(doc.media)
     return {
       id: doc.id,

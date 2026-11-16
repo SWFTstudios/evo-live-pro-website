@@ -1,32 +1,14 @@
 import Link from 'next/link'
 import { FaqList } from '@/components/FaqList'
 import { MediaOrPlaceholder } from '@/components/Media'
-import { getClient, getSiteSettings, resolveMedia } from '@/lib/payload'
+import { stegaClean } from '@sanity/client/stega'
+import { getHomeData } from '@/lib/content'
+import { resolveMedia } from '@/sanity/media'
 
 export const dynamic = 'force-dynamic'
 
 export default async function HomePage() {
-  const payload = await getClient()
-  const [home, settings, featured, brands, faqs, testimonials] = await Promise.all([
-    payload.findGlobal({ slug: 'home-page', depth: 1 }),
-    getSiteSettings(),
-    payload.find({
-      collection: 'gallery',
-      where: { featuredOnHome: { equals: true } },
-      sort: 'sortOrder',
-      limit: 8,
-      depth: 1,
-    }),
-    payload.find({ collection: 'brands', sort: 'sortOrder', limit: 60, depth: 1 }),
-    payload.find({ collection: 'faqs', where: { published: { equals: true } }, sort: 'sortOrder', limit: 20 }),
-    payload.find({
-      collection: 'testimonials',
-      where: { published: { equals: true } },
-      sort: 'sortOrder',
-      limit: 6,
-      depth: 1,
-    }),
-  ])
+  const { home, settings, featured, brands, faqs, testimonials } = await getHomeData()
   const video = resolveMedia(home.heroVideo)
   const backup = resolveMedia(home.heroImage)
   const tel = settings.phone ? `tel:${settings.phone.replace(/[^\d+]/g, '')}` : null
@@ -100,21 +82,21 @@ export default async function HomePage() {
           {home.trustBadges && home.trustBadges.length > 0 && (
             <div className="badges hero__rise hero__rise--5">
               {home.trustBadges.map((b) => (
-                <span key={b.id ?? b.text}>{b.text}</span>
+                <span key={b}>{b}</span>
               ))}
             </div>
           )}
         </div>
       </section>
 
-      {brands.docs.length > 0 && (
+      {brands.length > 0 && (
         <section id="partners" className="marquee" aria-label={home.brandsTitle ?? 'Brands we have produced for'}>
           <span className="marquee__label eyebrow">{home.brandsTitle}</span>
           <div className="marquee__viewport">
             <div className="marquee__track">
               {[0, 1].map((copy) => (
                 <ul key={copy} className="marquee__list" aria-hidden={copy === 1 ? true : undefined}>
-                  {brands.docs.map((brand) => {
+                  {brands.map((brand) => {
                     const logo = resolveMedia(brand.logo)
                     return (
                       <li key={`${copy}-${brand.id}`} className="marquee__item">
@@ -142,7 +124,7 @@ export default async function HomePage() {
           </div>
           <div className="grid grid--cards">
             {(home.services ?? []).map((service, i) => (
-              <article key={service.id ?? service.title} className="stack service" data-reveal style={{ transitionDelay: `${i * 70}ms` }}>
+              <article key={service._key} className="stack service" data-reveal style={{ transitionDelay: `${i * 70}ms` }}>
                 <div className="card-media">
                   <MediaOrPlaceholder media={service.image} placeholder={`Photo · ${service.title}`} />
                 </div>
@@ -164,7 +146,7 @@ export default async function HomePage() {
             </div>
             <ol className="steps">
               {(home.howSteps ?? []).map((step, i) => (
-                <li key={step.id ?? step.title} className="step" data-reveal style={{ transitionDelay: `${i * 90}ms` }}>
+                <li key={step._key} className="step" data-reveal style={{ transitionDelay: `${i * 90}ms` }}>
                   <span className="step__num">{String(i + 1).padStart(2, '0')}</span>
                   <h3>{step.title}</h3>
                   <p className="muted">{step.text}</p>
@@ -175,14 +157,14 @@ export default async function HomePage() {
         </section>
       )}
 
-      {featured.docs.length > 0 && (
+      {featured.length > 0 && (
         <section className="section">
           <div className="wrap">
             <div className="section-head" data-reveal>
               <h2>{home.recentSetupsTitle}</h2>
             </div>
             <div className="masonry" data-reveal>
-              {featured.docs.map((item) => (
+              {featured.map((item) => (
                 <Link
                   key={item.id}
                   href="/photos"
@@ -190,7 +172,7 @@ export default async function HomePage() {
                   data-track="cta_click"
                   data-track-cta-id="home_recent_setup"
                   data-track-location="recent_setups"
-                  data-track-cta-text={item.title}
+                  data-track-cta-text={stegaClean(item.title)}
                 >
                   <MediaOrPlaceholder media={item.media} placeholder={item.category.replace(/-/g, ' ')} />
                   <span className="tile__caption">
@@ -245,14 +227,14 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {testimonials.docs.length > 0 && (
+      {testimonials.length > 0 && (
         <section className="section">
           <div className="wrap">
             <div className="section-head" data-reveal>
               <h2>{home.testimonialsTitle}</h2>
             </div>
             <div className="grid grid--wide">
-              {testimonials.docs.map((t, i) => (
+              {testimonials.map((t, i) => (
                 <figure key={t.id} className="quote" data-reveal style={{ transitionDelay: `${i * 80}ms` }}>
                   <blockquote>“{t.quote}”</blockquote>
                   <figcaption>
@@ -266,7 +248,7 @@ export default async function HomePage() {
         </section>
       )}
 
-      {faqs.docs.length > 0 && (
+      {faqs.length > 0 && (
         <section className="section">
           <div className="wrap split split--faq">
             <div className="section-head" data-reveal>
@@ -281,7 +263,7 @@ export default async function HomePage() {
               </p>
             </div>
             <div data-reveal>
-              <FaqList items={faqs.docs.map((f) => ({ id: f.id, question: f.question, answer: f.answer }))} />
+              <FaqList items={faqs.map((f) => ({ id: f.id, question: f.question, answer: f.answer }))} />
             </div>
           </div>
         </section>

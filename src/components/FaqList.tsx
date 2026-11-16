@@ -2,7 +2,7 @@
 
 import { track } from '@/lib/analytics'
 
-export function FaqList({ items }: { items: { id: number; question: string; answer: string }[] }) {
+export function FaqList({ items }: { items: { id: string; question: string; answer: string }[] }) {
   return (
     <div className="faq">
       {items.map((item) => (
