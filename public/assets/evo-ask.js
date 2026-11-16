@@ -1,6 +1,6 @@
-/* Evo Live Pro: the "Planning something?" pill and the help modal it opens.
-   The modal has two tabs: Ask Tim & Dom (message goes to their email app) and Search the site.
-   Other scripts can open it with EvoAsk.open({ tab: 'ask' | 'search', message: '...' }). */
+/* Evo Live Pro: the "Planning something?" pill and the contact form it opens, plus the site search
+   that header search buttons marked data-ea-search open (the home page keeps its own search).
+   Other scripts can open the contact form with EvoAsk.open({ message: '...' }). */
 (function () {
   var EMAIL = 'evolivepro@gmail.com', PHONE = '+12019139558';
 
@@ -33,18 +33,20 @@
   ];
   var POPULAR = ['The index', 'Wedding packages', 'Rental catalog', 'Tim & Dom', 'Book your date'];
 
-  var ICON_SEARCH = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>';
   var ICON_CHAT = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path></svg>';
+  var ICON_X = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>';
+  // On phones, focusing a field on open pops the keyboard over the form, so only do it with a mouse.
+  var FINE = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
 
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
-  function build() {
+  function buildContact() {
     var pill = document.createElement('button');
     pill.type = 'button';
     pill.className = 'ea-pill';
     pill.setAttribute('popovertarget', 'ea-modal');
     pill.setAttribute('aria-haspopup', 'dialog');
-    pill.innerHTML = '<span class="ea-dot" aria-hidden="true"></span><span class="ea-pill-text"><b>Planning something?</b><small>Ask Tim &amp; Dom or search the site</small></span><span class="ea-pill-go" aria-hidden="true">' + ICON_CHAT + '</span>';
+    pill.innerHTML = '<span class="ea-dot" aria-hidden="true"></span><span class="ea-pill-text"><b>Planning something?</b><small>Ask Tim &amp; Dom</small></span><span class="ea-pill-go" aria-hidden="true">' + ICON_CHAT + '</span>';
 
     var m = document.createElement('div');
     m.id = 'ea-modal';
@@ -54,14 +56,10 @@
     m.setAttribute('aria-modal', 'true');
     m.setAttribute('aria-labelledby', 'ea-title');
     m.innerHTML =
-      '<div class="ea-head"><div><span class="ea-eyebrow">Evo Live Pro</span><h2 id="ea-title" class="ea-title">How can we help?</h2></div>' +
-      '<button type="button" class="ea-x" popovertarget="ea-modal" popovertargetaction="hide" aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>' +
-      '<div class="ea-tabs" role="tablist" aria-label="Choose how to get help">' +
-      '<button type="button" class="ea-tab" role="tab" id="ea-tab-ask" aria-controls="ea-p-ask" data-tab="ask">' + ICON_CHAT + 'Ask Tim &amp; Dom</button>' +
-      '<button type="button" class="ea-tab" role="tab" id="ea-tab-search" aria-controls="ea-p-search" data-tab="search">' + ICON_SEARCH + 'Search the site</button></div>' +
+      '<div class="ea-head"><div><span class="ea-eyebrow">Contact Evo</span><h2 id="ea-title" class="ea-title">Ask Tim &amp; Dom</h2></div>' +
+      '<button type="button" class="ea-x" popovertarget="ea-modal" popovertargetaction="hide" aria-label="Close">' + ICON_X + '</button></div>' +
       '<div class="ea-body">' +
-      '<div class="ea-panel" id="ea-p-ask" role="tabpanel" aria-labelledby="ea-tab-ask">' +
-      '<p class="ea-lede">Ask about anything: a date, a piece of gear, a crazy idea. Write it however you\'d say it. It goes straight to Tim and Dom.</p>' +
+      '<p class="ea-lede">A date, a piece of gear, a crazy idea. Write it however you\'d say it. It goes straight to Tim and Dom.</p>' +
       '<form class="ea-form" novalidate>' +
       '<div class="ea-row2"><div class="ea-field"><label for="ea-name">Name</label><input id="ea-name" name="name" autocomplete="name" placeholder="Jordan"></div>' +
       '<div class="ea-field"><label for="ea-from">Email or phone</label><input id="ea-from" name="from" autocomplete="email" placeholder="you@email.com"></div></div>' +
@@ -69,67 +67,11 @@
       '<button type="submit" class="ea-send">Send message</button>' +
       '<div class="ea-or">or reach us directly</div>' +
       '<div class="ea-quick"><a href="tel:' + PHONE + '">Call</a><a href="sms:' + PHONE + '">Text</a><a href="mailto:' + EMAIL + '">Email</a></div>' +
-      '</form></div>' +
-      '<div class="ea-panel" id="ea-p-search" role="tabpanel" aria-labelledby="ea-tab-search" hidden>' +
-      '<div class="ea-search">' + ICON_SEARCH + '<label for="ea-q" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Search the site</label>' +
-      '<input id="ea-q" type="search" autocomplete="off" placeholder="Weddings, LED walls, pricing…"></div>' +
-      '<p class="ea-label" id="ea-res-label" aria-live="polite">Popular</p><ul class="ea-results" id="ea-results"></ul></div>' +
-      '</div>';
+      '</form></div>';
 
     document.body.appendChild(pill);
     document.body.appendChild(m);
-
-    var tabs = m.querySelectorAll('.ea-tab');
-    var q = m.querySelector('#ea-q'), list = m.querySelector('#ea-results'), label = m.querySelector('#ea-res-label');
     var msg = m.querySelector('#ea-msg');
-
-    function setTab(name, focus) {
-      for (var i = 0; i < tabs.length; i++) {
-        var on = tabs[i].getAttribute('data-tab') === name;
-        tabs[i].setAttribute('aria-selected', on ? 'true' : 'false');
-        tabs[i].tabIndex = on ? 0 : -1;
-        document.getElementById(tabs[i].getAttribute('aria-controls')).hidden = !on;
-      }
-      if (focus) (name === 'search' ? q : msg).focus();
-    }
-
-    function renderResults() {
-      var term = q.value.trim().toLowerCase();
-      var hits = !term ? INDEX.filter(function (x) { return POPULAR.indexOf(x[0]) !== -1; })
-        : INDEX.filter(function (x) { var h = x.join(' ').toLowerCase(); return term.split(/\s+/).every(function (w) { return h.indexOf(w) !== -1; }); });
-      label.textContent = term ? hits.length + (hits.length === 1 ? ' result' : ' results') : 'Popular';
-      if (!hits.length) {
-        list.innerHTML = '<li class="ea-none">Nothing on the site for that yet. <button type="button" class="ea-link" data-ask-about>Ask Tim &amp; Dom about it</button>.</li>';
-        return;
-      }
-      list.innerHTML = hits.map(function (x) {
-        return '<li><a class="ea-res" href="' + esc(x[3]) + '"><span><b>' + esc(x[0]) + '</b><small>' + esc(x[2]) + '</small></span><em>' + esc(x[1]) + '</em></a></li>';
-      }).join('');
-    }
-
-    for (var i = 0; i < tabs.length; i++) {
-      tabs[i].addEventListener('click', function () { setTab(this.getAttribute('data-tab'), true); });
-      tabs[i].addEventListener('keydown', function (e) {
-        if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-        var next = this.getAttribute('data-tab') === 'ask' ? 'search' : 'ask';
-        setTab(next, false);
-        m.querySelector('[data-tab="' + next + '"]').focus();
-      });
-    }
-    q.addEventListener('input', renderResults);
-    q.addEventListener('keydown', function (e) {
-      if (e.key !== 'Enter') return;
-      var first = list.querySelector('a');
-      if (first) { e.preventDefault(); first.click(); }
-    });
-    list.addEventListener('click', function (e) {
-      if (e.target.closest('[data-ask-about]')) {
-        msg.value = 'I was looking for "' + q.value.trim() + '" on the site. ';
-        setTab('ask', true);
-        return;
-      }
-      if (e.target.closest('a')) m.hidePopover();
-    });
 
     m.querySelector('form').addEventListener('submit', function (e) {
       e.preventDefault();
@@ -144,11 +86,10 @@
       var open = e.newState === 'open';
       pill.setAttribute('aria-expanded', open ? 'true' : 'false');
       if (open) {
-        setTab(opts.tab || 'ask', false);
         if (opts.message) msg.value = opts.message;
-        renderResults();
         opts = {};
-        setTimeout(function () { (m.querySelector('[aria-selected="true"]').getAttribute('data-tab') === 'search' ? q : msg).focus(); }, 30);
+        m.querySelector('.ea-body').scrollTop = 0;
+        if (FINE) setTimeout(function () { msg.focus(); }, 30);
       }
     });
 
@@ -162,10 +103,61 @@
     onScroll();
 
     window.EvoAsk = {
-      open: function (o) { opts = o || {}; if (m.matches(':popover-open')) { m.hidePopover(); } m.showPopover(); }
+      open: function (o) { opts = o || {}; if (m.matches(':popover-open')) m.hidePopover(); m.showPopover(); }
     };
-    setTab('ask', false);
-    renderResults();
+  }
+
+  function buildSearch() {
+    var s = document.createElement('div');
+    s.id = 'ea-search';
+    s.className = 'ea-search-modal';
+    s.setAttribute('popover', '');
+    s.setAttribute('role', 'dialog');
+    s.setAttribute('aria-modal', 'true');
+    s.setAttribute('aria-label', 'Search the site');
+    s.innerHTML =
+      '<div class="ea-s-wrap"><div class="ea-s-bar">' +
+      '<label for="ea-q" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Search the site</label>' +
+      '<input id="ea-q" type="search" autocomplete="off" enterkeyhint="search" placeholder="What are you looking for?">' +
+      '<button type="button" class="ea-x" popovertarget="ea-search" popovertargetaction="hide" aria-label="Close search">' + ICON_X + '</button></div>' +
+      '<p class="ea-label" id="ea-res-label" aria-live="polite">Popular</p><ul class="ea-results" id="ea-results"></ul></div>';
+    document.body.appendChild(s);
+
+    var q = s.querySelector('#ea-q'), list = s.querySelector('#ea-results'), label = s.querySelector('#ea-res-label');
+    function render() {
+      var term = q.value.trim().toLowerCase();
+      var hits = !term ? INDEX.filter(function (x) { return POPULAR.indexOf(x[0]) !== -1; })
+        : INDEX.filter(function (x) { var h = x.join(' ').toLowerCase(); return term.split(/\s+/).every(function (w) { return h.indexOf(w) !== -1; }); });
+      label.textContent = term ? hits.length + (hits.length === 1 ? ' result' : ' results') : 'Popular';
+      list.innerHTML = hits.length ? hits.map(function (x) {
+        return '<li><a class="ea-res" href="' + esc(x[3]) + '"><span><b>' + esc(x[0]) + '</b><small>' + esc(x[2]) + '</small></span><em>' + esc(x[1]) + '</em></a></li>';
+      }).join('') : '<li class="ea-none">Nothing on the site for that yet. <button type="button" class="ea-link" data-ask-about>Ask Tim &amp; Dom about it</button>.</li>';
+    }
+    q.addEventListener('input', render);
+    q.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter') return;
+      var first = list.querySelector('a');
+      if (first) { e.preventDefault(); first.click(); }
+    });
+    list.addEventListener('click', function (e) {
+      if (e.target.closest('[data-ask-about]')) {
+        var term = q.value.trim();
+        s.hidePopover();
+        if (window.EvoAsk) window.EvoAsk.open({ message: 'I was looking for "' + term + '" on the site. ' });
+        return;
+      }
+      if (e.target.closest('a')) s.hidePopover();
+    });
+    s.addEventListener('toggle', function (e) { if (e.newState === 'open') { q.value = ''; render(); setTimeout(function () { q.focus(); }, 30); } });
+    document.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('[data-ea-search]')) { e.preventDefault(); s.showPopover(); }
+    });
+    render();
+  }
+
+  function build() {
+    buildContact();
+    if (document.querySelector('[data-ea-search]')) buildSearch();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
