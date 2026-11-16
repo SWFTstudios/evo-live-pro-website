@@ -1,50 +1,39 @@
 {
   "name": "evo-live-pro-website",
   "version": "1.0.0",
-  "description": "Evo Live Pro website with Payload CMS on Cloudflare Workers (D1 + R2)",
+  "description": "Evo Live Pro website: Next.js on Cloudflare Workers, content in Sanity",
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8000\" next build --webpack",
-    "deploy": "pnpm run deploy:database && pnpm run deploy:app",
-    "deploy:app": "opennextjs-cloudflare build --env=$CLOUDFLARE_ENV && opennextjs-cloudflare deploy --env=$CLOUDFLARE_ENV",
-    "deploy:database": "cross-env NODE_ENV=production PAYLOAD_SECRET=ignore payload migrate && wrangler d1 execute D1 --command 'PRAGMA optimize' --env=$CLOUDFLARE_ENV --remote",
+    "build": "cross-env NODE_OPTIONS=\"--no-deprecation\" next build --webpack",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
-    "devsafe": "rm -rf .next && rm -rf .open-next && cross-env NODE_OPTIONS=--no-deprecation next dev",
-    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
-    "generate:types": "pnpm run generate:types:cloudflare && pnpm run generate:types:payload",
+    "devsafe": "rm -rf .next .open-next && cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "generate:types": "pnpm run generate:types:cloudflare && pnpm typegen",
     "generate:types:cloudflare": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
-    "generate:types:payload": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
     "studio": "pnpm --filter evo-live-pro-studio dev",
     "studio:build": "pnpm --filter evo-live-pro-studio build",
     "typegen": "pnpm --filter evo-live-pro-studio typegen",
-    "seed": "cross-env NODE_OPTIONS=--no-deprecation payload run scripts/seed.ts",
     "migrate": "pnpm --filter evo-live-pro-studio migrate",
     "studio:deploy": "pnpm --filter evo-live-pro-studio deploy",
     "lint": "cross-env NODE_OPTIONS=--no-deprecation eslint .",
-    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview --env=$CLOUDFLARE_ENV",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "test": "pnpm run test:int && pnpm run test:e2e",
     "test:e2e": "cross-env NODE_OPTIONS=\"--no-deprecation --import=tsx/esm\" playwright test --config=playwright.config.ts",
-    "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts"
+    "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts",
+    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+    "seed": "pnpm --filter evo-live-pro-studio seed"
   },
   "dependencies": {
     "@opennextjs/cloudflare": "1.20.16",
-    "@payloadcms/db-d1-sqlite": "3.93.0",
-    "@payloadcms/next": "3.93.0",
-    "@payloadcms/richtext-lexical": "3.93.0",
-    "@payloadcms/storage-r2": "3.93.0",
-    "@payloadcms/ui": "3.93.0",
     "@portabletext/react": "^8.0.1",
     "@sanity/client": "^8.16.0",
     "@sanity/image-url": "^2.1.1",
     "cross-env": "^7.0.3",
     "dotenv": "16.4.7",
-    "graphql": "^16.8.1",
     "next": "16.4.6",
     "next-sanity": "^13.4.0",
-    "payload": "3.93.0",
     "react": "19.2.9",
     "react-dom": "19.2.9"
   },
@@ -76,12 +65,5 @@
       "esbuild",
       "unrs-resolver"
     ]
-  },
-  "cloudflare": {
-    "bindings": {
-      "PAYLOAD_SECRET": {
-        "description": "Evo Live Pro website with Payload CMS on Cloudflare Workers (D1 + R2)"
-      }
-    }
   }
 }

@@ -20,7 +20,13 @@ export function SiteHeader({ businessName, logoUrl, links, bookLabel, rentLabel 
   const [open, setOpen] = useState(false)
   const count = Number(useSyncExternalStore(subscribeQuote, getSnapshot, () => '0'))
 
-  useEffect(() => setOpen(false), [pathname])
+  // Close the mobile menu after navigating. Adjusting state during render (not in an effect) is React's
+  // recommended pattern: https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes
+  const [menuPath, setMenuPath] = useState(pathname)
+  if (menuPath !== pathname) {
+    setMenuPath(pathname)
+    setOpen(false)
+  }
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
     return () => {

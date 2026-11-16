@@ -10,7 +10,7 @@ This is how the website reports what visitors do, so you can see what's working 
 
 The website code already sends every event. You only need to connect GTM and GA4 once.
 
-**No personal details are ever sent.** Names, emails and phone numbers stay in the dashboard's Inbox. Analytics only gets the shape of a request, like "booking, wedding, $5,500 – $8,500".
+**No personal details are ever sent.** Names, emails and phone numbers stay in the Studio's Inbox (Sanity). Analytics only gets the shape of a request, like "booking, wedding, $5,500 – $8,500".
 
 ## One-time setup (about 15 minutes)
 
@@ -18,7 +18,7 @@ The website code already sends every event. You only need to connect GTM and GA4
 2. **Create GTM.** At [tagmanager.google.com](https://tagmanager.google.com), create a container (type **Web**). Copy the **container ID** (looks like `GTM-ABC1234`).
 3. **Import the ready-made setup.** In GTM go to **Admin → Import Container**, choose `analytics/gtm-container-import.json`, pick the default workspace, and choose **Merge → Rename conflicting**.
 4. **Paste the Measurement ID.** In GTM open **Variables → GA4 Measurement ID** and replace `G-XXXXXXXXXX` with your real one.
-5. **Turn it on in the website.** In the website dashboard open **Pages & Content → Site Settings → Tracking**, paste the `GTM-…` ID and press **Save**. (Only Admins can change this field.)
+5. **Turn it on in the website.** In the Studio (evo-live-pro.sanity.studio) open **Content → Pages & Content → Site Settings → Tracking**, paste the `GTM-…` ID and press **Publish**. (Only administrators can change this field.)
 6. **Test it.** In GTM click **Preview**, enter the website address, and click a few buttons. You should see the events below appear in the Tag Assistant window, and the "GA4 Event - Evo site events" tag fire for each.
 7. **Publish** the GTM container (top right, **Submit → Publish**).
 8. **In GA4**, open **Admin → Events** after a day of traffic and mark these as **key events** (conversions): `generate_lead`, `begin_quote_request`, `contact_click`.
@@ -62,6 +62,6 @@ Once a month (SWFT Method, Step 4):
 ## For developers
 
 - Send events with `track('event_name', { ... })` from `src/lib/analytics.ts`, or add `data-track="event_name"` plus `data-track-*` attributes to any link or button (`data-track-cta-id="hero_book"` becomes `cta_id: "hero_book"`). The listener is `src/components/TrackClicks.tsx`.
-- GTM only loads when a valid ID is saved in Site Settings (`src/components/GoogleTagManager.tsx`). The dashboard (`/admin`) never loads it.
+- GTM only loads when a valid ID is published in Site Settings (`src/components/GoogleTagManager.tsx`). It never loads in the Studio, or in the visual editor's preview, so editors' clicks are not counted.
 - If you add a new event name, add it to the trigger regex in GTM (or re-import an updated container file) and to the table above.
 - GA4 allows at most 25 parameters per event. The import file sends 24.

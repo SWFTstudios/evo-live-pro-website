@@ -4,6 +4,8 @@
 **Starting point:** branch `feat/payload-cms` at commit `f922630` ("Journey-based site experience and Google Tag Manager tracking").
 **Goal:** the public site looks and behaves exactly as it does today. Only the content backend moves from Payload (D1 + R2, embedded at `/admin`) to Sanity (Content Lake + Sanity Studio).
 
+> **Status (as built):** Phases 1–7 are implemented on branch `claude/inspiring-davinci-v58dgj`, plus visual editing (Phase 8, item 2). Payload is removed from this branch (`feat/payload-cms` keeps it). Hosting: the website runs on **Cloudflare Workers** (OpenNext, `wrangler.jsonc`); the Studio is hosted by **Sanity** (`evo-live-pro.sanity.studio`). Nothing runs on Vercel. The remaining go-live steps (tokens, CORS, migration of live content, dataset switch, deploys) are in the README under "Going live". Earlier "as built" notes below describe each phase.
+
 > Work through the phases in order. Each phase ends with **acceptance checks**. Do not start the next phase until they pass. Commit after each phase with a clear message. Do not delete Payload code until Phase 7.
 
 ---

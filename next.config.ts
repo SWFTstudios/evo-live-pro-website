@@ -1,28 +1,16 @@
-import { withPayload } from '@payloadcms/next/withPayload'
 import type { NextConfig } from 'next'
 
+// The content editor (Sanity Studio) is its own app. Old bookmarks to /admin still land there.
+const STUDIO_URL = process.env.SANITY_STUDIO_URL || 'https://evo-live-pro.sanity.studio'
+
 const nextConfig: NextConfig = {
-  images: {
-    localPatterns: [
-      {
-        pathname: '/api/media/file/**',
-      },
-    ],
-  },
-  // Packages with Cloudflare Workers (workerd) specific code
-  // Read more: https://opennext.js.org/cloudflare/howtos/workerd
-  serverExternalPackages: ['jose', 'pg-cloudflare'],
-
-  // Your Next.js config here
-  webpack: (webpackConfig) => {
-    webpackConfig.resolve.extensionAlias = {
-      '.cjs': ['.cts', '.cjs'],
-      '.js': ['.ts', '.tsx', '.js', '.jsx'],
-      '.mjs': ['.mts', '.mjs'],
-    }
-
-    return webpackConfig
+  async redirects() {
+    return [
+      { source: '/admin', destination: STUDIO_URL, permanent: false },
+      { source: '/admin/:path*', destination: STUDIO_URL, permanent: false },
+      { source: '/studio', destination: STUDIO_URL, permanent: false },
+    ]
   },
 }
 
-export default withPayload(nextConfig, { devBundleServerPackages: false })
+export default nextConfig
