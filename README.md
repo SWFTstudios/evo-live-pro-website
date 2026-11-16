@@ -4,7 +4,7 @@ Website for Evo Live Pro, an audio-visual and live event production company. Des
 
 ## Status
 
-Early setup. The site is being built on an open source CMS so the client can edit content without touching code.
+Staging. The site matches the Layout E design: Home, About Us, Rentals, Events, Photos and Contact Us, with the Evo Ember color treatment. A CMS so the client can edit content without touching code is still planned.
 
 ## Goals
 
@@ -15,9 +15,21 @@ Early setup. The site is being built on an open source CMS so the client can edi
 ## Project structure
 
 ```
-public/          Static files served by the Worker (index.html, 404.html)
+public/
+  index.html, about.html, rentals.html,
+  events.html, photos.html, contact.html   Pages built from the Layout E design
+  404.html                                  Not-found page
+  assets/evo-dc.js                          Small runtime that keeps each page interactive
+                                            (search, rentals quote, filters, forms)
+  assets/morphdom.min.js                    DOM patching used by the runtime
+  assets/img/, assets/gear/                 Photos (WebP), hero video and gear cutouts
+  preview/                                  Older wireframes, not linked from the site
 wrangler.jsonc   Cloudflare Worker config (name: evo-live-pro-website)
 ```
+
+Each page ships pre-rendered HTML for a fast first paint, plus the design template and
+logic, which `evo-dc.js` uses to keep the page live. Pages are generated from the design
+canvas files, so edit the design first and rebuild rather than editing the HTML by hand.
 
 ## Hosting
 
