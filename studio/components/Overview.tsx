@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
-import {useClient, useCurrentUser} from 'sanity'
+import {useClient, useCurrentUser, useWorkspace} from 'sanity'
 import {Box, Button, Card, Flex, Grid, Heading, Stack, Text} from '@sanity/ui'
-import {SITE_URL} from '../lib/site'
+import {SITE_URL, TEST_SITE_URL} from '../lib/site'
 
 // The Studio's home screen: what needs attention, and shortcuts to the things Tim edits most.
 // Ported from the old Payload dashboard (src/components/admin/DashboardHome.tsx).
@@ -16,7 +16,7 @@ const COUNTS_QUERY = `{
   "drafts": count(*[_id in path("drafts.**")])
 }`
 
-// Relative Studio URLs (the structure IDs come from studio/structure/index.ts).
+// Studio paths inside the current workspace (the structure IDs come from studio/structure/index.ts).
 const actions = [
   {href: '/presentation', title: 'Edit the website visually', note: 'See the site, click any text to change it'},
   {href: '/structure/rentals;equipment;all', title: 'Rental inventory & prices', note: 'Change prices, add photos, hide gear'},
@@ -30,6 +30,8 @@ export function Overview() {
   const client = useClient({apiVersion: '2026-11-01'})
   const user = useCurrentUser()
   const [counts, setCounts] = useState<Counts | null>(null)
+  const {basePath, dataset} = useWorkspace()
+  const at = (path: string) => `${basePath.replace(/\/$/, '')}${path}`
 
   useEffect(() => {
     let active = true
@@ -58,6 +60,7 @@ export function Overview() {
         <Stack gap={3}>
           <Text size={1} muted>
             Evo Live Pro · Website CMS · built by SWFT Studios
+            {dataset !== 'production' ? ' · TEST CONTENT (not the live site)' : ''}
           </Text>
           <Heading size={4}>{firstName ? `Welcome back, ${firstName}` : 'Welcome back'}</Heading>
           <Text muted>
@@ -65,8 +68,8 @@ export function Overview() {
             them, and only published changes show on the website.
           </Text>
           <Flex gap={2} wrap="wrap">
-            <Button as="a" href="/structure/inbox" text="Open inbox" tone="primary" />
-            <Button as="a" href={SITE_URL} target="_blank" rel="noopener noreferrer" text="View live site ↗" mode="ghost" />
+            <Button as="a" href={at('/structure/inbox')} text="Open inbox" tone="primary" />
+            <Button as="a" href={dataset === 'production' ? SITE_URL : TEST_SITE_URL} target="_blank" rel="noopener noreferrer" text={dataset === 'production' ? 'View live site ↗' : 'View test site ↗'} mode="ghost" />
           </Flex>
         </Stack>
 
@@ -76,7 +79,7 @@ export function Overview() {
               <Card
                 key={stat.label}
                 as="a"
-                href={stat.href}
+                href={at(stat.href)}
                 padding={4}
                 radius={2}
                 border
@@ -100,7 +103,7 @@ export function Overview() {
           </Text>
           <Grid gridTemplateColumns={[1, 2]} gap={3}>
             {actions.map((action) => (
-              <Card key={action.href} as="a" href={action.href} padding={4} radius={2} border style={{textDecoration: 'none'}}>
+              <Card key={action.href} as="a" href={at(action.href)} padding={4} radius={2} border style={{textDecoration: 'none'}}>
                 <Stack gap={2}>
                   <Text weight="semibold">{action.title} ›</Text>
                   <Text size={1} muted>

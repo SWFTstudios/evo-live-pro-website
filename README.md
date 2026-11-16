@@ -152,6 +152,7 @@ To preview your local website inside the Studio's visual editor, set `SANITY_STU
 | `pnpm preview` | Builds for Cloudflare and runs it in Cloudflare's runtime locally |
 | `pnpm run deploy` | Builds and publishes the website to Cloudflare |
 | `pnpm run upload` | Builds and uploads a new version **without** sending visitors to it (gives a preview URL) |
+| `pnpm run upload:test` | Updates the test site (`dev-evo-live-pro-website…workers.dev`), which reads the development dataset |
 | `pnpm studio:deploy` | Publishes the Studio to evo-live-pro.sanity.studio |
 
 ### What is in the folders
@@ -238,12 +239,12 @@ The form has a hidden "trap" field that real people never see. If a bot fills it
 
 The website runs on the Cloudflare Worker `evo-live-pro-website`. These steps take it from the old Payload site to Sanity. They are listed in order.
 
-1. **Tokens.** At sanity.io/manage → API → Tokens, create `website-write` (Editor) and `website-read` (Viewer). Add them to the Worker:
+1. **Tokens.** ✅ *Done (Nov 2026): tokens `website-write` and `website-read` exist and are set as Worker secrets.* To replace them: at sanity.io/manage → API → Tokens, create `website-write` (Editor) and `website-read` (Viewer), then add them to the Worker:
    ```bash
    pnpm wrangler secret put SANITY_API_WRITE_TOKEN
    pnpm wrangler secret put SANITY_API_READ_TOKEN
    ```
-2. **CORS.** At sanity.io/manage → API → CORS origins, add the website address (`https://evo-live-pro-website.elombe.workers.dev`, and the custom domain once connected) with **Allow credentials** on, plus `http://localhost:3000` for development.
+2. **CORS.** ✅ *Done for the workers.dev address, the test site and localhost.* When the custom domain is connected, add it at sanity.io/manage → API → CORS origins with **Allow credentials** on.
 3. **Move the real content.** While the old Payload site is still live, copy its content and photos into Sanity, first as a test, then for real:
    ```bash
    PAYLOAD_URL=https://evo-live-pro-website.elombe.workers.dev PAYLOAD_EMAIL=... PAYLOAD_PASSWORD=... \
@@ -256,8 +257,22 @@ The website runs on the Cloudflare Worker `evo-live-pro-website`. These steps ta
    `curl 'https://ax3lhw5y.apicdn.sanity.io/v2026-11-01/data/query/production?query=*%5B_type%3D%3D%22inquiry%22%5D'`
 5. **Point the site at production.** In `wrangler.jsonc`, set `"SANITY_DATASET": "production"`. Commit it.
 6. **Deploy.** `pnpm run upload` first to get a preview URL and check it, then `pnpm run deploy`. (If Workers Builds is connected to the repo, set its build command to `pnpm run deploy`. It no longer needs a Cloudflare token or database access at build time.)
-7. **Deploy the Studio.** `pnpm studio:deploy`. Then invite Tim and Dom at sanity.io/manage → Members.
+7. **Deploy the Studio.** ✅ *Deployed to https://evo-live-pro.sanity.studio.* Redeploy after schema changes with `pnpm studio:deploy`. Invite Tim and Dom at sanity.io/manage → Members.
 8. **After 30 days**, once nobody misses the old site: export and delete the old Payload D1 database and R2 bucket (`evo-live-pro-website`) in the Cloudflare dashboard, and delete the `PAYLOAD_SECRET` Worker secret. The `feat/payload-cms` branch keeps the Payload version if you ever need it.
+
+### The test site and the "Test content" workspace
+
+The Studio has two workspaces (switch at the top left):
+
+- **Evo Live Pro**: the real content (`production` dataset). Its visual editor shows the live website.
+- **Test content**: seeded sample content (`development` dataset). Its visual editor shows a test version of the website at `https://dev-evo-live-pro-website.elombe.workers.dev`, so you can try things without touching the live site.
+
+The test version is a Cloudflare preview version of the same Worker: it never receives normal visitors. Upload or refresh it with:
+
+```bash
+pnpm wrangler login        # once
+pnpm run upload:test       # builds, then uploads a preview version with the alias "dev", reading the development dataset
+```
 
 ### What it costs
 

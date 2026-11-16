@@ -23,7 +23,8 @@
     "test:e2e": "cross-env NODE_OPTIONS=\"--no-deprecation --import=tsx/esm\" playwright test --config=playwright.config.ts",
     "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts",
     "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
-    "seed": "pnpm --filter evo-live-pro-studio seed"
+    "seed": "pnpm --filter evo-live-pro-studio seed",
+    "upload:test": "opennextjs-cloudflare build && wrangler versions upload --preview-alias dev --var SANITY_DATASET:development --message \"Test site (development dataset)\""
   },
   "dependencies": {
     "@opennextjs/cloudflare": "1.20.16",
