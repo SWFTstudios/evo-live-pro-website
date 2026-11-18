@@ -3,7 +3,7 @@
    To add media to an event, add entries to its `media` list: { src, alt } for a photo, { video, poster, alt } for a video. */
 (function () {
   var EVENTS = [
-    { slug: 'paramus-prom', title: 'Paramus Prom', type: 'Prom', gear: '65" TV booth · 12×8 truss · 8 movers · RCF 945 + 8003',
+    { slug: 'paramus-prom', title: 'Paramus Prom', type: 'Prom', gear: '65" TV booth · goal post truss · 8 movers · sparkulars · RCF 945 + 8003',
       media: [{ src: '/assets/img/setup-prom.webp', alt: 'White DJ booth with a 65 inch screen under goal post truss with eight moving lights in a chandelier ballroom' }] },
     { slug: 'nba-tip-off', title: 'NBA Tip-Off', type: 'Corporate', gear: 'LED wall content · DJ facade · column speakers',
       media: [{ src: '/assets/img/install-nba.webp', alt: 'Large LED video wall with flanking screens and a DJ facade in a corporate event space' }] },
@@ -13,10 +13,8 @@
       media: [{ src: '/assets/img/fx-co2.webp', alt: 'DJ firing a CO2 jet over a cheering crowd in a nightclub' }] },
     { slug: 'festival-main-stage', title: 'Festival main stage', type: 'Festival', gear: 'LED video wall · LED booth facade · stage lighting',
       media: [{ src: '/assets/img/concert-ledwall.webp', alt: 'DJ on an outdoor stage in front of an LED wall and LED booth facade' }] },
-    { slug: 'ballroom-wedding', title: 'Ballroom wedding', type: 'Wedding', gear: 'Lit facade · truss uprights · 4 movers · tops + subs',
+    { slug: 'ballroom-wedding', title: 'Ballroom wedding', type: 'Wedding', gear: 'Lit facade · truss uprights · 4 movers · uplighting · tops + subs',
       media: [{ src: '/assets/img/setup-ballroom.webp', alt: 'Blue lit DJ facade between truss uprights with moving heads and speakers in a gilded ballroom' }] },
-    { slug: 'sweet-16', title: 'Sweet 16', type: 'Private', gear: '65" TV booth (white) · 4 movers · RCF 945 + 8003',
-      media: [{ src: '/assets/img/setup-sweet16.webp', alt: 'White DJ booth with custom Sweet 16 graphic on the screen, moving heads on white columns' }] },
     { slug: 'kearny-tree-lighting', title: 'Kearny Tree Lighting', type: 'Town event', gear: 'Stage deck · PA · backline · uplighting',
       media: [{ src: '/assets/img/staging-kearny.webp', alt: 'Aluminum stage deck with mics and speakers lit for a town tree lighting festival' }] },
     { slug: 'new-years-eve', title: "New Year's Eve", type: 'Private', gear: 'DJ · column speakers · mirror balls',

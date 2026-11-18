@@ -2,7 +2,7 @@
    that header search buttons marked data-ea-search open (the home page keeps its own search).
    Other scripts can open the contact form with EvoAsk.open({ message: '...' }). */
 (function () {
-  var EMAIL = 'evolivepro@gmail.com', PHONE = '+12019139558';
+  var EMAIL = 'evolivepro@gmail.com';
 
   // Everything the site search knows about: [title, kind, description, link, extra keywords]
   var INDEX = [
@@ -10,7 +10,7 @@
     ['DJ', 'Service', 'Open format DJs and MCs', '/#services', 'dj music mc wedding'],
     ['Production', 'Service', 'Lighting, rigging, line arrays, FX', '/#services', 'production lighting rigging truss'],
     ['AV installs', 'Service', 'LED walls, displays, playback', '/#services', 'install av led screens'],
-    ['The index', 'Work', 'Every event and the gear behind it', '/#work', 'work portfolio events prom nba club festival sweet 16 kearny new year'],
+    ['The index', 'Work', 'Every event and the gear behind it', '/#work', 'work portfolio events prom nba club festival kearny new year'],
     ['Reviews', 'Clients', 'What people said', '/#reviews', 'reviews testimonials'],
     ['About Us', 'Page', 'Origins, capabilities, Tim & Dom', '/about', 'about founders team tim dom story'],
     ['Tim & Dom', 'Crew', 'The two people behind Evo', '/about#crew', 'crew founders team tim dom'],
@@ -25,10 +25,10 @@
     ['À la carte', 'Events', 'Add-ons you can pick one by one', '/events#alacarte', 'add on extras alacarte uplighting photo booth'],
     ['Corporate', 'Events', 'Brand events, activations, conferences', '/events#corporate', 'corporate brand company conference'],
     ['Live events', 'Events', 'Concerts, festivals, town events', '/events#live', 'concert festival stage live town'],
-    ['Private parties', 'Events', 'Sweet 16s, proms, birthdays, NYE', '/events#private', 'sweet 16 prom birthday party private'],
+    ['Private parties', 'Events', 'Sweet 16s, proms, birthdays', '/events#private', 'sweet 16 prom birthday party private'],
     ['Venues', 'Events', 'Where we have worked', '/events#venues', 'venues halls ballroom'],
     ['Photos', 'Page', 'Real Evo setups and behind the scenes', '/photos', 'photos gallery pictures'],
-    ['Contact Us', 'Page', 'Phone, email, warehouse, booking form', '/contact', 'contact phone email address lyndhurst'],
+    ['Contact Us', 'Page', 'Email, warehouse, booking form', '/contact', 'contact email address lyndhurst'],
     ['Book your date', 'Contact', 'Date, venue, guests, budget', '/contact#book', 'book booking date availability quote price']
   ];
   var POPULAR = ['The index', 'Wedding packages', 'Rental catalog', 'Tim & Dom', 'Book your date'];
@@ -66,7 +66,7 @@
       '<div class="ea-field"><label for="ea-msg">Message</label><textarea id="ea-msg" name="body" required placeholder="Sweet 16 in March, about 150 guests. Can you do DJ, lights and a cold spark entrance?"></textarea></div>' +
       '<button type="submit" class="ea-send">Send message</button>' +
       '<div class="ea-or">or reach us directly</div>' +
-      '<div class="ea-quick"><a href="tel:' + PHONE + '">Call</a><a href="sms:' + PHONE + '">Text</a><a href="mailto:' + EMAIL + '">Email</a></div>' +
+      '<div class="ea-quick"><a href="mailto:' + EMAIL + '">Email us</a></div>' +
       '</form></div>';
 
     document.body.appendChild(pill);

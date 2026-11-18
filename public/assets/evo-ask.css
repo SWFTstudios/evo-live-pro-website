@@ -40,7 +40,7 @@
 .ea-send:hover{background:#F0602E}
 .ea-or{display:flex;align-items:center;gap:12px;color:#8A8A86;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
 .ea-or::before,.ea-or::after{content:"";flex:1;height:1px;background:#2A2A2A}
-.ea-quick{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.ea-quick{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:8px}
 .ea-quick a{display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:999px;border:1px solid #333;color:#EDEBE6;text-decoration:none;font:700 14px Inter,system-ui,sans-serif}
 .ea-quick a:hover{border-color:#EDEBE6}
 /* ---------- Site search (header button) ---------- */
