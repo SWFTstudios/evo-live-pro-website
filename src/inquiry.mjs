@@ -2,7 +2,7 @@
 // inquiry job in Stagera (two calls, in order, each with its own Idempotency-Key derived from the
 // submission id so a retried submission replays instead of creating duplicates).
 
-export const EVENT_TYPES = ['Weddings', 'Corporate Events', 'Concerts & Live Events', 'Private Parties', 'Rentals only'];
+export const EVENT_TYPES = ['Weddings', 'Corporate Events', 'Concerts & Live Events', 'Private Parties', 'Rentals Only'];
 export const GUESTS = ['Under 50', '50 to 150', '150 to 300', '300 to 1,000', '1,000+'];
 export const BUDGETS = ['Under $2,500', '$2,500 to $5,500', '$5,500 to $8,500', '$8,500 to $12,500', '$12,500+', 'Not sure yet'];
 const EVENT_NOUN = {
@@ -10,7 +10,7 @@ const EVENT_NOUN = {
   'Corporate Events': 'Corporate event',
   'Concerts & Live Events': 'Live event',
   'Private Parties': 'Private party',
-  'Rentals only': 'Rental'
+  'Rentals Only': 'Rental'
 };
 export const DEFAULT_BASE = 'https://app.stagera.ai/api/v2';
 const MIN_FILL_MS = 2500; // a person can't fill the form faster than this
@@ -39,6 +39,7 @@ export function validate(body) {
   if (!d.email) errors.email = 'Add your email.';
   else if (!EMAIL_RE.test(d.email)) errors.email = 'That email doesn\'t look right.';
   if (d.phone && !/^[0-9+().\-\s]{7,}$/.test(d.phone)) errors.phone = 'That phone number doesn\'t look right.';
+  if (d.event_type === 'Rentals only') d.event_type = 'Rentals Only'; // pages cached before the rename
   if (!EVENT_TYPES.includes(d.event_type)) errors.event_type = 'Pick a type of event.';
   if (!d.start_date) errors.start_date = 'Add the date.';
   else if (!realDate(d.start_date)) errors.start_date = 'That date doesn\'t look right.';
@@ -138,7 +139,7 @@ function json(status, obj) {
   });
 }
 
-const SORRY = 'We couldn\'t send that just now. Please call or text (201) 913-9558, or email evolivepro@gmail.com.';
+const SORRY = 'We couldn\'t send that just now. Please email evolivepro@gmail.com.';
 
 // POST /api/inquiry
 export async function handleInquiry(request, env = {}, { fetchFn = fetch, log = console } = {}) {

@@ -125,7 +125,7 @@ test('without an API key it says so and calls nothing', async () => {
   const s = fakeStagera(ok());
   const res = await handleInquiry(req(good), {}, { fetchFn: s.fetchFn, log: quiet });
   assert.equal(res.status, 503);
-  assert.match((await res.json()).message, /913-9558/);
+  assert.match((await res.json()).message, /evolivepro@gmail\.com/);
   assert.equal(s.calls.length, 0);
 });
 
@@ -170,11 +170,12 @@ test('a missing or odd submission id still works with a fresh key', async () => 
 });
 
 test('validate and stageraBodies fill in the event name and end date', () => {
-  const v = validate(Object.assign({}, good, { event_type: 'Rentals only', venue: 'pickup' }));
+  const v = validate(Object.assign({}, good, { event_type: 'Rentals Only', venue: 'pickup' }));
   assert.ok(v.ok);
   const { event } = stageraBodies(v.data);
   assert.equal(event.name, 'Rental for Jordan Rivera');
   assert.equal(event.end_date, event.start_date);
+  assert.equal(validate(Object.assign({}, good, { event_type: 'Rentals only', venue: 'pickup' })).data.event_type, 'Rentals Only');
   const named = validate(Object.assign({}, good, { event_name: "Sofia & Marc's wedding", end_date: '2027-06-13' }));
   assert.equal(stageraBodies(named.data).event.name, "Sofia & Marc's wedding");
   assert.equal(stageraBodies(named.data).event.end_date, '2027-06-13');

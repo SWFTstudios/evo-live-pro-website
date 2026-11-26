@@ -3,7 +3,7 @@
 (function () {
   var FIELDS = ['name', 'email', 'phone', 'company', 'event_type', 'event_name', 'start_date', 'end_date',
     'start_time', 'end_time', 'venue', 'venue_address', 'guests', 'budget', 'notes', 'website'];
-  var SORRY = 'We couldn\'t send that just now. Please call or text (201) 913-9558, or email evolivepro@gmail.com.';
+  var SORRY = 'We couldn\'t send that just now. Please email evolivepro@gmail.com.';
 
   function newId() {
     if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
