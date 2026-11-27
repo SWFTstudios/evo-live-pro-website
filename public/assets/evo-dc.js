@@ -96,6 +96,8 @@
             to.value = from.value;
           }
           if (from.tagName === 'VIDEO' && from.isEqualNode(to)) return false;
+          // Form fields marked data-keep hold what the visitor typed; re-renders leave them alone.
+          if (from.hasAttribute && from.hasAttribute('data-keep')) return false;
           return true;
         }
       });
