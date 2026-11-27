@@ -1,0 +1,31 @@
+/* Evo Live Pro, Version 2 color treatment (Nov 22 call with Tim).
+   Weddings get a soft eggshell palette; rentals, nightlife and everything else keep black + Evo orange.
+   Change a shade here and it updates every wedding section on Home, About and Events.
+   Contrast (WCAG 2.1): ink on eggshell 15.3:1, body 8.4:1, muted 4.9:1, accent text 4.9:1,
+   ink buttons 15.3:1, outline button borders 3.4:1. Star bullets are decorative (aria-hidden). */
+:root{
+  --wed-bg:#F4EFE6;      /* eggshell: section and panel background */
+  --wed-card:#FBF8F2;    /* ivory: cards and venue tiles */
+  --wed-ink:#1C1915;     /* headings, primary buttons */
+  --wed-ink2:#4A443C;    /* body copy */
+  --wed-muted:#6E675C;   /* captions, tax notes, small labels */
+  --wed-accent:#7D6432;  /* deep champagne for accent text (eyebrows, prices) */
+  --wed-star:#A88B57;    /* decorative bullets */
+  --wed-champ:#C8B38A;   /* champagne: highlights, borders, accent on dark */
+  --wed-line:#DDD4C5;    /* hairlines and card borders */
+  --wed-edge:#8A8070;    /* outline buttons, card hover border (3.4:1) */
+}
+
+/* Bands and panels (wedding block and packages on Events, venues) */
+.ev-wed{background:var(--wed-bg);color:var(--wed-ink)}
+.ev-wed a:focus-visible,.ev-wed button:focus-visible,.ev-wed summary:focus-visible{outline-color:var(--wed-ink) !important}
+.ev-wed .ev-dark a:focus-visible,.ev-wed .ev-dark button:focus-visible{outline-color:#EDEBE6 !important}
+.ev-wed .e-btn:hover,.ev-wed-card .e-btn:hover{box-shadow:0 10px 36px rgba(28,25,21,.18)}
+.ev-wed .ev-dark .e-btn:hover{box-shadow:0 10px 40px rgba(200,179,138,.35)}
+.ev-wed .e-ghost:hover{background:var(--wed-ink) !important;color:var(--wed-bg) !important;border-color:var(--wed-ink) !important}
+.ev-wed .e-card:hover,.ev-wed-card.e-card:hover{border-color:var(--wed-edge) !important}
+
+/* Wedding photos: warm black and white instead of the cool grayscale, full color on hover as elsewhere */
+.ev-wed img:not([src*="gear/"]),.ev-wed-card img:not([src*="gear/"]){filter:grayscale(1) sepia(.22) contrast(1.02) brightness(1.02)}
+.ev-wed .ev-dark img{filter:grayscale(1) contrast(1.06) brightness(.97)}
+.ev-wed-card:hover img,.ev-wed a:hover img,.ev-wed figure:hover img{filter:grayscale(0) contrast(1) brightness(1)}
